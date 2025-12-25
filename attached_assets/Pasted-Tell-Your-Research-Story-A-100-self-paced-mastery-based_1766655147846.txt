@@ -1,0 +1,47 @@
+Tell Your Research Story
+A 100% self-paced, mastery-based online platform for graduate-level academic writing skills, built entirely on the works of John M. Swales and Christine B. Feak.
+amazon.comamazon.com
+
+The platform draws exclusively from Academic Writing for Graduate Students (3rd ed.), Telling a Research Story: Writing a Literature Review, and their official commentaries/excerpts (as provided in attached PDFs).
+Core Design Principles
+
+No live instructors, forums, or peer interaction.
+Progression locked until mastery (80% threshold).
+All learning active: quizzes, writing tasks, flashcards, mindmaps.
+100 interactive quizzes, 100 flipping flashcards (spaced repetition), 40 interactive mindmaps.
+Automated feedback from original text snippets and commentaries.
+
+research.commasterytrack.org
+
+Platform Structure
+
+Program: Tell Your Research Story
+6 Modules (sequential, mastery-locked):
+Foundations of Academic Writing
+Problem, Process, and Solution
+Data Commentary & General-Specific Texts
+Similarity/Contrast, Critiques, Manuscript Reviews
+Research Paper Construction (Results, Introductions, Discussions, Abstracts, Acknowledgments)
+Literature Reviews (full TRS integration)
+
+Interactive Elements Distribution:
+100 quizzes (8–12 questions each, randomized banks)
+100 spaced-repetition flashcards (key terms, skeletal phrases, structures)
+40 clickable/expandable/rearrangeable mindmaps (e.g., CARS model, problem-solution flow)
+
+
+noji.iomeistertask.com
+
+Key Features
+
+Short text excerpts (≤500 words) + scripted explanations (≤5 min audio/video if implemented).
+Practice: Original writing tasks (e.g., draft Results section, construct literature review paragraph).
+Assessment: AI-graded via keyword/structure match to Swales/Feak examples.
+Feedback: Immediate, error-specific, with direct PDF commentary redirects.
+Motivation: Progress bars, mastery badges, verifiable certificate on 80% overall completion.
+Analytics: Track mastery rates, retries, drop-offs for continuous improvement.
+
+This platform replaces traditional instruction with rigorous, automated mastery paths focused on transferable academic writing skills—telling clear, structured research stories.
+
+Developer
+Halim Faroug A. Elhag, Lecturer of English Language, UHB, UofK.
