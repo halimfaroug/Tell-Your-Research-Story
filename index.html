@@ -1,110 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Tell Your Research Story</title>
-  <style>
-    body {
-      font-family: Georgia, "Times New Roman", serif;
-      background: #f8fafc;
-      color: #0f172a;
-      margin: 0;
-      padding: 30px;
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-    }
-
-    p {
-      max-width: 800px;
-      line-height: 1.6;
-    }
-
-    .box {
-      background: white;
-      padding: 16px;
-      margin-bottom: 16px;
-      border-left: 4px solid #2563eb;
-    }
-
-    input, textarea {
-      width: 100%;
-      font-family: inherit;
-      font-size: 1rem;
-      padding: 10px;
-      margin-top: 8px;
-      border: 1px solid #cbd5f5;
-    }
-
-    textarea {
-      min-height: 120px;
-    }
-
-    button {
-      background: #2563eb;
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      margin: 4px 4px 0 0;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
-    button:hover {
-      background: #1e40af;
-    }
-
-    #output h3 {
-      margin-bottom: 6px;
-    }
-
-    footer {
-      margin-top: 50px;
-      font-size: 0.85rem;
-      color: #475569;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Swales-Based Research Story Tool</title>
+<style>
+  body { font-family: Georgia, "Times New Roman", serif; background: #f8fafc; color: #0f172a; margin:0; padding:30px;}
+  h1 { font-size:2.2rem; margin-bottom:10px;}
+  p { max-width:800px; line-height:1.6;}
+  .box { background:white; padding:16px; margin-bottom:16px; border-left:4px solid #2563eb;}
+  input, textarea { width:100%; font-family:inherit; font-size:1rem; padding:10px; margin-top:8px; border:1px solid #cbd5f5;}
+  textarea { min-height:120px; }
+  button { background:#2563eb; color:white; border:none; padding:8px 14px; margin:4px 4px 0 0; cursor:pointer; font-size:0.9rem;}
+  button:hover { background:#1e40af;}
+  #output h3 { margin-bottom:6px; }
+  footer { margin-top:50px; font-size:0.85rem; color:#475569;}
+  .tooltip { font-size:0.85rem; color:#475569; margin-top:5px; }
+  .quiz-box { background:#e0e7ff; padding:10px; margin:10px 0; border-left:4px solid #4f46e5;}
+</style>
 </head>
 <body>
 <div style="max-width:900px; margin:auto;">
 
-<h1>Tell Your Research Story</h1>
+<h1>Tell Your Research Story (Swales’ CARS Model)</h1>
 
-<p>
-A lightweight tool to structure, draft, and communicate research narratives
-clearly and coherently for academic and general audiences.
-</p>
+<p>This tool guides you in drafting a research story based on Swales’ Academic Writing for Graduate Students. Follow the Moves to structure your paper, add content, and export a polished PDF.</p>
 
-<!-- Discipline Templates -->
 <div class="box">
-  <strong>Quick Templates</strong><br><br>
-  <button onclick="loadTemplate('humanities')">Humanities</button>
-  <button onclick="loadTemplate('sciences')">Sciences</button>
-  <button onclick="loadTemplate('education')">Education</button>
+  <strong>Start with Swales Template:</strong><br><br>
+  <button onclick="loadTemplate('swales')">CARS Model Template</button>
 </div>
 
-<!-- Section Input -->
 <div class="box">
   <input id="title" placeholder="Section title">
-  <textarea id="content" placeholder="Write in clear academic prose. Focus on argument, evidence, and coherence."></textarea>
+  <textarea id="content" placeholder="Write your paragraph according to the prompt."></textarea>
   <br>
   <button onclick="addSection()">Add Section</button>
-  <button onclick="quickAdd('Research Problem')">Research Problem</button>
-  <button onclick="quickAdd('Methodology')">Methodology</button>
-  <button onclick="quickAdd('Key Findings')">Key Findings</button>
-  <button onclick="quickAdd('Conclusion')">Conclusion</button>
+  <button onclick="quickAdd('Move 1: Establishing a Territory')">Move 1</button>
+  <button onclick="quickAdd('Move 2: Establishing a Niche')">Move 2</button>
+  <button onclick="quickAdd('Move 3: Occupying the Niche')">Move 3</button>
 </div>
 
-<!-- Output / Preview -->
 <div id="output"></div>
 
-<!-- Copy / Reset / PDF -->
 <div class="box">
   <button onclick="copyStory()">Copy Full Story</button>
   <button onclick="resetStory()">Reset Draft</button>
   <button onclick="downloadPDF()">Download PDF</button>
+</div>
+
+<div class="box">
+  <strong>Mini Exercises:</strong>
+  <div class="quiz-box">
+    Q1: Identify the Move in the following sentence: "Previous studies have shown inconsistent results regarding X." <br>
+    Options: Move 1 / Move 2 / Move 3
+  </div>
+  <div class="quiz-box">
+    Q2: Which sentence illustrates Move 3: "This study aims to explore Y to address the gap in Z"? <br>
+    Options: Move 1 / Move 2 / Move 3
+  </div>
 </div>
 
 <footer>
@@ -112,123 +65,100 @@ clearly and coherently for academic and general audiences.
   Lightweight academic writing support tool. No data is stored beyond the user's browser.
 </footer>
 
-<script>
-  const output = document.getElementById("output");
-
-  // Load saved content
-  output.innerHTML = localStorage.getItem("story") || "";
-
-  // Add section
-  function addSection() {
-    const title = document.getElementById("title").value;
-    const content = document.getElementById("content").value;
-    if (!title || !content) return;
-
-    const count = output.children.length + 1;
-    const section = document.createElement("div");
-    section.className = "box";
-    section.innerHTML = `<h3>${count}. ${title}</h3><p>${content}</p>`;
-
-    output.appendChild(section);
-    localStorage.setItem("story", output.innerHTML);
-
-    document.getElementById("title").value = "";
-    document.getElementById("content").value = "";
-  }
-
-  // Quick pre-filled section
-  function quickAdd(title) {
-    document.getElementById("title").value = title;
-    document.getElementById("content").focus();
-  }
-
-  // Copy all text
-  function copyStory() {
-    const text = output.innerText;
-    navigator.clipboard.writeText(text);
-    alert("Story copied. Paste it anywhere.");
-  }
-
-  // Reset draft
-  function resetStory() {
-    if (confirm("This will delete the entire draft. Continue?")) {
-      localStorage.removeItem("story");
-      output.innerHTML = "";
-    }
-  }
-
-  // Load discipline template
-  function loadTemplate(type) {
-    const templates = {
-      humanities: [
-        "Research Context",
-        "Critical Framework",
-        "Textual Analysis",
-        "Discussion",
-        "Conclusion"
-      ],
-      sciences: [
-        "Research Problem",
-        "Methodology",
-        "Data Analysis",
-        "Results",
-        "Conclusion"
-      ],
-      education: [
-        "Problem Statement",
-        "Literature Context",
-        "Method",
-        "Findings",
-        "Implications"
-      ]
-    };
-
-    if (!confirm("This will start a new structured draft. Continue?")) return;
-
-    output.innerHTML = "";
-    localStorage.removeItem("story");
-
-    templates[type].forEach(title => {
-      const section = document.createElement("div");
-      section.className = "box";
-      section.innerHTML = `<h3>${title}</h3><p></p>`;
-      output.appendChild(section);
-    });
-
-    localStorage.setItem("story", output.innerHTML);
-  }
-
-  // Download as PDF
-  function downloadPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF('p', 'pt', 'a4');
-    let y = 40;
-    const sections = output.children;
-    doc.setFontSize(14);
-    for (let i = 0; i < sections.length; i++) {
-      const h = sections[i].querySelector('h3').innerText;
-      const p = sections[i].querySelector('p').innerText;
-      doc.text(h, 40, y);
-      y += 20;
-      const splitText = doc.splitTextToSize(p, 500);
-      doc.text(splitText, 40, y);
-      y += splitText.length * 14 + 20;
-      if (y > 750) doc.addPage(), y = 40;
-    }
-
-    // Add References placeholder
-    doc.addPage();
-    doc.setFontSize(16);
-    doc.text("References", 40, 40);
-    doc.setFontSize(12);
-    doc.text("1. [Add your sources here]", 40, 70);
-
-    doc.save("Research_Story.pdf");
-  }
-</script>
-
-<!-- jsPDF library for PDF download -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const output = document.getElementById("output");
+
+output.innerHTML = localStorage.getItem("story") || "";
+
+function addSection() {
+  const title = document.getElementById("title").value;
+  const content = document.getElementById("content").value;
+  if(!title || !content) return;
+  const count = output.children.length + 1;
+  const section = document.createElement("div");
+  section.className = "box";
+  section.innerHTML = `<h3>${count}. ${title}</h3><p>${content}</p>`;
+  output.appendChild(section);
+  localStorage.setItem("story", output.innerHTML);
+  document.getElementById("title").value = "";
+  document.getElementById("content").value = "";
+}
+
+function quickAdd(title){
+  document.getElementById("title").value = title;
+  let promptText = "";
+  if(title.includes("Move 1")) promptText="Explain the research context, importance, and key literature.";
+  if(title.includes("Move 2")) promptText="Identify the research gap, problem, or limitations.";
+  if(title.includes("Move 3")) promptText="State the purpose, research questions, and contribution of your study.";
+  document.getElementById("content").value = promptText;
+  document.getElementById("content").focus();
+}
+
+function copyStory() {
+  navigator.clipboard.writeText(output.innerText);
+  alert("Story copied. Paste it anywhere.");
+}
+
+function resetStory(){
+  if(confirm("This will delete the entire draft. Continue?")){
+    localStorage.removeItem("story");
+    output.innerHTML="";
+  }
+}
+
+function loadTemplate(type){
+  if(!confirm("This will start a new Swales-structured draft. Continue?")) return;
+  output.innerHTML="";
+  localStorage.removeItem("story");
+  const templateSections = [
+    {title:"Move 1: Establishing a Territory", prompt:"Explain the research context, importance, and key literature."},
+    {title:"Move 2: Establishing a Niche", prompt:"Identify the research gap, problem, or limitations."},
+    {title:"Move 3: Occupying the Niche", prompt:"State the purpose, research questions, and contribution of your study."}
+  ];
+  templateSections.forEach((s,i)=>{
+    const section = document.createElement("div");
+    section.className="box";
+    section.innerHTML = `<h3>${i+1}. ${s.title}</h3><p>${s.prompt}</p>`;
+    output.appendChild(section);
+  });
+  localStorage.setItem("story", output.innerHTML);
+}
+
+function downloadPDF(){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF('p','pt','a4');
+  doc.setFont("Times",""); 
+  doc.setFontSize(14);
+  let y=50;
+  const sections = output.children;
+  for(let i=0;i<sections.length;i++){
+    if(y>700){ doc.addPage(); y=50; }
+    const h=sections[i].querySelector('h3').innerText;
+    const p=sections[i].querySelector('p').innerText;
+    doc.setFontSize(16);
+    doc.text(h,40,y);
+    y+=20;
+    doc.setFontSize(12);
+    const splitText = doc.splitTextToSize(p,500);
+    doc.text(splitText,40,y);
+    y+=splitText.length*14 + 20;
+    const pageCount = doc.getNumberOfPages();
+    doc.setFontSize(10);
+    doc.text(`${pageCount}`,550,800);
+  }
+  // References
+  doc.addPage();
+  doc.setFontSize(16);
+  doc.text("References",40,50);
+  doc.setFontSize(12);
+  doc.text("1. [Add your sources here]",40,80);
+  const pageCount = doc.getNumberOfPages();
+  doc.setFontSize(10);
+  doc.text(`${pageCount}`,550,800);
+  doc.save("Research_Story.pdf");
+}
+</script>
 
 </div>
 </body>
