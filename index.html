@@ -17,6 +17,10 @@
       padding: 15px;
       margin-bottom: 15px;
       border-radius: 6px;
+      <p>
+A lightweight tool to structure, draft, and communicate research narratives
+clearly and coherently for academic and general audiences.
+</p>
     }
     input, textarea, button {
       width: 100%;
@@ -28,6 +32,8 @@
       color: white;
       border: none;
       cursor: pointer;
+      <button onclick="copyStory()">Copy Full Story</button>
+<button onclick="resetStory()">Reset Draft</button>
     }
   </style>
 </head>
@@ -46,7 +52,6 @@
 <script>
   const output = document.getElementById("output");
 
-  // Load saved content
   output.innerHTML = localStorage.getItem("story") || "";
 
   function addSection() {
@@ -55,9 +60,11 @@
 
     if (!title || !content) return;
 
+    const count = output.children.length + 1;
+
     const section = document.createElement("div");
     section.className = "box";
-    section.innerHTML = `<h3>${title}</h3><p>${content}</p>`;
+    section.innerHTML = `<h3>${count}. ${title}</h3><p>${content}</p>`;
 
     output.appendChild(section);
     localStorage.setItem("story", output.innerHTML);
@@ -75,6 +82,13 @@
     const text = output.innerText;
     navigator.clipboard.writeText(text);
     alert("Story copied. Paste it anywhere.");
+  }
+
+  function resetStory() {
+    if (confirm("This will delete the entire draft. Continue?")) {
+      localStorage.removeItem("story");
+      output.innerHTML = "";
+    }
   }
 </script>
 
