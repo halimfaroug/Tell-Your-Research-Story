@@ -65,6 +65,17 @@
     document.getElementById("title").value = "";
     document.getElementById("content").value = "";
   }
+
+  function quickAdd(title) {
+    document.getElementById("title").value = title;
+    document.getElementById("content").focus();
+  }
+
+  function copyStory() {
+    const text = output.innerText;
+    navigator.clipboard.writeText(text);
+    alert("Story copied. Paste it anywhere.");
+  }
 </script>
 
 </body>
