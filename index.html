@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Swales CARS: Interactive Learning Platform</title>
+  <title>Tell Your Research Story | Swales Academic Writing Platform</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Reset and Base Styles */
+    /* Storytelling Theme with Black Text */
     * {
       margin: 0;
       padding: 0;
@@ -13,1155 +13,1477 @@
     }
 
     :root {
-      --primary: #2c3e50;
-      --secondary: #3498db;
-      --accent: #e74c3c;
-      --success: #27ae60;
-      --warning: #f39c12;
+      --story-color: #2c3e50;
+      --narrative-color: #3498db;
+      --voice-color: #e74c3c;
+      --structure-color: #27ae60;
+      --audience-color: #9b59b6;
       --light: #ecf0f1;
-      --dark: #2c3e50;
+      --text-color: #000000; /* Black text for readability */
       --transition: all 0.3s ease;
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Georgia', 'Palatino', serif;
+      line-height: 1.8;
+      color: var(--text-color); /* Black text */
+      background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><text x="50" y="50" font-family="Georgia" font-size="10" text-anchor="middle" dominant-baseline="middle">✍️</text></svg>');
       min-height: 100vh;
     }
 
-    /* Header */
-    header {
-      background: white;
-      padding: 1.5rem 2rem;
-      border-radius: 0 0 20px 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      margin-bottom: 2rem;
+    /* Story Header */
+    .story-header {
+      background: linear-gradient(135deg, var(--story-color), #34495e);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
       position: relative;
       overflow: hidden;
     }
 
-    header::before {
-      content: '';
+    .story-header::before {
+      content: '📖';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, var(--secondary), var(--accent));
+      font-size: 20rem;
+      opacity: 0.05;
+      right: -5rem;
+      top: -5rem;
+      color: white;
     }
 
-    h1 {
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-      font-size: 2.2rem;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .story-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      color: white; /* White for contrast on dark background */
     }
 
-    .subtitle {
-      color: #666;
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
+    .story-subtitle {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      font-style: italic;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      color: white; /* White for contrast on dark background */
     }
 
-    /* Status Bar */
-    .status {
-      display: flex;
-      gap: 2rem;
-      background: var(--light);
-      padding: 0.8rem 1.5rem;
-      border-radius: 10px;
-      font-weight: bold;
-      position: relative;
-    }
-
-    .status span {
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      background: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    #points {
-      color: var(--success);
-      animation: pulse 2s infinite;
-    }
-
-    #progress {
-      color: var(--secondary);
-    }
-
-    /* Navigation */
-    nav {
+    /* Story Navigation */
+    .story-chapters {
       display: flex;
       justify-content: center;
       gap: 1rem;
-      margin-bottom: 2rem;
-      padding: 0 1rem;
+      margin: 2rem auto;
+      max-width: 1200px;
+      flex-wrap: wrap;
     }
 
-    nav button {
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 50px;
+    .chapter {
       background: white;
-      color: var(--primary);
-      font-weight: bold;
+      padding: 1.5rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       cursor: pointer;
       transition: var(--transition);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      position: relative;
-      overflow: hidden;
+      text-align: center;
+      min-width: 200px;
+      border-left: 5px solid var(--narrative-color);
+      color: var(--text-color); /* Black text */
     }
 
-    nav button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      transition: left 0.5s;
+    .chapter h3, .chapter p {
+      color: var(--text-color); /* Black text */
     }
 
-    nav button:hover::before {
-      left: 100%;
+    .chapter:nth-child(2) {
+      border-left-color: var(--voice-color);
+    }
+    .chapter:nth-child(3) {
+      border-left-color: var(--structure-color);
+    }
+    .chapter:nth-child(4) {
+      border-left-color: var(--audience-color);
     }
 
-    nav button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    .chapter:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
-    nav button.active {
-      background: var(--secondary);
-      color: white;
-      transform: scale(1.05);
+    .chapter.active {
+      background: linear-gradient(135deg, var(--narrative-color), #2980b9);
+      color: white; /* White text on active chapter */
     }
 
-    /* Main Content */
-    main {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      padding: 0 1.5rem 2rem;
-      max-width: 1400px;
+    .chapter.active h3, .chapter.active p {
+      color: white; /* White text on active chapter */
+    }
+
+    /* Story Content */
+    .story-content {
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 2rem 4rem;
     }
 
-    .panel {
+    .chapter-content {
+      display: none;
+      animation: fadeIn 0.8s ease;
+      color: var(--text-color); /* Black text */
+    }
+
+    .chapter-content.active {
+      display: block;
+    }
+
+    /* Story Elements */
+    .story-element {
       background: white;
-      padding: 1.5rem;
+      padding: 2rem;
+      margin: 2rem 0;
       border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      transition: var(--transition);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
       position: relative;
       overflow: hidden;
+      color: var(--text-color); /* Black text */
     }
 
-    .panel::before {
+    .story-element::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
-      width: 5px;
-      height: 100%;
-      background: var(--secondary);
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--narrative-color), var(--voice-color));
     }
 
-    .panel:hover {
+    .element-title {
+      color: var(--story-color);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .element-icon {
+      font-size: 2rem;
+      color: var(--story-color);
+    }
+
+    /* Story Builder */
+    .story-builder {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      margin: 2rem 0;
+      color: var(--text-color); /* Black text */
+    }
+
+    .builder-step {
+      background: var(--light);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 10px;
+      border-left: 4px solid var(--structure-color);
+      color: var(--text-color); /* Black text */
+    }
+
+    /* Dialogue Box */
+    .dialogue {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--narrative-color);
+      font-style: italic;
+      position: relative;
+      color: var(--text-color); /* Black text */
+    }
+
+    .dialogue::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 4rem;
+      color: var(--narrative-color);
+      opacity: 0.2;
+      font-family: serif;
+    }
+
+    /* Story Canvas */
+    .story-canvas {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      margin: 2rem 0;
+      min-height: 300px;
+      border: 2px dashed #ddd;
+      transition: var(--transition);
+      color: var(--text-color); /* Black text */
+    }
+
+    .story-canvas:hover {
+      border-color: var(--narrative-color);
+    }
+
+    /* Narrative Flow */
+    .narrative-flow {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 200px;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      position: relative;
+      transition: var(--transition);
+      color: var(--text-color); /* Black text */
+    }
+
+    .flow-step:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
-    .panel h2, .panel h3 {
-      color: var(--primary);
-      margin-bottom: 1rem;
+    .flow-step h4 {
+      color: var(--story-color);
+      margin-bottom: 0.5rem;
     }
 
-    .panel h2 {
-      border-bottom: 2px solid var(--light);
-      padding-bottom: 0.5rem;
+    /* Interactive Examples */
+    .interactive-example {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 10px;
+      border: 2px solid #ddd;
+      color: var(--text-color); /* Black text */
     }
 
-    /* Lists */
-    ul {
-      list-style: none;
+    .example-toggle {
+      background: var(--narrative-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
       margin: 1rem 0;
     }
 
-    ul li {
-      padding: 0.8rem;
-      margin-bottom: 0.5rem;
-      background: var(--light);
-      border-radius: 8px;
-      border-left: 4px solid var(--secondary);
-      transition: var(--transition);
+    /* Progress Story */
+    .story-progress {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: white;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 1rem;
+      color: var(--text-color); /* Black text */
     }
 
-    ul li:hover {
-      transform: translateX(5px);
-      background: #e3f2fd;
+    .progress-chapter {
+      font-weight: bold;
+      color: var(--story-color);
     }
 
-    ul li::before {
-      content: '✓';
-      color: var(--success);
+    /* Author's Voice */
+    .voice-selector {
+      display: flex;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .voice-option {
+      padding: 1rem 1.5rem;
+      background: var(--light);
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      flex: 1;
+      min-width: 150px;
+      color: var(--text-color); /* Black text */
+    }
+
+    .voice-option:hover {
+      border-color: var(--voice-color);
+      background: rgba(231, 76, 60, 0.1);
+    }
+
+    .voice-option.selected {
+      border-color: var(--voice-color);
+      background: rgba(231, 76, 60, 0.2);
       font-weight: bold;
     }
 
-    /* Examples */
-    .examples {
+    /* Story Templates */
+    .template-gallery {
       display: grid;
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
     }
 
-    .example {
-      padding: 1rem;
-      border-radius: 10px;
-      border-left: 5px solid;
-      animation: fadeIn 0.5s ease;
-    }
-
-    .good {
-      background: rgba(39, 174, 96, 0.1);
-      border-left-color: var(--success);
-    }
-
-    .bad {
-      background: rgba(231, 76, 60, 0.1);
-      border-left-color: var(--accent);
-    }
-
-    /* Interaction Panel */
-    .interaction {
-      grid-column: span 2;
-    }
-
-    #taskOptions {
-      display: grid;
-      gap: 0.8rem;
-      margin: 1.5rem 0;
-    }
-
-    .option {
-      padding: 1rem;
+    .template-card {
       background: white;
-      border: 2px solid #ddd;
+      padding: 1.5rem;
       border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       cursor: pointer;
       transition: var(--transition);
-      text-align: left;
-      font-size: 1rem;
+      border: 2px solid transparent;
+      color: var(--text-color); /* Black text */
     }
 
-    .option:hover {
-      border-color: var(--secondary);
-      background: #f8f9fa;
-      transform: translateX(5px);
+    .template-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-color: var(--narrative-color);
     }
 
-    .option.correct {
-      border-color: var(--success);
-      background: rgba(39, 174, 96, 0.1);
-      animation: correctPulse 0.5s;
+    /* Swales Quotes */
+    .swales-quote {
+      background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(231, 76, 60, 0.1));
+      padding: 2rem;
+      border-radius: 10px;
+      margin: 2rem 0;
+      border-left: 5px solid var(--story-color);
+      position: relative;
+      color: var(--text-color); /* Black text */
     }
 
-    .option.incorrect {
-      border-color: var(--accent);
-      background: rgba(231, 76, 60, 0.1);
-      animation: shake 0.5s;
-    }
-
-    #taskFeedback {
-      min-height: 60px;
-      padding: 1rem;
+    .quote-author {
+      text-align: right;
+      font-style: italic;
+      color: #666;
       margin-top: 1rem;
-      border-radius: 10px;
-      background: var(--light);
-      animation: fadeIn 0.5s;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
     }
 
-    .feedback-icon {
-      font-size: 1.5rem;
-    }
-
-    /* Sandbox */
-    .sandbox {
-      grid-column: span 2;
-    }
-
-    textarea {
-      width: 100%;
-      min-height: 120px;
-      margin: 1rem 0;
-      padding: 1rem;
-      border: 2px solid #ddd;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-family: inherit;
-      resize: vertical;
-      transition: var(--transition);
-    }
-
-    textarea:focus {
-      outline: none;
-      border-color: var(--secondary);
-      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-    }
-
+    /* Buttons */
     button {
       padding: 0.8rem 1.5rem;
-      background: var(--secondary);
+      background: var(--narrative-color);
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
       transition: var(--transition);
-      margin-right: 0.5rem;
+      margin: 0.5rem;
+      font-family: 'Georgia', serif;
     }
 
     button:hover {
       background: #2980b9;
       transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    button:active {
-      transform: translateY(0);
+    /* Lists */
+    ul, ol {
+      margin: 1rem 0 1rem 2rem;
+      color: var(--text-color); /* Black text */
     }
 
-    #sandboxFeedback {
-      margin-top: 1rem;
-      padding: 1rem;
-      border-radius: 10px;
-      animation: fadeIn 0.5s;
-      display: none;
+    li {
+      margin-bottom: 0.5rem;
     }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: white;
-      background: rgba(0,0,0,0.8);
-      margin-top: 2rem;
-    }
-
-    footer strong {
-      color: var(--warning);
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--story-color);
     }
 
     /* Animations */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes pulse {
+    @keyframes storyPulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
     }
 
-    @keyframes correctPulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-      100% { transform: scale(1); }
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      75% { transform: translateX(5px); }
-    }
-
     /* Responsive */
     @media (max-width: 768px) {
-      main {
-        grid-template-columns: 1fr;
+      .story-title {
+        font-size: 2.5rem;
       }
       
-      .interaction, .sandbox {
-        grid-column: 1;
-      }
-      
-      nav {
+      .story-chapters {
         flex-direction: column;
       }
-    }
-
-    /* Progress Bar */
-    .progress-container {
-      margin-top: 0.5rem;
-    }
-
-    .progress-bar {
-      height: 8px;
-      background: #ddd;
-      border-radius: 4px;
-      overflow: hidden;
-      margin-bottom: 0.5rem;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--secondary), var(--success));
-      width: 0%;
-      transition: width 0.5s ease;
-    }
-
-    /* Badges */
-    .badge {
-      display: inline-block;
-      padding: 0.3rem 0.8rem;
-      background: var(--warning);
-      color: white;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      margin-left: 0.5rem;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-3px); }
+      
+      .chapter {
+        width: 100%;
+      }
+      
+      .narrative-flow {
+        flex-direction: column;
+      }
+      
+      .voice-selector {
+        flex-direction: column;
+      }
+      
+      .story-progress {
+        left: 2rem;
+        right: 2rem;
+        bottom: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>🔬 Swales CARS: Telling a Research Story</h1>
-  <p class="subtitle">Master academic writing through interactive exploration of knowledge construction</p>
-  <div class="status">
-    <span id="points">🏆 Points: 0</span>
-    <span id="progress">📈 Progress: <span id="progressPercent">0</span>%</span>
-    <span id="badges">🎖️ Badges: 0</span>
-  </div>
-  <div class="progress-container">
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill"></div>
+<!-- Story Header -->
+<div class="story-header">
+  <h1 class="story-title">📖 Tell Your Research Story</h1>
+  <p class="story-subtitle">Mastering Academic Writing through Narrative Construction<br>Based on John Swales' Framework</p>
+  
+  <div class="story-progress">
+    <span class="progress-chapter">Chapter 1: Finding Your Voice</span>
+    <div class="progress-bar" style="flex-grow: 1; height: 5px; background: #ddd; border-radius: 3px;">
+      <div style="width: 25%; height: 100%; background: var(--narrative-color); border-radius: 3px;"></div>
     </div>
-    <small>Complete all tasks to unlock achievement!</small>
   </div>
-</header>
+</div>
 
-<nav>
-  <button onclick="loadMove(0)" class="active">📍 Move 1: Establishing Territory</button>
-  <button onclick="loadMove(1)">🎯 Move 2: Establishing a Niche</button>
-  <button onclick="loadMove(2)">💡 Move 3: Occupying the Niche</button>
-</nav>
-
-<main>
-
-<section class="panel theory">
-  <h2 id="moveTitle">Move 1: Establishing Territory</h2>
-  <p id="movePurpose" class="purpose">Claiming centrality and/or making topic generalizations</p>
-
-  <h3>🎯 Key Strategies</h3>
-  <ul id="moveStrategies">
-    <li>Claiming centrality</li>
-    <li>Making topic generalizations</li>
-    <li>Reviewing items of previous research</li>
-  </ul>
-
-  <h3>📝 Linguistic Signals</h3>
-  <ul id="moveSignals">
-    <li>Recently, researchers have become increasingly interested in...</li>
-    <li>Many studies have shown that...</li>
-    <li>It is generally accepted that...</li>
-  </ul>
-
-  <h3>⚠️ Common Errors</h3>
-  <ul id="moveErrors">
-    <li>Making claims without evidence</li>
-    <li>Failing to demonstrate topic importance</li>
-    <li>Overgeneralizing previous research</li>
-  </ul>
-</section>
-
-<section class="panel examples">
-  <h3>📊 Contrastive Examples</h3>
-  <div class="example good">
-    <strong>✅ Effective:</strong>
-    <p id="goodExample">"In recent years, climate change has emerged as a critical area of research, with numerous studies documenting its impact on coastal ecosystems (Smith, 2020; Jones, 2021)."</p>
-    <small>⭐ Demonstrates centrality with evidence</small>
+<!-- Story Chapters -->
+<div class="story-chapters">
+  <div class="chapter active" onclick="showChapter(1)">
+    <h3>🎭 Chapter 1: Finding Your Voice</h3>
+    <p>Authorial Identity & Stance</p>
   </div>
-  <div class="example bad">
-    <strong>❌ Ineffective:</strong>
-    <p id="badExample">"Climate change is happening. People study it."</p>
-    <small>⚠️ Vague, lacks academic rigor</small>
+  <div class="chapter" onclick="showChapter(2)">
+    <h3>📚 Chapter 2: Research as Narrative</h3>
+    <p>Storytelling in Academic Writing</p>
   </div>
-</section>
-
-<section class="panel interaction">
-  <h3>🤔 Decision Task <span class="badge" id="taskBadge">New!</span></h3>
-  <p id="taskQuestion">Which sentence BEST establishes research territory?</p>
-  <div id="taskOptions">
-    <!-- Options will be injected by JavaScript -->
+  <div class="chapter" onclick="showChapter(3)">
+    <h3>🏛️ Chapter 3: Genre Expectations</h3>
+    <p>Disciplinary Story Forms</p>
   </div>
-  <div id="taskFeedback"></div>
-  <button onclick="nextTask()" style="display:none;" id="nextBtn">Next Challenge →</button>
-</section>
-
-<section class="panel sandbox">
-  <h3>✍️ Guided Writing Sandbox</h3>
-  <p id="sandboxPrompt">Write ONE sentence establishing territory for a study on "online learning effectiveness":</p>
-  <textarea id="studentText" placeholder="Start typing your academic sentence here... (Try to use the strategies above!)"></textarea>
-  <div>
-    <button onclick="checkSandbox()">🔍 Analyze My Sentence</button>
-    <button onclick="showHint()">💡 Get a Hint</button>
-    <button onclick="generateExample()">🎲 See Random Example</button>
+  <div class="chapter" onclick="showChapter(4)">
+    <h3>🔍 Chapter 4: The CARS Model</h3>
+    <p>Creating a Research Space</p>
   </div>
-  <div id="sandboxFeedback"></div>
-</section>
+  <div class="chapter" onclick="showChapter(5)">
+    <h3>✍️ Chapter 5: Writing Workshop</h3>
+    <p>Craft Your Research Story</p>
+  </div>
+</div>
 
-</main>
+<!-- Story Content -->
+<div class="story-content">
+  
+  <!-- Chapter 1: Finding Your Voice -->
+  <div class="chapter-content active" id="chapter1">
+    
+    <div class="story-element">
+      <h2 class="element-title"><span class="element-icon">🎭</span> Finding Your Academic Voice</h2>
+      <p>Your "voice" in academic writing is your unique presence as an author. It's how you position yourself in relation to your research, your field, and your readers.</p>
+      
+      <div class="swales-quote">
+        "Academic writing is not about being impersonal; it's about adopting the appropriate persona for your disciplinary conversation."
+        <div class="quote-author">– Inspired by Swales & Feak</div>
+      </div>
+    </div>
 
-<footer>
-  <p>
-    Based on Swales (1990, 2004) & Swales & Feak's Academic Writing for Graduate Students<br>
-    Developed by <strong>Halim Faroug A. Elhag</strong>, Lecturer of English Language, UHB / UofK.
-    <br>
-    <small>🎯 Interactive Edition with Gamification Elements</small>
-  </p>
-</footer>
+    <div class="story-element">
+      <h3 class="element-title">🎯 Voice Dimensions</h3>
+      <div class="narrative-flow">
+        <div class="flow-step">
+          <h4>Hedging</h4>
+          <p>Expressing uncertainty appropriately: <em>"It appears that..."</em></p>
+          <button class="example-toggle" onclick="toggleExample('hedge')">Show Examples</button>
+          <div id="hedge-example" class="interactive-example" style="display: none;">
+            <p><strong>Strong:</strong> This proves climate change is man-made.</p>
+            <p><strong>Hedged:</strong> The evidence suggests a strong correlation between human activity and climate change patterns.</p>
+          </div>
+        </div>
+        
+        <div class="flow-step">
+          <h4>Boosting</h4>
+          <p>Asserting confidence when needed: <em>"Clearly, the data shows..."</em></p>
+          <button class="example-toggle" onclick="toggleExample('boost')">Show Examples</button>
+          <div id="boost-example" class="interactive-example" style="display: none;">
+            <p><strong>Tentative:</strong> This might perhaps indicate something.</p>
+            <p><strong>Boosted:</strong> These findings unequivocally demonstrate the need for immediate intervention.</p>
+          </div>
+        </div>
+        
+        <div class="flow-step">
+          <h4>Positioning</h4>
+          <p>Aligning with scholarly communities</p>
+          <button class="example-toggle" onclick="toggleExample('position')">Show Examples</button>
+          <div id="position-example" class="interactive-example" style="display: none;">
+            <p><strong>Outsider:</strong> I think researchers should...</p>
+            <p><strong>Insider:</strong> As discourse analysts, we understand that...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-element">
+      <h3 class="element-title">🎤 Voice Selector Exercise</h3>
+      <p>Choose the appropriate voice for different academic situations:</p>
+      
+      <div class="dialogue">
+        "You're writing a literature review section. Your field values cautious interpretation. How do you phrase your synthesis?"
+      </div>
+      
+      <div class="voice-selector">
+        <div class="voice-option" onclick="selectVoice(this, 'cautious')">
+          The available literature <strong>suggests</strong> a possible correlation...
+        </div>
+        <div class="voice-option" onclick="selectVoice(this, 'confident')">
+          The literature <strong>proves</strong> there is a correlation...
+        </div>
+        <div class="voice-option" onclick="selectVoice(this, 'neutral')">
+          Researchers have <strong>found</strong> a correlation...
+        </div>
+      </div>
+      
+      <div id="voice-feedback" style="margin-top: 1rem; padding: 1rem; background: #e8f4f8; border-radius: 5px; display: none;">
+        <!-- Feedback will appear here -->
+      </div>
+    </div>
+
+    <div class="story-element">
+      <h3 class="element-title">📝 Your Voice Practice Space</h3>
+      <p>Try rewriting this sentence with different voices:</p>
+      
+      <div class="story-canvas" id="voice-canvas">
+        <p><em>Original: "Social media affects mental health."</em></p>
+        <textarea id="voice-practice" style="width: 100%; min-height: 100px; padding: 1rem; margin-top: 1rem; border: 1px solid #ddd; border-radius: 5px; font-family: 'Georgia', serif;" 
+                  placeholder="Rewrite this sentence with appropriate academic voice..."></textarea>
+        <button onclick="analyzeVoice()" style="margin-top: 1rem;">Analyze My Voice</button>
+        <div id="voice-analysis" style="margin-top: 1rem; padding: 1rem; background: #f9f9f9; border-radius: 5px; display: none;"></div>
+      </div>
+    </div>
+
+  </div>
+  
+  <!-- Chapter 2: Research as Narrative -->
+  <div class="chapter-content" id="chapter2">
+    
+    <div class="story-element">
+      <h2 class="element-title"><span class="element-icon">📚</span> Research as Narrative</h2>
+      <p>Every research paper tells a story. Learn to structure your work with narrative arc, character development (your research journey), and resolution (your findings).</p>
+      
+      <div class="swales-quote">
+        "The research article is a story... It has a beginning (the problem), a middle (the investigation), and an end (the solution)."
+        <div class="quote-author">– John M. Swales</div>
+      </div>
+    </div>
+
+    <div class="story-element">
+      <h3 class="element-title">📖 Narrative Structures in Research</h3>
+      
+      <div class="builder-step">
+        <h4>1. The Problem-Solution Narrative</h4>
+        <p><strong>Setup:</strong> Here's a problem in our field...</p>
+        <p><strong>Development:</strong> Previous attempts have been made...</p>
+        <p><strong>Resolution:</strong> Our study offers a new approach...</p>
+      </div>
+      
+      <div class="builder-step">
+        <h4>2. The Gap-Filling Narrative</h4>
+        <p><strong>Known territory:</strong> We know a lot about X...</p>
+        <p><strong>The gap:</strong> But we know little about Y...</p>
+        <p><strong>The bridge:</strong> This study connects X and Y...</p>
+      </div>
+      
+      <div class="builder-step">
+        <h4>3. The Journey of Discovery</h4>
+        <p><strong>Starting point:</strong> We began by asking...</p>
+        <p><strong>Challenges:</strong> We encountered difficulties with...</p>
+        <p><strong>Insights:</strong> Unexpectedly, we discovered...</p>
+      </div>
+    </div>
+
+    <div class="story-element">
+      <h3 class="element-title">🎬 Create Your Research Narrative</h3>
+      
+      <div class="story-builder">
+        <h4>Your Research Story Outline</h4>
+        
+        <div style="margin: 1.5rem 0;">
+          <label><strong>1. The Hook (Introduction):</strong></label>
+          <textarea id="story-hook" style="width: 100%; min-height: 80px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
+                    placeholder="What makes your research interesting? Why should readers care?"></textarea>
+        </div>
+        
+        <div style="margin: 1.5rem 0;">
+          <label><strong>2. The Challenge (Literature Gap):</strong></label>
+          <textarea id="story-challenge" style="width: 100%; min-height: 80px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
+                    placeholder="What problem or gap does your research address?"></textarea>
+        </div>
+        
+        <div style="margin: 1.5rem 0;">
+          <label><strong>3. The Journey (Methodology):</strong></label>
+          <textarea id="story-journey" style="width: 100%; min-height: 80px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
+                    placeholder="How did you conduct your research? What was your process?"></textarea>
+        </div>
+        
+        <div style="margin: 1.5rem 0;">
+          <label><strong>4. The Discovery (Findings):</strong></label>
+          <textarea id="story-discovery" style="width: 100%; min-height: 80px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
+                    placeholder="What did you find? What are your key results?"></textarea>
+        </div>
+        
+        <div style="margin: 1.5rem 0;">
+          <label><strong>5. The Meaning (Discussion):</strong></label>
+          <textarea id="story-meaning" style="width: 100%; min-height: 80px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
+                    placeholder="What do your findings mean? Why are they important?"></textarea>
+        </div>
+        
+        <button onclick="generateStoryOutline()" style="background: var(--structure-color);">Generate My Story Outline</button>
+        <button onclick="saveStory()" style="background: var(--success);">Save My Story</button>
+        
+        <div id="story-output" style="margin-top: 2rem; padding: 1.5rem; background: #f9f9f9; border-radius: 10px; display: none;"></div>
+      </div>
+    </div>
+
+  </div>
+  
+  <!-- Chapter 3: Genre Expectations -->
+  <div class="chapter-content" id="chapter3">
+    
+    <div class="story-element">
+      <h2 class="element-title"><span class="element-icon">🏛️</span> Genre Expectations</h2>
+      <p>Different academic disciplines have different "story forms." Learn the conventions of your field's genre expectations.</p>
+      
+      <div class="swales-quote">
+        "Genres are not just forms, but typical ways of engaging in typical situations with typical readers."
+        <div class="quote-author">– Swales on Genre Analysis</div>
+      </div>
+    </div>
+
+    <div class="story-element">
+      <h3 class="element-title">📊 Discipline-Specific Story Forms</h3>
+      
+      <div class="template-gallery">
+        <div class="template-card" onclick="selectTemplate('humanities')">
+          <h4>Humanities & Literature</h4>
+          <p><strong>Story form:</strong> Interpretive argument</p>
+          <p><strong>Voice:</strong> First-person acceptable</p>
+          <p><strong>Structure:</strong> Thesis-driven essay</p>
+        </div>
+        
+        <div class="template-card" onclick="selectTemplate('social')">
+          <h4>Social Sciences</h4>
+          <p><strong>Story form:</strong> Empirical investigation</p>
+          <p><strong>Voice:</strong> Third-person preferred</p>
+          <p><strong>Structure:</strong> IMRaD (Introduction, Methods, Results, Discussion)</p>
+        </div>
+        
+        <div class="template-card" onclick="selectTemplate('natural')">
+          <h4>Natural Sciences</h4>
+          <p><strong>Story form:</strong> Experimental report</p>
+          <p><strong>Voice:</strong> Impersonal, objective</p>
+          <p><strong>Structure:</strong> Highly standardized sections</p>
+        </div>
+        
+        <div class="template-card" onclick="selectTemplate('applied')">
+          <h4>Applied Fields</h4>
+          <p><strong>Story form:</strong> Problem-solution</p>
+          <p><strong>Voice:</strong> Practical, direct</p>
+          <p><strong>Structure:</strong> Executive summary → Analysis → Recommendations</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-element">
+      <h3 class="element-title">🎯 Genre Analysis Tool</h3>
+      
+      <div class="interactive-example">
+        <p><strong>Analyze this opening from different disciplines:</strong></p>
+        <p id="genre-example">"This study examines the relationship between social media usage and adolescent well-being."</p>
+        
+        <div style="margin-top: 1rem;">
+          <button onclick="showGenreAnalysis('humanities')">Humanities Version</button>
+          <button onclick="showGenreAnalysis('social')">Social Sciences Version</button>
+          <button onclick="showGenreAnalysis('natural')">Natural Sciences Version</button>
+        </div>
+        
+        <div id="genre-analysis" style="margin-top: 1rem; padding: 1rem; background: white; border-radius: 5px; display: none;"></div>
+      </div>
+    </div>
+
+  </div>
+  
+  <!-- Chapter 4: The CARS Model -->
+  <div class="chapter-content" id="chapter4">
+    
+    <div class="story-element">
+      <h2 class="element-title"><span class="element-icon">🔍</span> The CARS Model</h2>
+      <p>Creating A Research Space: The essential framework for introducing your research effectively.</p>
+      
+      <div class="swales-quote">
+        "The CARS model represents the rhetorical moves that establish a territory, create a niche, and then occupy that niche."
+        <div class="quote-author">– John M. Swales</div>
+      </div>
+    </div>
+
+    <div class="story-element">
+      <h3 class="element-title">🗺️ CARS Model Interactive Guide</h3>
+      
+      <div style="background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(39, 174, 96, 0.1)); padding: 2rem; border-radius: 10px; margin: 2rem 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--narrative-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">1</div>
+            <h4>Establish Territory</h4>
+            <p>Show the importance of your topic</p>
+          </div>
+          
+          <div style="font-size: 2rem; color: var(--narrative-color);">→</div>
+          
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--voice-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">2</div>
+            <h4>Establish a Niche</h4>
+            <p>Identify the gap or problem</p>
+          </div>
+          
+          <div style="font-size: 2rem; color: var(--voice-color);">→</div>
+          
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--structure-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">3</div>
+            <h4>Occupy the Niche</h4>
+            <p>Present your research solution</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="narrative-flow">
+        <div class="flow-step">
+          <h4>Move 1: Territory</h4>
+          <p><strong>Strategies:</strong></p>
+          <ul>
+            <li>Claim centrality</li>
+            <li>Make topic generalizations</li>
+            <li>Review previous research</li>
+          </ul>
+          <button onclick="showCarsExample(1)">See Example</button>
+        </div>
+        
+        <div class="flow-step">
+          <h4>Move 2: Niche</h4>
+          <p><strong>Strategies:</strong></p>
+          <ul>
+            <li>Counter-claim</li>
+            <li>Indicate a gap</li>
+            <li>Question-raising</li>
+          </ul>
+          <button onclick="showCarsExample(2)">See Example</button>
+        </div>
+        
+        <div class="flow-step">
+          <h4>Move 3: Occupation</h4>
+          <p><strong>Strategies:</strong></p>
+          <ul>
+            <li>Outline purposes</li>
+            <li>Announce present research</li>
+            <li>Indicate structure</li>
+          </ul>
+          <button onclick="showCarsExample(3)">See Example</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-element">
+      <h3 class="element-title">✍️ CARS Writing Practice</h3>
+      
+      <div class="story-canvas">
+        <h4>Write Your Own CARS Introduction</h4>
+        
+        <div style="margin: 1rem 0;">
+          <label><strong>1. Territory (Establish importance):</strong></label>
+          <textarea id="cars-territory" style="width: 100%; min-height: 60px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
+                    placeholder="Recent research has shown that..."></textarea>
+        </div>
+        
+        <div style="margin: 1rem 0;">
+          <label><strong>2. Niche (Identify the gap):</strong></label>
+          <textarea id="cars-niche" style="width: 100%; min-height: 60px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
+                    placeholder="However, little attention has been paid to..."></textarea>
+        </div>
+        
+        <div style="margin: 1rem 0;">
+          <label><strong>3. Occupation (Present your study):</strong></label>
+          <textarea id="cars-occupation" style="width: 100%; min-height: 60px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
+                    placeholder="This study therefore aims to..."></textarea>
+        </div>
+        
+        <button onclick="analyzeCARS()">Analyze My CARS Model</button>
+        <button onclick="generateCARSExample()">Generate Example</button>
+        
+        <div id="cars-analysis" style="margin-top: 1.5rem; padding: 1rem; background: #f9f9f9; border-radius: 5px; display: none;"></div>
+      </div>
+    </div>
+
+  </div>
+  
+  <!-- Chapter 5: Writing Workshop -->
+  <div class="chapter-content" id="chapter5">
+    
+    <div class="story-element">
+      <h2 class="element-title"><span class="element-icon">✍️</span> Writing Workshop</h2>
+      <p>Bring everything together to craft your complete research story.</p>
+      
+      <div class="swales-quote">
+        "Writing is thinking. To write well is to think clearly. That's why it's so hard."
+        <div class="quote-author">– David McCullough</div>
+      </div>
+    </div>
+
+    <div class="story-element">
+      <h3 class="element-title">📝 Complete Research Story Builder</h3>
+      
+      <div class="story-builder">
+        <div style="background: var(--light); padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
+          <h4 style="color: var(--story-color); margin-bottom: 1rem;">Your Research Story Components</h4>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="background: white; padding: 1rem; border-radius: 5px; text-align: center;">
+              <div style="font-size: 1.5rem;">🎭</div>
+              <div><strong>Voice</strong></div>
+              <div id="workshop-voice" style="font-size: 0.9rem; color: #666;">Not set</div>
+            </div>
+            
+            <div style="background: white; padding: 1rem; border-radius: 5px; text-align: center;">
+              <div style="font-size: 1.5rem;">📚</div>
+              <div><strong>Narrative</strong></div>
+              <div id="workshop-narrative" style="font-size: 0.9rem; color: #666;">Not set</div>
+            </div>
+            
+            <div style="background: white; padding: 1rem; border-radius: 5px; text-align: center;">
+              <div style="font-size: 1.5rem;">🏛️</div>
+              <div><strong>Genre</strong></div>
+              <div id="workshop-genre" style="font-size: 0.9rem; color: #666;">Not set</div>
+            </div>
+            
+            <div style="background: white; padding: 1rem; border-radius: 5px; text-align: center;">
+              <div style="font-size: 1.5rem;">🔍</div>
+              <div><strong>CARS Model</strong></div>
+              <div id="workshop-cars" style="font-size: 0.9rem; color: #666;">Not set</div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="margin: 1.5rem 0;">
+          <h4>Your Research Topic:</h4>
+          <input type="text" id="research-topic" style="width: 100%; padding: 1rem; font-size: 1.1rem; border: 2px solid #ddd; border-radius: 5px;" 
+                 placeholder="Enter your research topic or question...">
+        </div>
+        
+        <div style="margin: 1.5rem 0;">
+          <h4>Your Audience:</h4>
+          <select id="research-audience" style="width: 100%; padding: 1rem; font-size: 1rem; border: 2px solid #ddd; border-radius: 5px;">
+            <option value="">Select your primary audience</option>
+            <option value="specialists">Specialists in my field</option>
+            <option value="interdisciplinary">Interdisciplinary researchers</option>
+            <option value="general">General academic audience</option>
+            <option value="practitioners">Practitioners/Professionals</option>
+          </select>
+        </div>
+        
+        <div style="margin: 1.5rem 0;">
+          <h4>Your Complete Introduction:</h4>
+          <textarea id="complete-intro" style="width: 100%; min-height: 200px; padding: 1rem; font-family: 'Georgia', serif; font-size: 1.1rem; border: 2px solid #ddd; border-radius: 5px;" 
+                    placeholder="Write your complete research introduction here, incorporating all the elements you've learned..."></textarea>
+        </div>
+        
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button onclick="analyzeCompleteIntro()" style="background: var(--narrative-color);">Analyze Introduction</button>
+          <button onclick="getWritingTips()" style="background: var(--warning);">Get Writing Tips</button>
+          <button onclick="generateCompleteExample()" style="background: var(--structure-color);">Generate Full Example</button>
+          <button onclick="downloadStory()" style="background: var(--success);">Download My Story</button>
+        </div>
+        
+        <div id="workshop-analysis" style="margin-top: 2rem; padding: 1.5rem; background: #f9f9f9; border-radius: 10px; display: none;"></div>
+      </div>
+    </div>
+
+    <div class="story-element">
+      <h3 class="element-title">🏆 Your Research Story Journey</h3>
+      
+      <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(39, 174, 96, 0.1)); border-radius: 10px;">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">📖</div>
+        <h3 style="color: var(--story-color); margin-bottom: 1rem;">Congratulations!</h3>
+        <p>You've completed the "Tell Your Research Story" journey. You now have the tools to craft compelling academic narratives.</p>
+        
+        <div style="margin-top: 2rem;">
+          <button onclick="showCertificate()" style="background: var(--success); padding: 1rem 2rem; font-size: 1.1rem;">
+            🎓 Generate Your Certificate
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div style="text-align: center; padding: 2rem; background: var(--story-color); color: white; margin-top: 2rem;">
+  <p><strong>Tell Your Research Story</strong> – Based on the work of John M. Swales</p>
+  <p>Developed by <strong>Halim Faroug A. Elhag</strong>, Lecturer of English Language, UHB / UofK</p>
+  <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Interactive Academic Writing Platform</p>
+</div>
 
 <script>
-  // Enhanced Data Structure
-  const moves = [
-    {
-      title: "Move 1: Establishing Territory",
-      purpose: "Claiming centrality and/or making topic generalizations about the research area.",
-      strategies: [
-        "Claiming centrality (importance of topic)",
-        "Making topic generalizations",
-        "Reviewing items of previous research",
-        "Establishing chronological framework"
-      ],
-      signals: [
-        "Recently, there has been growing interest in...",
-        "Many researchers have investigated...",
-        "The study of X has received considerable attention",
-        "It is widely recognized that..."
-      ],
-      errors: [
-        "Making unsupported claims",
-        "Failing to demonstrate topic importance",
-        "Overgeneralizing previous research",
-        "Lack of citation support"
-      ],
-      goodExample: "In recent years, digital literacy has become a central concern in educational research, with scholars like Jenkins (2009) and Buckingham (2013) highlighting its importance in 21st-century learning environments.",
-      badExample: "Digital literacy is important. Some people have studied it.",
-      tasks: [
-        {
-          question: "Which sentence BEST establishes research territory?",
-          options: [
-            "This paper is about teaching methods.",
-            "Recent meta-analyses by Hattie (2015) and Marzano (2017) have revitalized interest in evidence-based teaching practices.",
-            "Teaching is good and teachers should teach well.",
-            "I think teaching methods are interesting to study."
-          ],
-          correct: 1,
-          feedback: "Excellent choice! Option 2 demonstrates centrality through recent scholarship and specific citations."
-        },
-        {
-          question: "What's missing in this territory statement: 'Online education is popular now.'?",
-          options: [
-            "Citations to support the claim",
-            "More adjectives",
-            "Longer sentences",
-            "Personal opinions"
-          ],
-          correct: 0,
-          feedback: "Correct! Academic writing requires evidence. Add citations like 'According to UNESCO (2022)...'"
-        }
-      ],
-      sandboxPrompt: "Write ONE sentence establishing territory for a study on 'AI in language teaching'"
-    },
-    {
-      title: "Move 2: Establishing a Niche",
-      purpose: "Indicating a gap, raising questions, or challenging existing knowledge.",
-      strategies: [
-        "Counter-claiming (however, but)",
-        "Indicating a gap (little attention, few studies)",
-        "Question-raising",
-        "Continuing a tradition (refining)"
-      ],
-      signals: [
-        "However, few studies have examined...",
-        "Despite extensive research on X, little is known about Y",
-        "The existing literature fails to address...",
-        "A key question that remains unanswered is..."
-      ],
-      errors: [
-        "Creating artificial or trivial gaps",
-        "Overcriticizing previous research",
-        "Failing to logically connect gap to research",
-        "Missing hedging in claims"
-      ],
-      goodExample: "While numerous studies have examined synchronous online learning, scant attention has been paid to the long-term retention effects of asynchronous micro-learning modules.",
-      badExample: "Nobody has ever studied this before in any way.",
-      tasks: [
-        {
-          question: "Which phrase effectively indicates a research gap?",
-          options: [
-            "Everybody knows about this topic.",
-            "Previous research has thoroughly covered all aspects.",
-            "Despite extensive work on classroom motivation, few studies address virtual environments.",
-            "This topic is very interesting and important."
-          ],
-          correct: 2,
-          feedback: "Perfect! 'Despite... few studies...' effectively establishes a niche by contrasting existing work with the gap."
-        }
-      ],
-      sandboxPrompt: "Identify the niche in this research: 'Previous studies show grammar drills improve accuracy, but...'"
-    },
-    {
-      title: "Move 3: Occupying the Niche",
-      purpose: "Outlining purposes, announcing research, or indicating structure.",
-      strategies: [
-        "Outlining purposes",
-        "Announcing present research",
-        "Indicating structure of paper",
-        "Stating value/contributions"
-      ],
-      signals: [
-        "The purpose of this study is to...",
-        "This paper reports on...",
-        "The aim of this research is to...",
-        "This study contributes to... by..."
-      ],
-      errors: [
-        "Overpromising results",
-        "Vague or ambiguous purpose statements",
-        "Failing to connect purpose to gap",
-        "Omitting methodological preview"
-      ],
-      goodExample: "This study therefore aims to investigate the relationship between formative assessment frequency and student self-efficacy in large university classes, using a mixed-methods approach.",
-      badExample: "We did some research and found some things.",
-      tasks: [
-        {
-          question: "What makes this occupation effective: 'This study addresses this gap by...'?",
-          options: [
-            "It uses fancy words",
-            "It directly connects to the established gap",
-            "It's very long",
-            "It includes personal opinions"
-          ],
-          correct: 1,
-          feedback: "Exactly! Effective occupation explicitly bridges the gap with research actions."
-        }
-      ],
-      sandboxPrompt: "Complete this occupation: 'Therefore, this study examines ______ to address ______'"
-    }
-  ];
+  // State management
+  let currentChapter = 1;
+  let userVoice = '';
+  let userNarrative = '';
+  let userGenre = '';
+  let userCARSComplete = false;
+  let storyComponents = {
+    voice: null,
+    narrative: null,
+    genre: null,
+    cars: null
+  };
 
-  // Game State
-  let currentMove = 0;
-  let points = 0;
-  let progress = 0;
-  let badges = 0;
-  let currentTask = 0;
-  let completedTasks = new Set();
-  let sandboxAttempts = 0;
-
-  // DOM Elements
-  const pointsEl = document.getElementById('points');
-  const progressEl = document.getElementById('progressPercent');
-  const progressFill = document.getElementById('progressFill');
-  const badgesEl = document.getElementById('badges');
-  const moveTitle = document.getElementById('moveTitle');
-  const movePurpose = document.getElementById('movePurpose');
-  const moveStrategies = document.getElementById('moveStrategies');
-  const moveSignals = document.getElementById('moveSignals');
-  const moveErrors = document.getElementById('moveErrors');
-  const goodExample = document.getElementById('goodExample');
-  const badExample = document.getElementById('badExample');
-  const taskQuestion = document.getElementById('taskQuestion');
-  const taskOptions = document.getElementById('taskOptions');
-  const taskFeedback = document.getElementById('taskFeedback');
-  const sandboxPrompt = document.getElementById('sandboxPrompt');
-  const studentText = document.getElementById('studentText');
-  const sandboxFeedback = document.getElementById('sandboxFeedback');
-  const nextBtn = document.getElementById('nextBtn');
-  const taskBadge = document.getElementById('taskBadge');
-  const navButtons = document.querySelectorAll('nav button');
-
-  // Initialize
-  function init() {
-    loadMove(0);
-    updateStatus();
-    createConfetti(); // Initialize confetti canvas
+  // Show chapter function
+  function showChapter(chapterNumber) {
+    // Update chapters
+    document.querySelectorAll('.chapter').forEach(chapter => {
+      chapter.classList.remove('active');
+    });
+    document.querySelectorAll('.chapter')[chapterNumber - 1].classList.add('active');
+    
+    // Update content
+    document.querySelectorAll('.chapter-content').forEach(content => {
+      content.classList.remove('active');
+    });
+    document.getElementById('chapter' + chapterNumber).classList.add('active');
+    
+    // Update progress
+    currentChapter = chapterNumber;
+    updateProgress();
   }
 
-  // Load Move
-  function loadMove(index) {
-    currentMove = index;
-    const move = moves[index];
+  // Update progress
+  function updateProgress() {
+    const progressFill = document.querySelector('.story-progress .progress-bar div');
+    const progressChapter = document.querySelector('.progress-chapter');
     
-    // Update navigation
-    navButtons.forEach((btn, i) => {
-      btn.classList.toggle('active', i === index);
-    });
+    const chapterNames = [
+      'Finding Your Voice',
+      'Research as Narrative',
+      'Genre Expectations',
+      'The CARS Model',
+      'Writing Workshop'
+    ];
     
-    // Update theory panel
-    moveTitle.textContent = move.title;
-    movePurpose.textContent = move.purpose;
-    
-    updateList(moveStrategies, move.strategies);
-    updateList(moveSignals, move.signals);
-    updateList(moveErrors, move.errors);
-
-    // Update examples
-    goodExample.textContent = move.goodExample;
-    badExample.textContent = move.badExample;
-    
-    // Update interaction
-    currentTask = 0;
-    loadTask();
-    
-    // Update sandbox
-    sandboxPrompt.textContent = move.sandboxPrompt;
-    studentText.value = '';
-    sandboxFeedback.style.display = 'none';
-    sandboxFeedback.innerHTML = '';
-    
-    // Animate panel entrance
-    document.querySelectorAll('.panel').forEach((panel, i) => {
-      panel.style.animation = 'fadeIn 0.5s ease ' + (i * 0.1) + 's forwards';
-      panel.style.opacity = '0';
-    });
-    
-    // Update badge
-    taskBadge.style.display = completedTasks.has(`${index}-${currentTask}`) ? 'none' : 'inline-block';
-  }
-  // Update List
-  function updateList(element, items) {
-    element.innerHTML = '';
-    items.forEach(item => {
-      const li = document.createElement('li');
-      li.innerHTML = `<span>${item}</span>`;
-      element.appendChild(li);
-    });
+    progressChapter.textContent = `Chapter ${currentChapter}: ${chapterNames[currentChapter - 1]}`;
+    progressFill.style.width = `${(currentChapter / 5) * 100}%`;
   }
 
-  // Load Task
-  function loadTask() {
-    const task = moves[currentMove].tasks[currentTask];
-    taskQuestion.textContent = task.question;
-    taskOptions.innerHTML = '';
-    taskFeedback.innerHTML = '';
-    nextBtn.style.display = 'none';
-    
-    // Create options
-    task.options.forEach((option, index) => {
-      const button = document.createElement('button');
-      button.className = 'option';
-      button.textContent = option;
-      button.onclick = () => checkAnswer(index, task.correct, task.feedback);
-      taskOptions.appendChild(button);
-    });
-    
-    // Check if already completed
-    if (completedTasks.has(`${currentMove}-${currentTask}`)) {
-      taskBadge.style.display = 'none';
+  // Toggle examples
+  function toggleExample(type) {
+    const example = document.getElementById(`${type}-example`);
+    if (example.style.display === 'none' || example.style.display === '') {
+      example.style.display = 'block';
+      example.style.animation = 'fadeIn 0.5s ease';
+    } else {
+      example.style.display = 'none';
     }
   }
 
-  // Check Answer
-  function checkAnswer(selected, correct, feedback) {
-    const options = document.querySelectorAll('.option');
-    const isCorrect = selected === correct;
-
-     // Disable all buttons
-    options.forEach(opt => {
-      opt.style.pointerEvents = 'none';
-      opt.classList.remove('correct', 'incorrect');
+  // Voice selector
+  function selectVoice(element, voiceType) {
+    document.querySelectorAll('.voice-option').forEach(opt => {
+      opt.classList.remove('selected');
     });
+    element.classList.add('selected');
     
-    // Mark correct/incorrect
-    options[selected].classList.add(isCorrect ? 'correct' : 'incorrect');
-    options[correct].classList.add('correct');
+    const feedback = document.getElementById('voice-feedback');
+    feedback.style.display = 'block';
     
-    // Update points
-    if (isCorrect && !completedTasks.has(`${currentMove}-${currentTask}`)) {
-      points += 100;
-      progress += 10;
-      badges++;
-      completedTasks.add(`${currentMove}-${currentTask}`);
-      showFeedback(feedback, true);
-      updateStatus();
-      triggerConfetti();
-      playSound('correct');
-      
-      // Check for move completion
-      if (progress >= 100) {
-        showAchievement();
-      }
-    } else if (!isCorrect) {
-      showFeedback(feedback, false);
-      playSound('incorrect');
+    if (voiceType === 'cautious') {
+      feedback.innerHTML = '<strong>✅ Good choice!</strong> Cautious language is appropriate for literature reviews where you synthesize others\' work.';
+      storyComponents.voice = 'cautious';
+    } else if (voiceType === 'confident') {
+      feedback.innerHTML = '<strong>⚠️ Consider your audience:</strong> Confident assertions work best when presenting your own well-supported findings.';
+      storyComponents.voice = 'confident';
+    } else {
+      feedback.innerHTML = '<strong>✓ Neutral option:</strong> This works in many contexts but may lack the precision of more strategic voice choices.';
+      storyComponents.voice = 'neutral';
     }
     
-    nextBtn.style.display = 'block';
-    taskBadge.style.display = 'none';
+    updateWorkshopComponents();
   }
 
-  // Next Task
-  function nextTask() {
-    currentTask = (currentTask + 1) % moves[currentMove].tasks.length;
-    loadTask();
-  }
-
-   // Check Sandbox
-  function checkSandbox() {
-    const text = studentText.value.trim();
-    sandboxAttempts++;
+  // Analyze voice practice
+  function analyzeVoice() {
+    const text = document.getElementById('voice-practice').value;
+    const analysis = document.getElementById('voice-analysis');
     
-    if (!text) {
-      showSandboxFeedback('Please write something first!', 'warning');
+    if (!text.trim()) {
+      analysis.innerHTML = '<p style="color: var(--voice-color);">Please write something to analyze!</p>';
+      analysis.style.display = 'block';
       return;
     }
     
-    // Simple analysis (in a real app, this could use NLP)
-    const move = moves[currentMove];
-    let feedback = '';
     let score = 0;
+    let feedback = '<h4>Voice Analysis:</h4><ul>';
     
-    // Check for key signals
-    const signalsFound = move.signals.filter(signal => 
-      text.toLowerCase().includes(signal.split(' ')[0].toLowerCase())
-    ).length;
+    // Check for hedging
+    if (text.includes('suggest') || text.includes('indicate') || text.includes('appear')) {
+      score += 25;
+      feedback += '<li>✅ Uses hedging appropriately</li>';
+    }
+    
+    // Check for boosting
+    if (text.includes('clearly') || text.includes('demonstrate') || text.includes('show')) {
+      score += 25;
+      feedback += '<li>✅ Uses boosting appropriately</li>';
+    }
+    
+    // Check for academic vocabulary
+    const academicWords = ['examine', 'investigate', 'analyze', 'explore', 'assess'];
+    if (academicWords.some(word => text.toLowerCase().includes(word))) {
+      score += 25;
+      feedback += '<li>✅ Uses academic vocabulary</li>';
+    }
     
     // Check length
     const wordCount = text.split(' ').length;
-    
-    // Generate feedback
-    if (signalsFound > 0) {
-      score += 30;
-      feedback += '✅ Good use of academic signals<br>';
-    }
-    
-    if (wordCount > 10 && wordCount < 30) {
-      score += 30;
-      feedback += '✅ Appropriate sentence length<br>';
+    if (wordCount >= 10 && wordCount <= 30) {
+      score += 25;
+      feedback += '<li>✅ Appropriate sentence length</li>';
     } else {
-      feedback += '⚠️ Aim for 10-30 words in academic sentences<br>';
+      feedback += `<li>⚠️ Sentence length: ${wordCount} words (aim for 10-30)</li>`;
     }
     
-    if (text.includes('(') && text.includes(')')) {
-      score += 20;
-      feedback += '✅ Includes citation (good practice!)<br>';
+    feedback += `</ul><p><strong>Overall: ${score}/100</strong></p>`;
+    
+    if (score >= 75) {
+      feedback += '<p style="color: var(--success);">Excellent academic voice!</p>';
+    } else if (score >= 50) {
+      feedback += '<p style="color: var(--warning);">Good start, keep refining!</p>';
+    } else {
+      feedback += '<p style="color: var(--voice-color);">Review the voice principles and try again.</p>';
     }
     
-    if (text.endsWith('.')) {
-      score += 10;
-      feedback += '✅ Proper punctuation<br>';
+    analysis.innerHTML = feedback;
+    analysis.style.display = 'block';
   }
 
-     // Add badges for improvement
-    if (score > 70 && sandboxAttempts === 1) {
-      badges++;
-      feedback += '<br>🏅 <strong>First Try Excellence Badge Earned!</strong>';
-      updateStatus();
+  // Generate story outline
+  function generateStoryOutline() {
+    const hook = document.getElementById('story-hook').value;
+    const challenge = document.getElementById('story-challenge').value;
+    const journey = document.getElementById('story-journey').value;
+    const discovery = document.getElementById('story-discovery').value;
+    const meaning = document.getElementById('story-meaning').value;
+    
+    const output = document.getElementById('story-output');
+    
+    if (!hook || !challenge) {
+      output.innerHTML = '<p style="color: var(--voice-color);">Please at least complete the hook and challenge sections.</p>';
+      output.style.display = 'block';
+      return;
     }
     
-    // Display feedback
-    showSandboxFeedback(
-      `<strong>Score: ${score}/100</strong><br>${feedback}`,
-      score > 60 ? 'success' : score > 40 ? 'warning' : 'error'
-    );
+    let story = `<h4>Your Research Story Outline:</h4>`;
+    story += `<div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 5px;">`;
+    story += `<p><strong>1. The Hook:</strong> ${hook}</p>`;
+    story += `<p><strong>2. The Challenge:</strong> ${challenge}</p>`;
+    if (journey) story += `<p><strong>3. The Journey:</strong> ${journey}</p>`;
+    if (discovery) story += `<p><strong>4. The Discovery:</strong> ${discovery}</p>`;
+    if (meaning) story += `<p><strong>5. The Meaning:</strong> ${meaning}</p>`;
+    story += `</div>`;
     
-    // Update points
-    if (score > 50) {
-      points += 50;
-      updateStatus();
-    }
-  }
-
-  // Show Hint
-  function showHint() {
-    const move = moves[currentMove];
-    const randomSignal = move.signals[Math.floor(Math.random() * move.signals.length)];
-    showSandboxFeedback(
-      `💡 <strong>Hint:</strong> Try starting with phrases like "${randomSignal}"<br>
-      <small>Academic writing often uses established patterns to signal intentions.</small>`,
-      'info'
-    );
-  }
-
-  // Generate Example
-  function generateExample() {
-    const examples = [
-      "Recent scholarship in applied linguistics has increasingly focused on multimodal literacies in digital environments.",
-      "While considerable research exists on classroom assessment, fewer studies examine peer assessment in online courses.",
-      "This study therefore investigates the correlation between feedback timing and writing improvement among L2 learners."
-    ];
-    const randomExample = examples[Math.floor(Math.random() * examples.length)];
-    studentText.value = randomExample;
-    showSandboxFeedback("🎲 Here's a sample sentence for inspiration! Modify it to make it your own.", 'info');
-  }
-
-    // Show Feedback
-  function showFeedback(message, isCorrect) {
-    const icon = isCorrect ? '✅' : '❌';
-    const color = isCorrect ? 'var(--success)' : 'var(--accent)';
-    taskFeedback.innerHTML = `
-      <span class="feedback-icon" style="color: ${color}; font-size: 2rem;">${icon}</span>
-      <span>${message}</span>
-    `;
-    taskFeedback.style.background = isCorrect ? 'rgba(39, 174, 96, 0.1)' : 'rgba(231, 76, 60, 0.1)';
-    taskFeedback.style.borderLeft = `5px solid ${color}`;
-  }
-
-  function showSandboxFeedback(message, type) {
-    const colors = {
-      success: 'var(--success)',
-      warning: 'var(--warning)',
-      error: 'var(--accent)',
-      info: 'var(--secondary)'
-    };
+    story += `<div style="margin-top: 1rem; padding: 1rem; background: #e8f4f8; border-radius: 5px;">`;
+    story += `<p><strong>🎯 Narrative Strength:</strong> ${calculateNarrativeStrength(hook, challenge, journey, discovery, meaning)}</p>`;
+    story += `<p><em>Tip: Make sure each section logically leads to the next.</em></p>`;
+    story += `</div>`;
     
-    sandboxFeedback.innerHTML = message;
-    sandboxFeedback.style.borderLeft = `5px solid ${colors[type]}`;
-    sandboxFeedback.style.background = colors[type] + '15';
-    sandboxFeedback.style.display = 'block';
+    output.innerHTML = story;
+    output.style.display = 'block';
+    storyComponents.narrative = 'created';
+    updateWorkshopComponents();
   }
 
-  // Update Status
-  function updateStatus() {
-    pointsEl.textContent = `🏆 Points: ${points}`;
-    progressEl.textContent = progress;
-    progressFill.style.width = `${progress}%`;
-    badgesEl.textContent = `🎖️ Badges: ${badges}`;
-  }
-
-  // Show Achievement
-  function showAchievement() {
-    const achievement = document.createElement('div');
-    achievement.style.cssText = `
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-      text-align: center;
-      z-index: 1000;
-      animation: fadeIn 0.5s ease;
-    `;
-    achievement.innerHTML = `
-      <h2 style="color: var(--success); margin-bottom: 1rem;">🎉 Achievement Unlocked! 🎉</h2>
-      <p style="font-size: 1.2rem; margin-bottom: 1rem;">Master Academic Writer</p>
-      <p>You've completed all CARS moves! Your research story is ready to be told.</p>
-      <button onclick="this.parentElement.remove(); triggerConfetti();" 
-              style="margin-top: 1rem; background: var(--success);">
-        Continue Learning
-      </button>
-    `;
-    document.body.appendChild(achievement);
-    triggerConfetti();
-  }
-
-   // Confetti Effect
-  let confettiCanvas, confettiCtx;
-  let confettiParticles = [];
-  
-  function createConfetti() {
-    confettiCanvas = document.createElement('canvas');
-    confettiCtx = confettiCanvas.getContext('2d');
-    confettiCanvas.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 999;
-    `;
-    document.body.appendChild(confettiCanvas);
-    resizeConfetti();
-    window.addEventListener('resize', resizeConfetti);
-  }
-  
-  function resizeConfetti() {
-    confettiCanvas.width = window.innerWidth;
-    confettiCanvas.height = window.innerHeight;
-  }
-  
-  function triggerConfetti() {
-    for (let i = 0; i < 150; i++) {
-      confettiParticles.push({
-        x: Math.random() * confettiCanvas.width,
-        y: -20,
-        size: Math.random() * 10 + 5,
-        speed: Math.random() * 3 + 2,
-        color: `hsl(${Math.random() * 360}, 100%, 60%)`,
-        rotation: Math.random() * 360,
-        rotationSpeed: Math.random() * 10 - 5
-      });
-    }
-    animateConfetti();
-  }
-  
-  function animateConfetti() {
-    confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+  function calculateNarrativeStrength(hook, challenge, journey, discovery, meaning) {
+    let sections = 0;
+    if (hook) sections++;
+    if (challenge) sections++;
+    if (journey) sections++;
+    if (discovery) sections++;
+    if (meaning) sections++;
     
-    confettiParticles = confettiParticles.filter(p => {
-      p.y += p.speed;
-      p.x += Math.sin(p.y * 0.01) * 0.5;
-      p.rotation += p.rotationSpeed;
-      
-      confettiCtx.save();
-      confettiCtx.translate(p.x, p.y);
-      confettiCtx.rotate(p.rotation * Math.PI / 180);
-      confettiCtx.fillStyle = p.color;
-      confettiCtx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
-      confettiCtx.restore();
-      
-      return p.y < confettiCanvas.height + 20;
+    if (sections === 5) return 'Complete narrative arc';
+    if (sections >= 3) return 'Good narrative structure';
+    return 'Developing narrative';
+  }
+
+  // Save story
+  function saveStory() {
+    alert('Story saved! In a real application, this would save to your account.');
+    // Here you would typically save to localStorage or a backend
+    localStorage.setItem('researchStory', JSON.stringify({
+      hook: document.getElementById('story-hook').value,
+      challenge: document.getElementById('story-challenge').value,
+      journey: document.getElementById('story-journey').value,
+      discovery: document.getElementById('story-discovery').value,
+      meaning: document.getElementById('story-meaning').value
+    }));
+  }
+
+  // Template selection
+  function selectTemplate(type) {
+    document.querySelectorAll('.template-card').forEach(card => {
+      card.style.borderColor = 'transparent';
     });
+    event.currentTarget.style.borderColor = 'var(--narrative-color)';
     
-    if (confettiParticles.length > 0) {
-      requestAnimationFrame(animateConfetti);
-    }
+    storyComponents.genre = type;
+    updateWorkshopComponents();
   }
 
-    // Sound Effects
-  function playSound(type) {
-    // In a real implementation, you would use actual audio files
-    console.log(`Playing ${type} sound`);
-    // Example: new Audio('correct.mp3').play();
+  // Genre analysis
+  function showGenreAnalysis(type) {
+    const analysis = document.getElementById('genre-analysis');
+    let content = '';
+    
+    if (type === 'humanities') {
+      content = `
+        <h4>Humanities Version:</h4>
+        <p><em>"This essay explores how social media usage shapes, and is shaped by, adolescent conceptions of selfhood and well-being in contemporary digital culture."</em></p>
+        <p><strong>Features:</strong> Interpretive, theoretical, acknowledges complexity</p>
+      `;
+    } else if (type === 'social') {
+      content = `
+        <h4>Social Sciences Version:</h4>
+        <p><em>"This quantitative study investigates the correlation between social media engagement metrics and standardized measures of adolescent psychological well-being."</em></p>
+        <p><strong>Features:</strong> Empirical, methodological, precise measurement</p>
+      `;
+    } else {
+      content = `
+        <h4>Natural Sciences Version:</h4>
+        <p><em>"The present study measures the effect of controlled social media exposure on cortisol levels and self-reported mood states in adolescent participants."</em></p>
+        <p><strong>Features:</strong> Experimental, objective, physiological measures</p>
+      `;
+    }
+    
+    analysis.innerHTML = content;
+    analysis.style.display = 'block';
   }
 
-  // Initialize on load
-  window.addEventListener('DOMContentLoaded', init);
-  
-  // Keyboard shortcuts
-  document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.key === 'Enter') {
-      checkSandbox();
+  // CARS examples
+  function showCarsExample(move) {
+    let example = '';
+    
+    if (move === 1) {
+      example = `<p><strong>Territory Example:</strong> "Recent years have witnessed growing scholarly interest in online learning environments, with numerous studies documenting their potential to enhance educational access (Smith, 2020; Johnson, 2021)."</p>`;
+    } else if (move === 2) {
+      example = `<p><strong>Niche Example:</strong> "However, despite this increased attention, relatively little research has examined the long-term retention effects of micro-learning modules in asynchronous settings."</p>`;
+    } else {
+      example = `<p><strong>Occupation Example:</strong> "The present study therefore aims to investigate the relationship between micro-learning frequency and knowledge retention over a six-month period, using a mixed-methods approach."</p>`;
     }
-    if (e.key === 'Escape') {
-      document.querySelector('[style*="position: fixed"]')?.remove();
+    
+    alert(example);
+  }
+
+  // Analyze CARS
+  function analyzeCARS() {
+    const territory = document.getElementById('cars-territory').value;
+    const niche = document.getElementById('cars-niche').value;
+    const occupation = document.getElementById('cars-occupation').value;
+    
+    const analysis = document.getElementById('cars-analysis');
+    
+    if (!territory && !niche && !occupation) {
+      analysis.innerHTML = '<p style="color: var(--voice-color);">Please write something to analyze!</p>';
+      analysis.style.display = 'block';
+      return;
+    }
+    
+    let score = 0;
+    let feedback = '<h4>CARS Model Analysis:</h4>';
+    
+    if (territory) {
+      score += 30;
+      feedback += `<p>✅ <strong>Territory:</strong> Good establishment of research importance</p>`;
+    }
+    
+    if (niche) {
+      score += 30;
+      feedback += `<p>✅ <strong>Niche:</strong> Clear identification of gap/problem</p>`;
+    }
+    
+    if (occupation) {
+      score += 40;
+      feedback += `<p>✅ <strong>Occupation:</strong> Effective presentation of your study</p>`;
+    }
+    
+    feedback += `<p><strong>CARS Score: ${score}/100</strong></p>`;
+    
+    if (score === 100) {
+      feedback += '<p style="color: var(--success);">🎉 Complete CARS model! Well done!</p>';
+      storyComponents.cars = 'complete';
+    } else if (score >= 60) {
+      feedback += '<p style="color: var(--warning);">Good start! Try to complete all three moves.</p>';
+      storyComponents.cars = 'partial';
+    } else {
+      feedback += '<p style="color: var(--voice-color);">Review the CARS model structure and try again.</p>';
+    }
+    
+    analysis.innerHTML = feedback;
+    analysis.style.display = 'block';
+    updateWorkshopComponents();
+  }
+
+  // Generate CARS example
+  function generateCARSExample() {
+    const examples = [
+      {
+        territory: "In recent years, digital literacy has become a central concern in educational research, with scholars increasingly recognizing its importance in 21st-century learning.",
+        niche: "However, most studies have focused on classroom-based interventions, leaving a gap in our understanding of informal digital literacy practices among adolescents.",
+        occupation: "This study therefore explores how teenagers develop digital literacy skills through peer-to-peer interactions in online gaming communities."
+      },
+      {
+        territory: "The relationship between teacher feedback and student writing improvement has been extensively documented in second language acquisition research.",
+        niche: "Despite this extensive literature, few studies have examined how different feedback timing affects long-term writing development in multilingual contexts.",
+        occupation: "The present investigation aims to compare the effects of immediate versus delayed feedback on academic writing skills among university-level ESL students."
+      }
+    ];
+    
+    const randomExample = examples[Math.floor(Math.random() * examples.length)];
+    
+    document.getElementById('cars-territory').value = randomExample.territory;
+    document.getElementById('cars-niche').value = randomExample.niche;
+    document.getElementById('cars-occupation').value = randomExample.occupation;
+  }
+
+  // Update workshop components
+  function updateWorkshopComponents() {
+    document.getElementById('workshop-voice').textContent = storyComponents.voice || 'Not set';
+    document.getElementById('workshop-narrative').textContent = storyComponents.narrative || 'Not set';
+    document.getElementById('workshop-genre').textContent = storyComponents.genre || 'Not set';
+    document.getElementById('workshop-cars').textContent = storyComponents.cars || 'Not set';
+  }
+
+  // Analyze complete introduction
+  function analyzeCompleteIntro() {
+    const intro = document.getElementById('complete-intro').value;
+    const analysis = document.getElementById('workshop-analysis');
+    
+    if (!intro.trim()) {
+      analysis.innerHTML = '<p style="color: var(--voice-color);">Please write your introduction first!</p>';
+      analysis.style.display = 'block';
+      return;
+    }
+    
+    let score = 0;
+    let feedback = '<h4>Introduction Analysis:</h4><ul>';
+    
+    // Check for key elements
+    if (intro.length > 100) {
+      score += 20;
+      feedback += '<li>✅ Appropriate length</li>';
+    }
+    
+    if (intro.includes('however') || intro.includes('although') || intro.includes('despite')) {
+      score += 20;
+      feedback += '<li>✅ Contains contrast/gap indication</li>';
+    }
+    
+    if (intro.includes('aim') || intro.includes('purpose') || intro.includes('investigate')) {
+      score += 20;
+      feedback += '<li>✅ States research purpose</li>';
+    }
+    
+    if (intro.includes('study') || intro.includes('research') || intro.includes('paper')) {
+      score += 20;
+      feedback += '<li>✅ Clear research focus</li>';
+    }
+    
+    // Check academic tone
+    const sentences = intro.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    if (sentences.length >= 3) {
+      score += 20;
+      feedback += '<li>✅ Multiple sentences for development</li>';
+    }
+    
+    feedback += `</ul><p><strong>Overall Score: ${score}/100</strong></p>`;
+    
+    if (score >= 80) {
+      feedback += '<div style="background: rgba(39, 174, 96, 0.1); padding: 1rem; border-radius: 5px; margin-top: 1rem;">';
+      feedback += '<p style="color: var(--success);">🌟 Excellent introduction! Your research story is clear and compelling.</p>';
+      feedback += '</div>';
+    } else if (score >= 60) {
+      feedback += '<div style="background: rgba(243, 156, 18, 0.1); padding: 1rem; border-radius: 5px; margin-top: 1rem;">';
+      feedback += '<p style="color: var(--warning);">Good foundation! Consider adding more specific details about your research gap and purpose.</p>';
+      feedback += '</div>';
+    } else {
+      feedback += '<div style="background: rgba(231, 76, 60, 0.1); padding: 1rem; border-radius: 5px; margin-top: 1rem;">';
+      feedback += '<p style="color: var(--voice-color);">Review the CARS model and narrative structure principles.</p>';
+      feedback += '</div>';
+    }
+    
+    analysis.innerHTML = feedback;
+    analysis.style.display = 'block';
+  }
+
+  // Get writing tips
+  function getWritingTips() {
+    const analysis = document.getElementById('workshop-analysis');
+    const tips = [
+      "Start with a 'hook' that shows why your topic matters",
+      "Use the CARS model: Territory → Niche → Occupation",
+      "Be specific about your research gap",
+      "Clearly state your research questions/aims",
+      "Use appropriate hedging or boosting for your field",
+      "Consider your audience's expectations",
+      "Make sure each paragraph has a clear purpose",
+      "Use transition words to guide readers through your argument",
+      "Cite key literature to establish credibility",
+      "End your introduction by previewing your paper's structure"
+    ];
+    
+    let tipsHTML = '<h4>Top 10 Academic Writing Tips:</h4><ol>';
+    tips.forEach(tip => {
+      tipsHTML += `<li>${tip}</li>`;
+    });
+    tipsHTML += '</ol>';
+    
+    analysis.innerHTML = tipsHTML;
+    analysis.style.display = 'block';
+  }
+
+  // Generate complete example
+  function generateCompleteExample() {
+    const example = `Recent advancements in artificial intelligence have revolutionized many sectors, with education being no exception (Smith, 2022). Researchers have documented AI's potential to personalize learning experiences and provide instant feedback (Johnson, 2023). However, despite this growing body of literature, relatively little attention has been paid to how AI tools affect the development of critical thinking skills in higher education contexts. Most studies have focused on technical implementation rather than pedagogical outcomes.
+
+This gap is significant because as AI becomes more integrated into education, we need to understand its impact on fundamental academic skills. Therefore, this study aims to investigate the relationship between AI-assisted learning tools and the development of critical thinking abilities among university students. Using a mixed-methods approach combining pre/post testing with qualitative interviews, this research will explore whether, and how, AI tools can enhance rather than replace human critical thinking.
+
+The findings of this study will contribute to both pedagogical practice and the ongoing debate about technology's role in education. By examining this under-researched area, we hope to provide evidence-based guidance for educators seeking to integrate AI tools effectively while maintaining academic rigor.`;
+
+    document.getElementById('complete-intro').value = example;
+  }
+
+  // Download story
+  function downloadStory() {
+    const intro = document.getElementById('complete-intro').value;
+    const topic = document.getElementById('research-topic').value;
+    const audience = document.getElementById('research-audience').value;
+    
+    if (!intro.trim()) {
+      alert('Please write your introduction first!');
+      return;
+    }
+    
+    const content = `
+TELL YOUR RESEARCH STORY
+========================
+
+Research Topic: ${topic || 'Not specified'}
+Intended Audience: ${audience || 'Not specified'}
+
+YOUR RESEARCH INTRODUCTION:
+${intro}
+
+---
+Generated using "Tell Your Research Story" Platform
+Based on John M. Swales' academic writing framework
+Developed by Halim Faroug A. Elhag
+    `;
+    
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'my-research-story.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    alert('Your research story has been downloaded!');
+  }
+
+  // Show certificate
+  function showCertificate() {
+    const certificateHTML = `
+      <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 2000;">
+        <div style="background: white; padding: 3rem; border-radius: 15px; max-width: 800px; text-align: center; position: relative;">
+          <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
+          
+          <h1 style="color: var(--story-color); margin-bottom: 2rem;">🎓 Certificate of Completion</h1>
+          
+          <div style="border: 5px double var(--narrative-color); padding: 2rem; margin: 2rem 0;">
+            <p style="font-size: 1.2rem; margin-bottom: 1rem;">This certifies that</p>
+            <h2 style="color: var(--story-color); font-size: 2.5rem; margin: 1rem 0;">The Researcher</h2>
+            <p style="font-size: 1.2rem;">has successfully completed the</p>
+            <h3 style="color: var(--narrative-color); margin: 1rem 0;">"Tell Your Research Story" Program</h3>
+            <p>Mastering academic writing through narrative construction</p>
+            
+            <div style="margin-top: 2rem; display: flex; justify-content: space-around;">
+              <div>
+                <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
+              </div>
+              <div>
+                <p><strong>Based on:</strong> John M. Swales' framework</p>
+              </div>
+            </div>
+          </div>
+          
+          <p style="margin-top: 2rem; color: #666;">Developed by Halim Faroug A. Elhag, Lecturer of English Language</p>
+          
+          <button onclick="printCertificate()" style="margin-top: 2rem; background: var(--success); padding: 1rem 2rem;">Print Certificate</button>
+        </div>
+      </div>
+    `;
+    
+    const div = document.createElement('div');
+    div.innerHTML = certificateHTML;
+    document.body.appendChild(div);
+  }
+
+  function printCertificate() {
+    window.print();
+  }
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', function() {
+    updateProgress();
+    
+    // Load saved data if exists
+    const savedStory = localStorage.getItem('researchStory');
+    if (savedStory) {
+      const story = JSON.parse(savedStory);
+      document.getElementById('story-hook').value = story.hook || '';
+      document.getElementById('story-challenge').value = story.challenge || '';
+      document.getElementById('story-journey').value = story.journey || '';
+      document.getElementById('story-discovery').value = story.discovery || '';
+      document.getElementById('story-meaning').value = story.meaning || '';
     }
   });
 </script>
 </body>
 </html>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
