@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Tell Your Research Story | Swales Academic Writing Platform</title>
+  <title>Tell Your Research Story | Complete Interactive Learning Platform</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Storytelling Theme with Black Text */
+    /* Complete Interactive Platform */
     * {
       margin: 0;
       padding: 0;
@@ -13,403 +14,500 @@
     }
 
     :root {
-      --story-color: #2c3e50;
-      --narrative-color: #3498db;
-      --voice-color: #e74c3c;
-      --structure-color: #27ae60;
-      --audience-color: #9b59b6;
+      --primary: #2c3e50;
+      --secondary: #3498db;
+      --accent: #e74c3c;
+      --success: #27ae60;
+      --warning: #f39c12;
       --light: #ecf0f1;
-      --text-color: #000000; /* Black text for readability */
+      --text-color: #000000;
       --transition: all 0.3s ease;
+      --shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
 
     body {
       font-family: 'Georgia', 'Palatino', serif;
       line-height: 1.8;
-      color: var(--text-color); /* Black text */
+      color: var(--text-color);
       background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
                   url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><text x="50" y="50" font-family="Georgia" font-size="10" text-anchor="middle" dominant-baseline="middle">✍️</text></svg>');
       min-height: 100vh;
     }
 
-    /* Story Header */
-    .story-header {
-      background: linear-gradient(135deg, var(--story-color), #34495e);
+    /* Platform Header */
+    .platform-header {
+      background: linear-gradient(135deg, var(--primary), #34495e);
       color: white;
-      padding: 3rem 2rem;
+      padding: 2rem;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
-    .story-header::before {
-      content: '📖';
+    .platform-header::before {
+      content: '📚';
       position: absolute;
-      font-size: 20rem;
+      font-size: 15rem;
       opacity: 0.05;
-      right: -5rem;
-      top: -5rem;
+      right: -3rem;
+      top: -3rem;
+    }
+
+    .platform-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
       color: white;
     }
 
-    .story-title {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      color: white; /* White for contrast on dark background */
-    }
-
-    .story-subtitle {
-      font-size: 1.3rem;
+    .platform-subtitle {
+      font-size: 1.2rem;
       opacity: 0.9;
-      font-style: italic;
       max-width: 800px;
-      margin: 0 auto 2rem;
-      color: white; /* White for contrast on dark background */
+      margin: 0 auto 1rem;
+      color: white;
     }
 
-    /* Story Navigation */
-    .story-chapters {
+    /* Platform Navigation */
+    .platform-nav {
       display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 2rem auto;
+      overflow-x: auto;
+      background: white;
+      border-radius: 10px;
+      margin: 1rem auto;
       max-width: 1200px;
-      flex-wrap: wrap;
+      box-shadow: var(--shadow);
+      padding: 0.5rem;
+      gap: 0.5rem;
     }
 
-    .chapter {
+    .nav-item {
+      padding: 0.8rem 1.2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      color: #666;
+      white-space: nowrap;
+      border-radius: 8px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-item:hover {
+      background: var(--light);
+    }
+
+    .nav-item.active {
+      background: var(--secondary);
+      color: white;
+    }
+
+    /* Main Content Grid */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    @media (max-width: 1024px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Sidebar Modules */
+    .modules-sidebar {
       background: white;
-      padding: 1.5rem 2rem;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      height: fit-content;
+      position: sticky;
+      top: 2rem;
+    }
+
+    .module-list {
+      list-style: none;
+    }
+
+    .module-item {
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 8px;
       cursor: pointer;
       transition: var(--transition);
-      text-align: center;
-      min-width: 200px;
-      border-left: 5px solid var(--narrative-color);
-      color: var(--text-color); /* Black text */
+      border-left: 4px solid transparent;
     }
 
-    .chapter h3, .chapter p {
-      color: var(--text-color); /* Black text */
+    .module-item:hover {
+      background: var(--light);
+      transform: translateX(5px);
     }
 
-    .chapter:nth-child(2) {
-      border-left-color: var(--voice-color);
-    }
-    .chapter:nth-child(3) {
-      border-left-color: var(--structure-color);
-    }
-    .chapter:nth-child(4) {
-      border-left-color: var(--audience-color);
+    .module-item.active {
+      background: rgba(52, 152, 219, 0.1);
+      border-left-color: var(--secondary);
+      font-weight: bold;
     }
 
-    .chapter:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    /* Content Area */
+    .content-area {
+      min-height: 600px;
     }
 
-    .chapter.active {
-      background: linear-gradient(135deg, var(--narrative-color), #2980b9);
-      color: white; /* White text on active chapter */
-    }
-
-    .chapter.active h3, .chapter.active p {
-      color: white; /* White text on active chapter */
-    }
-
-    /* Story Content */
-    .story-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem 4rem;
-    }
-
-    .chapter-content {
+    .content-panel {
+      background: white;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      padding: 2rem;
       display: none;
-      animation: fadeIn 0.8s ease;
-      color: var(--text-color); /* Black text */
+      animation: fadeIn 0.5s ease;
     }
 
-    .chapter-content.active {
+    .content-panel.active {
       display: block;
     }
 
-    /* Story Elements */
-    .story-element {
-      background: white;
-      padding: 2rem;
-      margin: 2rem 0;
-      border-radius: 15px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-      position: relative;
-      overflow: hidden;
-      color: var(--text-color); /* Black text */
+    /* Flashcards */
+    .flashcard-container {
+      perspective: 1000px;
+      height: 300px;
+      margin: 2rem auto;
+      max-width: 500px;
     }
 
-    .story-element::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
+    .flashcard {
       width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, var(--narrative-color), var(--voice-color));
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+      cursor: pointer;
     }
 
-    .element-title {
-      color: var(--story-color);
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-front,
+    .flashcard-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      padding: 2rem;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      justify-content: center;
+      text-align: center;
+      box-shadow: var(--shadow);
     }
 
-    .element-icon {
-      font-size: 2rem;
-      color: var(--story-color);
-    }
-
-    /* Story Builder */
-    .story-builder {
-      background: white;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-      margin: 2rem 0;
-      color: var(--text-color); /* Black text */
-    }
-
-    .builder-step {
-      background: var(--light);
-      padding: 1.5rem;
-      margin: 1rem 0;
-      border-radius: 10px;
-      border-left: 4px solid var(--structure-color);
-      color: var(--text-color); /* Black text */
-    }
-
-    /* Dialogue Box */
-    .dialogue {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 10px;
-      margin: 1.5rem 0;
-      border-left: 4px solid var(--narrative-color);
-      font-style: italic;
-      position: relative;
-      color: var(--text-color); /* Black text */
-    }
-
-    .dialogue::before {
-      content: '"';
-      position: absolute;
-      top: -10px;
-      left: 20px;
-      font-size: 4rem;
-      color: var(--narrative-color);
-      opacity: 0.2;
-      font-family: serif;
-    }
-
-    /* Story Canvas */
-    .story-canvas {
-      background: white;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-      margin: 2rem 0;
-      min-height: 300px;
-      border: 2px dashed #ddd;
-      transition: var(--transition);
-      color: var(--text-color); /* Black text */
-    }
-
-    .story-canvas:hover {
-      border-color: var(--narrative-color);
-    }
-
-    /* Narrative Flow */
-    .narrative-flow {
-      display: flex;
-      gap: 2rem;
-      margin: 2rem 0;
-      flex-wrap: wrap;
-    }
-
-    .flow-step {
-      flex: 1;
-      min-width: 200px;
-      background: white;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      position: relative;
-      transition: var(--transition);
-      color: var(--text-color); /* Black text */
-    }
-
-    .flow-step:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    .flow-step h4 {
-      color: var(--story-color);
-      margin-bottom: 0.5rem;
-    }
-
-    /* Interactive Examples */
-    .interactive-example {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
-      border-radius: 10px;
-      border: 2px solid #ddd;
-      color: var(--text-color); /* Black text */
-    }
-
-    .example-toggle {
-      background: var(--narrative-color);
+    .flashcard-front {
+      background: linear-gradient(135deg, var(--secondary), #2980b9);
       color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      margin: 1rem 0;
+      font-size: 1.2rem;
+      font-weight: bold;
     }
 
-    /* Progress Story */
-    .story-progress {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
+    .flashcard-back {
+      background: white;
+      color: var(--text-color);
+      transform: rotateY(180deg);
+      border: 2px solid var(--secondary);
+    }
+
+    .flashcard-controls {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .flashcard-stack {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .mini-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .mini-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--secondary);
+    }
+
+    .mini-card.flipped {
+      background: var(--light);
+      border-color: var(--success);
+    }
+
+    /* Mind Maps */
+    .mindmap-container {
+      height: 500px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+
+    .mindmap-node {
+      position: absolute;
       background: white;
       padding: 1rem 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      color: var(--text-color); /* Black text */
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      min-width: 150px;
+      text-align: center;
     }
 
-    .progress-chapter {
+    .mindmap-node:hover {
+      transform: scale(1.05);
+      z-index: 10;
+    }
+
+    .mindmap-node.central {
+      background: linear-gradient(135deg, var(--secondary), #2980b9);
+      color: white;
       font-weight: bold;
-      color: var(--story-color);
+      font-size: 1.1rem;
     }
 
-    /* Author's Voice */
-    .voice-selector {
+    .mindmap-node.branch {
+      background: white;
+      color: var(--text-color);
+    }
+
+    .mindmap-connection {
+      position: absolute;
+      background: #ddd;
+      height: 2px;
+      transform-origin: 0 0;
+    }
+
+    /* Quizzes */
+    .quiz-container {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      margin: 2rem 0;
+    }
+
+    .quiz-progress {
       display: flex;
-      gap: 1rem;
-      margin: 1.5rem 0;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--light);
     }
 
-    .voice-option {
+    .quiz-question {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-option {
       padding: 1rem 1.5rem;
       background: var(--light);
       border: 2px solid #ddd;
       border-radius: 8px;
       cursor: pointer;
       transition: var(--transition);
-      text-align: center;
-      flex: 1;
-      min-width: 150px;
-      color: var(--text-color); /* Black text */
+      text-align: left;
     }
 
-    .voice-option:hover {
-      border-color: var(--voice-color);
-      background: rgba(231, 76, 60, 0.1);
+    .quiz-option:hover {
+      border-color: var(--secondary);
+      background: rgba(52, 152, 219, 0.1);
     }
 
-    .voice-option.selected {
-      border-color: var(--voice-color);
-      background: rgba(231, 76, 60, 0.2);
+    .quiz-option.selected {
+      border-color: var(--secondary);
+      background: rgba(52, 152, 219, 0.2);
       font-weight: bold;
     }
 
-    /* Story Templates */
-    .template-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
+    .quiz-option.correct {
+      border-color: var(--success);
+      background: rgba(39, 174, 96, 0.2);
     }
 
-    .template-card {
-      background: white;
+    .quiz-option.incorrect {
+      border-color: var(--accent);
+      background: rgba(231, 76, 60, 0.2);
+    }
+
+    .quiz-feedback {
       padding: 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: var(--transition);
-      border: 2px solid transparent;
-      color: var(--text-color); /* Black text */
-    }
-
-    .template-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      border-color: var(--narrative-color);
-    }
-
-    /* Swales Quotes */
-    .swales-quote {
-      background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(231, 76, 60, 0.1));
-      padding: 2rem;
-      border-radius: 10px;
-      margin: 2rem 0;
-      border-left: 5px solid var(--story-color);
-      position: relative;
-      color: var(--text-color); /* Black text */
-    }
-
-    .quote-author {
-      text-align: right;
-      font-style: italic;
-      color: #666;
       margin-top: 1rem;
+      display: none;
+    }
+
+    .quiz-feedback.correct {
+      background: rgba(39, 174, 96, 0.1);
+      border-left: 4px solid var(--success);
+      display: block;
+    }
+
+    .quiz-feedback.incorrect {
+      background: rgba(231, 76, 60, 0.1);
+      border-left: 4px solid var(--accent);
+      display: block;
+    }
+
+    /* Interactive Exercises */
+    .exercise-container {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      margin: 2rem 0;
+    }
+
+    .drag-drop-area {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .drag-source, .drag-target {
+      min-height: 300px;
+      border: 2px dashed #ddd;
+      border-radius: 10px;
+      padding: 1.5rem;
+      background: #f8f9fa;
+    }
+
+    .drag-item {
+      background: white;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      cursor: move;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .drag-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .drag-item.correct {
+      background: rgba(39, 174, 96, 0.2);
+      border: 2px solid var(--success);
+    }
+
+    .drag-item.incorrect {
+      background: rgba(231, 76, 60, 0.2);
+      border: 2px solid var(--accent);
+    }
+
+    /* Progress Tracking */
+    .progress-dashboard {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      margin: 2rem 0;
+    }
+
+    .progress-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .stat-box {
+      background: var(--light);
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .stat-box:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--secondary);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #666;
     }
 
     /* Buttons */
     button {
       padding: 0.8rem 1.5rem;
-      background: var(--narrative-color);
+      background: var(--secondary);
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
       transition: var(--transition);
-      margin: 0.5rem;
-      font-family: 'Georgia', serif;
+      font-family: inherit;
     }
 
     button:hover {
       background: #2980b9;
       transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    /* Lists */
-    ul, ol {
-      margin: 1rem 0 1rem 2rem;
-      color: var(--text-color); /* Black text */
+    button:active {
+      transform: translateY(0);
     }
 
-    li {
-      margin-bottom: 0.5rem;
+    button.secondary {
+      background: var(--light);
+      color: var(--text-color);
     }
 
-    /* Headings */
-    h1, h2, h3, h4, h5, h6 {
-      color: var(--story-color);
+    button.success {
+      background: var(--success);
+    }
+
+    button.warning {
+      background: var(--warning);
     }
 
     /* Animations */
@@ -418,1072 +516,1204 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes storyPulse {
+    @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
     }
 
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    /* Utility Classes */
+    .hidden {
+      display: none !important;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mt-2 { margin-top: 2rem; }
+    .mb-2 { margin-bottom: 2rem; }
+
     /* Responsive */
     @media (max-width: 768px) {
-      .story-title {
-        font-size: 2.5rem;
+      .platform-title {
+        font-size: 2rem;
       }
       
-      .story-chapters {
-        flex-direction: column;
+      .platform-nav {
+        flex-wrap: wrap;
       }
       
-      .chapter {
-        width: 100%;
+      .nav-item {
+        flex: 1;
+        min-width: 120px;
       }
       
-      .narrative-flow {
-        flex-direction: column;
+      .drag-drop-area {
+        grid-template-columns: 1fr;
       }
       
-      .voice-selector {
-        flex-direction: column;
-      }
-      
-      .story-progress {
-        left: 2rem;
-        right: 2rem;
-        bottom: 1rem;
+      .flashcard-stack {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- Story Header -->
-<div class="story-header">
-  <h1 class="story-title">📖 Tell Your Research Story</h1>
-  <p class="story-subtitle">Mastering Academic Writing through Narrative Construction<br>Based on John Swales' Framework</p>
+<!-- Platform Header -->
+<div class="platform-header">
+  <h1 class="platform-title">📚 Tell Your Research Story</h1>
+  <p class="platform-subtitle">Complete Interactive Learning Platform with Flashcards, Mindmaps, Quizzes & Exercises</p>
   
-  <div class="story-progress">
-    <span class="progress-chapter">Chapter 1: Finding Your Voice</span>
-    <div class="progress-bar" style="flex-grow: 1; height: 5px; background: #ddd; border-radius: 3px;">
-      <div style="width: 25%; height: 100%; background: var(--narrative-color); border-radius: 3px;"></div>
+  <div class="progress-dashboard" style="max-width: 800px; margin: 1rem auto; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+    <div style="display: flex; justify-content: space-between; align-items: center; color: white;">
+      <div>
+        <div style="font-size: 0.9rem; opacity: 0.8;">Progress</div>
+        <div style="font-size: 1.5rem; font-weight: bold;">65%</div>
+      </div>
+      <div>
+        <div style="font-size: 0.9rem; opacity: 0.8;">Points</div>
+        <div style="font-size: 1.5rem; font-weight: bold;">1,250</div>
+      </div>
+      <div>
+        <div style="font-size: 0.9rem; opacity: 0.8;">Badges</div>
+        <div style="font-size: 1.5rem; font-weight: bold;">8</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Story Chapters -->
-<div class="story-chapters">
-  <div class="chapter active" onclick="showChapter(1)">
-    <h3>🎭 Chapter 1: Finding Your Voice</h3>
-    <p>Authorial Identity & Stance</p>
-  </div>
-  <div class="chapter" onclick="showChapter(2)">
-    <h3>📚 Chapter 2: Research as Narrative</h3>
-    <p>Storytelling in Academic Writing</p>
-  </div>
-  <div class="chapter" onclick="showChapter(3)">
-    <h3>🏛️ Chapter 3: Genre Expectations</h3>
-    <p>Disciplinary Story Forms</p>
-  </div>
-  <div class="chapter" onclick="showChapter(4)">
-    <h3>🔍 Chapter 4: The CARS Model</h3>
-    <p>Creating a Research Space</p>
-  </div>
-  <div class="chapter" onclick="showChapter(5)">
-    <h3>✍️ Chapter 5: Writing Workshop</h3>
-    <p>Craft Your Research Story</p>
-  </div>
+<!-- Platform Navigation -->
+<div class="platform-nav">
+  <button class="nav-item active" onclick="showPanel('learning')">
+    📖 Learning Modules
+  </button>
+  <button class="nav-item" onclick="showPanel('flashcards')">
+    🃏 Flashcards
+  </button>
+  <button class="nav-item" onclick="showPanel('mindmaps')">
+    🗺️ Mind Maps
+  </button>
+  <button class="nav-item" onclick="showPanel('quizzes')">
+    📝 Quizzes
+  </button>
+  <button class="nav-item" onclick="showPanel('exercises')">
+    💪 Interactive Exercises
+  </button>
+  <button class="nav-item" onclick="showPanel('progress')">
+    📊 Progress Tracking
+  </button>
 </div>
 
-<!-- Story Content -->
-<div class="story-content">
+<!-- Main Content Grid -->
+<div class="main-grid">
   
-  <!-- Chapter 1: Finding Your Voice -->
-  <div class="chapter-content active" id="chapter1">
+  <!-- Sidebar Modules -->
+  <div class="modules-sidebar">
+    <h3 style="color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+      📚 Learning Modules
+    </h3>
     
-    <div class="story-element">
-      <h2 class="element-title"><span class="element-icon">🎭</span> Finding Your Academic Voice</h2>
-      <p>Your "voice" in academic writing is your unique presence as an author. It's how you position yourself in relation to your research, your field, and your readers.</p>
-      
-      <div class="swales-quote">
-        "Academic writing is not about being impersonal; it's about adopting the appropriate persona for your disciplinary conversation."
-        <div class="quote-author">– Inspired by Swales & Feak</div>
-      </div>
-    </div>
-
-    <div class="story-element">
-      <h3 class="element-title">🎯 Voice Dimensions</h3>
-      <div class="narrative-flow">
-        <div class="flow-step">
-          <h4>Hedging</h4>
-          <p>Expressing uncertainty appropriately: <em>"It appears that..."</em></p>
-          <button class="example-toggle" onclick="toggleExample('hedge')">Show Examples</button>
-          <div id="hedge-example" class="interactive-example" style="display: none;">
-            <p><strong>Strong:</strong> This proves climate change is man-made.</p>
-            <p><strong>Hedged:</strong> The evidence suggests a strong correlation between human activity and climate change patterns.</p>
-          </div>
+    <ul class="module-list">
+      <li class="module-item active" onclick="loadModule(1)">1. CARS Model Fundamentals</li>
+      <li class="module-item" onclick="loadModule(2)">2. Academic Voice & Stance</li>
+      <li class="module-item" onclick="loadModule(3)">3. Research as Narrative</li>
+      <li class="module-item" onclick="loadModule(4)">4. Genre Expectations</li>
+      <li class="module-item" onclick="loadModule(5)">5. Literature Review Strategies</li>
+      <li class="module-item" onclick="loadModule(6)">6. Method Section Writing</li>
+      <li class="module-item" onclick="loadModule(7)">7. Results & Discussion</li>
+      <li class="module-item" onclick="loadModule(8)">8. Conclusion Crafting</li>
+      <li class="module-item" onclick="loadModule(9)">9. Abstract Writing</li>
+      <li class="module-item" onclick="loadModule(10)">10. Revision Strategies</li>
+    </ul>
+    
+    <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid var(--light);">
+      <h4 style="color: var(--primary); margin-bottom: 1rem;">Quick Stats</h4>
+      <div style="display: grid; gap: 0.5rem;">
+        <div style="display: flex; justify-content: space-between;">
+          <span>Modules Completed:</span>
+          <strong>6/10</strong>
         </div>
-        
-        <div class="flow-step">
-          <h4>Boosting</h4>
-          <p>Asserting confidence when needed: <em>"Clearly, the data shows..."</em></p>
-          <button class="example-toggle" onclick="toggleExample('boost')">Show Examples</button>
-          <div id="boost-example" class="interactive-example" style="display: none;">
-            <p><strong>Tentative:</strong> This might perhaps indicate something.</p>
-            <p><strong>Boosted:</strong> These findings unequivocally demonstrate the need for immediate intervention.</p>
-          </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span>Flashcards Mastered:</span>
+          <strong>42/60</strong>
         </div>
-        
-        <div class="flow-step">
-          <h4>Positioning</h4>
-          <p>Aligning with scholarly communities</p>
-          <button class="example-toggle" onclick="toggleExample('position')">Show Examples</button>
-          <div id="position-example" class="interactive-example" style="display: none;">
-            <p><strong>Outsider:</strong> I think researchers should...</p>
-            <p><strong>Insider:</strong> As discourse analysts, we understand that...</p>
-          </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span>Quiz Score Average:</span>
+          <strong>85%</strong>
         </div>
       </div>
     </div>
-
-    <div class="story-element">
-      <h3 class="element-title">🎤 Voice Selector Exercise</h3>
-      <p>Choose the appropriate voice for different academic situations:</p>
-      
-      <div class="dialogue">
-        "You're writing a literature review section. Your field values cautious interpretation. How do you phrase your synthesis?"
-      </div>
-      
-      <div class="voice-selector">
-        <div class="voice-option" onclick="selectVoice(this, 'cautious')">
-          The available literature <strong>suggests</strong> a possible correlation...
-        </div>
-        <div class="voice-option" onclick="selectVoice(this, 'confident')">
-          The literature <strong>proves</strong> there is a correlation...
-        </div>
-        <div class="voice-option" onclick="selectVoice(this, 'neutral')">
-          Researchers have <strong>found</strong> a correlation...
-        </div>
-      </div>
-      
-      <div id="voice-feedback" style="margin-top: 1rem; padding: 1rem; background: #e8f4f8; border-radius: 5px; display: none;">
-        <!-- Feedback will appear here -->
-      </div>
-    </div>
-
-    <div class="story-element">
-      <h3 class="element-title">📝 Your Voice Practice Space</h3>
-      <p>Try rewriting this sentence with different voices:</p>
-      
-      <div class="story-canvas" id="voice-canvas">
-        <p><em>Original: "Social media affects mental health."</em></p>
-        <textarea id="voice-practice" style="width: 100%; min-height: 100px; padding: 1rem; margin-top: 1rem; border: 1px solid #ddd; border-radius: 5px; font-family: 'Georgia', serif;" 
-                  placeholder="Rewrite this sentence with appropriate academic voice..."></textarea>
-        <button onclick="analyzeVoice()" style="margin-top: 1rem;">Analyze My Voice</button>
-        <div id="voice-analysis" style="margin-top: 1rem; padding: 1rem; background: #f9f9f9; border-radius: 5px; display: none;"></div>
-      </div>
-    </div>
-
   </div>
-  
-  <!-- Chapter 2: Research as Narrative -->
-  <div class="chapter-content" id="chapter2">
+
+  <!-- Content Area -->
+  <div class="content-area">
     
-    <div class="story-element">
-      <h2 class="element-title"><span class="element-icon">📚</span> Research as Narrative</h2>
-      <p>Every research paper tells a story. Learn to structure your work with narrative arc, character development (your research journey), and resolution (your findings).</p>
+    <!-- Learning Modules Panel -->
+    <div class="content-panel active" id="learning-panel">
+      <h2 style="color: var(--primary); margin-bottom: 1.5rem;">CARS Model Fundamentals</h2>
       
-      <div class="swales-quote">
-        "The research article is a story... It has a beginning (the problem), a middle (the investigation), and an end (the solution)."
-        <div class="quote-author">– John M. Swales</div>
-      </div>
-    </div>
-
-    <div class="story-element">
-      <h3 class="element-title">📖 Narrative Structures in Research</h3>
-      
-      <div class="builder-step">
-        <h4>1. The Problem-Solution Narrative</h4>
-        <p><strong>Setup:</strong> Here's a problem in our field...</p>
-        <p><strong>Development:</strong> Previous attempts have been made...</p>
-        <p><strong>Resolution:</strong> Our study offers a new approach...</p>
+      <div style="background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(39, 174, 96, 0.1)); padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
+        <h3 style="color: var(--primary); margin-bottom: 1rem;">🎯 Learning Objectives</h3>
+        <ul style="margin-left: 1.5rem;">
+          <li>Understand the three moves of the CARS model</li>
+          <li>Identify linguistic signals for each move</li>
+          <li>Apply CARS to your own research writing</li>
+          <li>Avoid common errors in research introductions</li>
+        </ul>
       </div>
       
-      <div class="builder-step">
-        <h4>2. The Gap-Filling Narrative</h4>
-        <p><strong>Known territory:</strong> We know a lot about X...</p>
-        <p><strong>The gap:</strong> But we know little about Y...</p>
-        <p><strong>The bridge:</strong> This study connects X and Y...</p>
-      </div>
-      
-      <div class="builder-step">
-        <h4>3. The Journey of Discovery</h4>
-        <p><strong>Starting point:</strong> We began by asking...</p>
-        <p><strong>Challenges:</strong> We encountered difficulties with...</p>
-        <p><strong>Insights:</strong> Unexpectedly, we discovered...</p>
-      </div>
-    </div>
-
-    <div class="story-element">
-      <h3 class="element-title">🎬 Create Your Research Narrative</h3>
-      
-      <div class="story-builder">
-        <h4>Your Research Story Outline</h4>
-        
-        <div style="margin: 1.5rem 0;">
-          <label><strong>1. The Hook (Introduction):</strong></label>
-          <textarea id="story-hook" style="width: 100%; min-height: 80px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
-                    placeholder="What makes your research interesting? Why should readers care?"></textarea>
-        </div>
-        
-        <div style="margin: 1.5rem 0;">
-          <label><strong>2. The Challenge (Literature Gap):</strong></label>
-          <textarea id="story-challenge" style="width: 100%; min-height: 80px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
-                    placeholder="What problem or gap does your research address?"></textarea>
-        </div>
-        
-        <div style="margin: 1.5rem 0;">
-          <label><strong>3. The Journey (Methodology):</strong></label>
-          <textarea id="story-journey" style="width: 100%; min-height: 80px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
-                    placeholder="How did you conduct your research? What was your process?"></textarea>
-        </div>
-        
-        <div style="margin: 1.5rem 0;">
-          <label><strong>4. The Discovery (Findings):</strong></label>
-          <textarea id="story-discovery" style="width: 100%; min-height: 80px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
-                    placeholder="What did you find? What are your key results?"></textarea>
-        </div>
-        
-        <div style="margin: 1.5rem 0;">
-          <label><strong>5. The Meaning (Discussion):</strong></label>
-          <textarea id="story-meaning" style="width: 100%; min-height: 80px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
-                    placeholder="What do your findings mean? Why are they important?"></textarea>
-        </div>
-        
-        <button onclick="generateStoryOutline()" style="background: var(--structure-color);">Generate My Story Outline</button>
-        <button onclick="saveStory()" style="background: var(--success);">Save My Story</button>
-        
-        <div id="story-output" style="margin-top: 2rem; padding: 1.5rem; background: #f9f9f9; border-radius: 10px; display: none;"></div>
-      </div>
-    </div>
-
-  </div>
-  
-  <!-- Chapter 3: Genre Expectations -->
-  <div class="chapter-content" id="chapter3">
-    
-    <div class="story-element">
-      <h2 class="element-title"><span class="element-icon">🏛️</span> Genre Expectations</h2>
-      <p>Different academic disciplines have different "story forms." Learn the conventions of your field's genre expectations.</p>
-      
-      <div class="swales-quote">
-        "Genres are not just forms, but typical ways of engaging in typical situations with typical readers."
-        <div class="quote-author">– Swales on Genre Analysis</div>
-      </div>
-    </div>
-
-    <div class="story-element">
-      <h3 class="element-title">📊 Discipline-Specific Story Forms</h3>
-      
-      <div class="template-gallery">
-        <div class="template-card" onclick="selectTemplate('humanities')">
-          <h4>Humanities & Literature</h4>
-          <p><strong>Story form:</strong> Interpretive argument</p>
-          <p><strong>Voice:</strong> First-person acceptable</p>
-          <p><strong>Structure:</strong> Thesis-driven essay</p>
-        </div>
-        
-        <div class="template-card" onclick="selectTemplate('social')">
-          <h4>Social Sciences</h4>
-          <p><strong>Story form:</strong> Empirical investigation</p>
-          <p><strong>Voice:</strong> Third-person preferred</p>
-          <p><strong>Structure:</strong> IMRaD (Introduction, Methods, Results, Discussion)</p>
-        </div>
-        
-        <div class="template-card" onclick="selectTemplate('natural')">
-          <h4>Natural Sciences</h4>
-          <p><strong>Story form:</strong> Experimental report</p>
-          <p><strong>Voice:</strong> Impersonal, objective</p>
-          <p><strong>Structure:</strong> Highly standardized sections</p>
-        </div>
-        
-        <div class="template-card" onclick="selectTemplate('applied')">
-          <h4>Applied Fields</h4>
-          <p><strong>Story form:</strong> Problem-solution</p>
-          <p><strong>Voice:</strong> Practical, direct</p>
-          <p><strong>Structure:</strong> Executive summary → Analysis → Recommendations</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="story-element">
-      <h3 class="element-title">🎯 Genre Analysis Tool</h3>
-      
-      <div class="interactive-example">
-        <p><strong>Analyze this opening from different disciplines:</strong></p>
-        <p id="genre-example">"This study examines the relationship between social media usage and adolescent well-being."</p>
-        
-        <div style="margin-top: 1rem;">
-          <button onclick="showGenreAnalysis('humanities')">Humanities Version</button>
-          <button onclick="showGenreAnalysis('social')">Social Sciences Version</button>
-          <button onclick="showGenreAnalysis('natural')">Natural Sciences Version</button>
-        </div>
-        
-        <div id="genre-analysis" style="margin-top: 1rem; padding: 1rem; background: white; border-radius: 5px; display: none;"></div>
-      </div>
-    </div>
-
-  </div>
-  
-  <!-- Chapter 4: The CARS Model -->
-  <div class="chapter-content" id="chapter4">
-    
-    <div class="story-element">
-      <h2 class="element-title"><span class="element-icon">🔍</span> The CARS Model</h2>
-      <p>Creating A Research Space: The essential framework for introducing your research effectively.</p>
-      
-      <div class="swales-quote">
-        "The CARS model represents the rhetorical moves that establish a territory, create a niche, and then occupy that niche."
-        <div class="quote-author">– John M. Swales</div>
-      </div>
-    </div>
-
-    <div class="story-element">
-      <h3 class="element-title">🗺️ CARS Model Interactive Guide</h3>
-      
-      <div style="background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(39, 174, 96, 0.1)); padding: 2rem; border-radius: 10px; margin: 2rem 0;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-          <div style="text-align: center;">
-            <div style="width: 80px; height: 80px; background: var(--narrative-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">1</div>
-            <h4>Establish Territory</h4>
-            <p>Show the importance of your topic</p>
+      <div class="flashcard-stack">
+        <div class="mini-card" onclick="flipMiniCard(this)">
+          <div class="front">
+            <h4>Move 1: Territory</h4>
+            <p>Click to reveal strategies</p>
           </div>
-          
-          <div style="font-size: 2rem; color: var(--narrative-color);">→</div>
-          
-          <div style="text-align: center;">
-            <div style="width: 80px; height: 80px; background: var(--voice-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">2</div>
-            <h4>Establish a Niche</h4>
-            <p>Identify the gap or problem</p>
+          <div class="back" style="display: none;">
+            <h4>Territory Strategies</h4>
+            <p>• Claim centrality</p>
+            <p>• Make topic generalizations</p>
+            <p>• Review previous research</p>
           </div>
-          
-          <div style="font-size: 2rem; color: var(--voice-color);">→</div>
-          
-          <div style="text-align: center;">
-            <div style="width: 80px; height: 80px; background: var(--structure-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">3</div>
-            <h4>Occupy the Niche</h4>
-            <p>Present your research solution</p>
+        </div>
+        
+        <div class="mini-card" onclick="flipMiniCard(this)">
+          <div class="front">
+            <h4>Move 2: Niche</h4>
+            <p>Click to reveal strategies</p>
+          </div>
+          <div class="back" style="display: none;">
+            <h4>Niche Strategies</h4>
+            <p>• Counter-claiming</p>
+            <p>• Indicating a gap</p>
+            <p>• Question-raising</p>
+          </div>
+        </div>
+        
+        <div class="mini-card" onclick="flipMiniCard(this)">
+          <div class="front">
+            <h4>Move 3: Occupation</h4>
+            <p>Click to reveal strategies</p>
+          </div>
+          <div class="back" style="display: none;">
+            <h4>Occupation Strategies</h4>
+            <p>• Outlining purposes</p>
+            <p>• Announcing present research</p>
+            <p>• Indicating structure</p>
           </div>
         </div>
       </div>
       
-      <div class="narrative-flow">
-        <div class="flow-step">
-          <h4>Move 1: Territory</h4>
-          <p><strong>Strategies:</strong></p>
-          <ul>
-            <li>Claim centrality</li>
-            <li>Make topic generalizations</li>
-            <li>Review previous research</li>
-          </ul>
-          <button onclick="showCarsExample(1)">See Example</button>
-        </div>
-        
-        <div class="flow-step">
-          <h4>Move 2: Niche</h4>
-          <p><strong>Strategies:</strong></p>
-          <ul>
-            <li>Counter-claim</li>
-            <li>Indicate a gap</li>
-            <li>Question-raising</li>
-          </ul>
-          <button onclick="showCarsExample(2)">See Example</button>
-        </div>
-        
-        <div class="flow-step">
-          <h4>Move 3: Occupation</h4>
-          <p><strong>Strategies:</strong></p>
-          <ul>
-            <li>Outline purposes</li>
-            <li>Announce present research</li>
-            <li>Indicate structure</li>
-          </ul>
-          <button onclick="showCarsExample(3)">See Example</button>
+      <div style="margin-top: 2rem;">
+        <h3 style="color: var(--primary); margin-bottom: 1rem;">📝 Interactive Example</h3>
+        <div style="background: white; padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--secondary);">
+          <p><strong>Original:</strong> "This paper is about online learning."</p>
+          <p><strong>CARS Improved:</strong> "Recent years have witnessed growing scholarly interest in online learning environments (Territory). However, few studies have examined their long-term effectiveness for skill retention (Niche). This study therefore investigates the impact of online micro-learning modules on six-month knowledge retention (Occupation)."</p>
         </div>
       </div>
     </div>
-
-    <div class="story-element">
-      <h3 class="element-title">✍️ CARS Writing Practice</h3>
-      
-      <div class="story-canvas">
-        <h4>Write Your Own CARS Introduction</h4>
-        
-        <div style="margin: 1rem 0;">
-          <label><strong>1. Territory (Establish importance):</strong></label>
-          <textarea id="cars-territory" style="width: 100%; min-height: 60px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
-                    placeholder="Recent research has shown that..."></textarea>
-        </div>
-        
-        <div style="margin: 1rem 0;">
-          <label><strong>2. Niche (Identify the gap):</strong></label>
-          <textarea id="cars-niche" style="width: 100%; min-height: 60px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
-                    placeholder="However, little attention has been paid to..."></textarea>
-        </div>
-        
-        <div style="margin: 1rem 0;">
-          <label><strong>3. Occupation (Present your study):</strong></label>
-          <textarea id="cars-occupation" style="width: 100%; min-height: 60px; padding: 0.8rem; margin-top: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" 
-                    placeholder="This study therefore aims to..."></textarea>
-        </div>
-        
-        <button onclick="analyzeCARS()">Analyze My CARS Model</button>
-        <button onclick="generateCARSExample()">Generate Example</button>
-        
-        <div id="cars-analysis" style="margin-top: 1.5rem; padding: 1rem; background: #f9f9f9; border-radius: 5px; display: none;"></div>
-      </div>
-    </div>
-
-  </div>
-  
-  <!-- Chapter 5: Writing Workshop -->
-  <div class="chapter-content" id="chapter5">
     
-    <div class="story-element">
-      <h2 class="element-title"><span class="element-icon">✍️</span> Writing Workshop</h2>
-      <p>Bring everything together to craft your complete research story.</p>
+    <!-- Flashcards Panel -->
+    <div class="content-panel" id="flashcards-panel">
+      <h2 style="color: var(--primary); margin-bottom: 1.5rem;">🃏 CARS Model Flashcards</h2>
       
-      <div class="swales-quote">
-        "Writing is thinking. To write well is to think clearly. That's why it's so hard."
-        <div class="quote-author">– David McCullough</div>
+      <div class="flashcard-container">
+        <div class="flashcard" id="main-flashcard" onclick="flipCard()">
+          <div class="flashcard-front">
+            <h3 id="flashcard-question">What is the purpose of Move 1 (Territory) in the CARS model?</h3>
+          </div>
+          <div class="flashcard-back">
+            <p id="flashcard-answer">To establish the importance and centrality of the research topic, showing readers why it matters and situating it within existing scholarship.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="flashcard-controls">
+        <button onclick="previousCard()">← Previous</button>
+        <button onclick="flipCard()">🔄 Flip Card</button>
+        <button onclick="nextCard()">Next →</button>
+      </div>
+      
+      <div style="margin-top: 2rem;">
+        <h3 style="color: var(--primary); margin-bottom: 1rem;">Flashcard Categories</h3>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+          <button class="secondary" onclick="filterCards('all')">All Cards</button>
+          <button class="secondary" onclick="filterCards('cars')">CARS Model</button>
+          <button class="secondary" onclick="filterCards('voice')">Academic Voice</button>
+          <button class="secondary" onclick="filterCards('genre')">Genre Conventions</button>
+          <button class="secondary" onclick="filterCards('vocabulary')">Academic Vocabulary</button>
+        </div>
+      </div>
+      
+      <div class="flashcard-stack" id="flashcard-deck">
+        <!-- Mini flashcards will be generated by JavaScript -->
       </div>
     </div>
-
-    <div class="story-element">
-      <h3 class="element-title">📝 Complete Research Story Builder</h3>
+    
+    <!-- Mind Maps Panel -->
+    <div class="content-panel" id="mindmaps-panel">
+      <h2 style="color: var(--primary); margin-bottom: 1.5rem;">🗺️ CARS Model Mind Map</h2>
       
-      <div class="story-builder">
-        <div style="background: var(--light); padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
-          <h4 style="color: var(--story-color); margin-bottom: 1rem;">Your Research Story Components</h4>
+      <div class="mindmap-container" id="mindmap-container">
+        <!-- Mind map nodes will be created by JavaScript -->
+      </div>
+      
+      <div style="margin-top: 2rem;">
+        <h3 style="color: var(--primary); margin-bottom: 1rem;">🎯 Mind Map Instructions</h3>
+        <p>Click on any node to see more details. Drag nodes to rearrange. The central node represents the CARS model, with branches for each move and sub-branches for strategies and examples.</p>
+        
+        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+          <button onclick="resetMindMap()">Reset Layout</button>
+          <button onclick="exportMindMap()">Export as Image</button>
+          <button onclick="printMindMap()">Print Mind Map</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Quizzes Panel -->
+    <div class="content-panel" id="quizzes-panel">
+      <h2 style="color: var(--primary); margin-bottom: 1.5rem;">📝 CARS Model Quiz</h2>
+      
+      <div class="quiz-container" id="quiz-container">
+        <div class="quiz-progress">
+          <span>Question <span id="current-question">1</span> of <span id="total-questions">5</span></span>
+          <span>Score: <span id="quiz-score">0</span>/<span id="quiz-total">0</span></span>
+        </div>
+        
+        <div class="quiz-question" id="quiz-question">
+          Which of the following is NOT a strategy for Move 1 (Establishing Territory)?
+        </div>
+        
+        <div class="quiz-options" id="quiz-options">
+          <!-- Options will be generated by JavaScript -->
+        </div>
+        
+        <div class="quiz-feedback" id="quiz-feedback">
+          <!-- Feedback will appear here -->
+        </div>
+        
+        <div style="display: flex; justify-content: space-between;">
+          <button onclick="previousQuestion()" id="prev-btn" disabled>← Previous</button>
+          <button onclick="checkAnswer()" id="check-btn">Check Answer</button>
+          <button onclick="nextQuestion()" id="next-btn" style="display: none;">Next Question →</button>
+          <button onclick="submitQuiz()" id="submit-btn" style="display: none;">Submit Quiz</button>
+        </div>
+      </div>
+      
+      <div style="margin-top: 2rem;">
+        <h3 style="color: var(--primary); margin-bottom: 1rem;">📊 Quiz Categories</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
+          <div style="background: var(--light); padding: 1rem; border-radius: 10px; text-align: center;">
+            <div style="font-size: 1.5rem; font-weight: bold; color: var(--secondary);">CARS Model</div>
+            <div>5 quizzes available</div>
+            <button onclick="startCategoryQuiz('cars')" style="margin-top: 0.5rem;">Start Quiz</button>
+          </div>
           
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-            <div style="background: white; padding: 1rem; border-radius: 5px; text-align: center;">
-              <div style="font-size: 1.5rem;">🎭</div>
-              <div><strong>Voice</strong></div>
-              <div id="workshop-voice" style="font-size: 0.9rem; color: #666;">Not set</div>
+          <div style="background: var(--light); padding: 1rem; border-radius: 10px; text-align: center;">
+            <div style="font-size: 1.5rem; font-weight: bold; color: var(--secondary);">Academic Voice</div>
+            <div>3 quizzes available</div>
+            <button onclick="startCategoryQuiz('voice')" style="margin-top: 0.5rem;">Start Quiz</button>
+          </div>
+          
+          <div style="background: var(--light); padding: 1rem; border-radius: 10px; text-align: center;">
+            <div style="font-size: 1.5rem; font-weight: bold; color: var(--secondary);">Genre Analysis</div>
+            <div>4 quizzes available</div>
+            <button onclick="startCategoryQuiz('genre')" style="margin-top: 0.5rem;">Start Quiz</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Interactive Exercises Panel -->
+    <div class="content-panel" id="exercises-panel">
+      <h2 style="color: var(--primary); margin-bottom: 1.5rem;">💪 Interactive Exercises</h2>
+      
+      <div class="exercise-container">
+        <h3 style="color: var(--primary); margin-bottom: 1rem;">Exercise 1: Drag & Drop CARS Model</h3>
+        <p>Drag the sentences on the left to their correct CARS move on the right:</p>
+        
+        <div class="drag-drop-area">
+          <div class="drag-source" id="drag-source">
+            <div class="drag-item" draggable="true" data-correct="territory">Recent studies have shown increasing interest in online learning environments.</div>
+            <div class="drag-item" draggable="true" data-correct="niche">However, little research has examined long-term retention in these settings.</div>
+            <div class="drag-item" draggable="true" data-correct="occupation">This study therefore investigates six-month knowledge retention in online courses.</div>
+            <div class="drag-item" draggable="true" data-correct="territory">Digital literacy has become a central concern in educational research.</div>
+            <div class="drag-item" draggable="true" data-correct="niche">Despite extensive work on motivation, few studies address virtual environments.</div>
+          </div>
+          
+          <div class="drag-target">
+            <div style="margin-bottom: 1rem; font-weight: bold; color: var(--secondary);">Move 1: Territory</div>
+            <div id="territory-drop" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            
+            <div style="margin: 1rem 0; font-weight: bold; color: var(--accent);">Move 2: Niche</div>
+            <div id="niche-drop" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            
+            <div style="margin: 1rem 0; font-weight: bold; color: var(--success);">Move 3: Occupation</div>
+            <div id="occupation-drop" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 1rem;">
+          <button onclick="checkDragDrop()">Check Answers</button>
+          <button onclick="resetDragDrop()" class="secondary">Reset Exercise</button>
+        </div>
+        
+        <div id="drag-feedback" style="margin-top: 1rem; padding: 1rem; border-radius: 10px; display: none;"></div>
+      </div>
+      
+      <div class="exercise-container" style="margin-top: 2rem;">
+        <h3 style="color: var(--primary); margin-bottom: 1rem;">Exercise 2: Fill in the Blanks</h3>
+        <p>Complete the CARS introduction by filling in the blanks:</p>
+        
+        <div style="background: var(--light); padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0;">
+          <p>Recent years have witnessed growing scholarly interest in 
+          <input type="text" id="blank1" style="width: 150px; padding: 0.5rem; border: 2px solid #ddd; border-radius: 5px;" placeholder="Fill blank"> 
+          (Territory). 
+          <select id="blank2" style="padding: 0.5rem; border: 2px solid #ddd; border-radius: 5px;">
+            <option value="">Choose</option>
+            <option value="However">However</option>
+            <option value="Therefore">Therefore</option>
+            <option value="Moreover">Moreover</option>
+          </select>, 
+          little research has examined 
+          <input type="text" id="blank3" style="width: 200px; padding: 0.5rem; border: 2px solid #ddd; border-radius: 5px;" placeholder="Fill blank"> 
+          (Niche). This study 
+          <select id="blank4" style="padding: 0.5rem; border: 2px solid #ddd; border-radius: 5px;">
+            <option value="">Choose</option>
+            <option value="aims to">aims to</option>
+            <option value="discusses">discusses</option>
+            <option value="ignores">ignores</option>
+          </select> 
+          investigate the impact of these environments on long-term learning (Occupation).</p>
+        </div>
+        
+        <button onclick="checkFillBlanks()">Check Answers</button>
+        <button onclick="showFillBlanksHint()" class="secondary">Get Hint</button>
+        
+        <div id="fill-feedback" style="margin-top: 1rem; padding: 1rem; border-radius: 10px; display: none;"></div>
+      </div>
+    </div>
+    
+    <!-- Progress Tracking Panel -->
+    <div class="content-panel" id="progress-panel">
+      <h2 style="color: var(--primary); margin-bottom: 1.5rem;">📊 Your Learning Progress</h2>
+      
+      <div class="progress-dashboard">
+        <div class="progress-stats">
+          <div class="stat-box">
+            <span class="stat-value">65%</span>
+            <span class="stat-label">Overall Progress</span>
+          </div>
+          
+          <div class="stat-box">
+            <span class="stat-value">6/10</span>
+            <span class="stat-label">Modules Completed</span>
+          </div>
+          
+          <div class="stat-box">
+            <span class="stat-value">85%</span>
+            <span class="stat-label">Average Quiz Score</span>
+          </div>
+          
+          <div class="stat-box">
+            <span class="stat-value">42</span>
+            <span class="stat-label">Flashcards Mastered</span>
+          </div>
+        </div>
+        
+        <div style="margin: 2rem 0;">
+          <h3 style="color: var(--primary); margin-bottom: 1rem;">📈 Progress by Module</h3>
+          <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px;">
+            <div style="margin-bottom: 1rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span>CARS Model Fundamentals</span>
+                <span>100%</span>
+              </div>
+              <div style="height: 10px; background: #ddd; border-radius: 5px; overflow: hidden;">
+                <div style="width: 100%; height: 100%; background: var(--success);"></div>
+              </div>
             </div>
             
-            <div style="background: white; padding: 1rem; border-radius: 5px; text-align: center;">
+            <div style="margin-bottom: 1rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span>Academic Voice & Stance</span>
+                <span>85%</span>
+              </div>
+              <div style="height: 10px; background: #ddd; border-radius: 5px; overflow: hidden;">
+                <div style="width: 85%; height: 100%; background: var(--success);"></div>
+              </div>
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span>Research as Narrative</span>
+                <span>70%</span>
+              </div>
+              <div style="height: 10px; background: #ddd; border-radius: 5px; overflow: hidden;">
+                <div style="width: 70%; height: 100%; background: var(--warning);"></div>
+              </div>
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span>Genre Expectations</span>
+                <span>45%</span>
+              </div>
+              <div style="height: 10px; background: #ddd; border-radius: 5px; overflow: hidden;">
+                <div style="width: 45%; height: 100%; background: var(--accent);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="margin: 2rem 0;">
+          <h3 style="color: var(--primary); margin-bottom: 1rem;">🏆 Earned Badges</h3>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <div style="background: gold; color: #333; padding: 1rem; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+              <div style="font-size: 1.5rem;">🥇</div>
+              <div style="font-size: 0.7rem; text-align: center;">CARS Master</div>
+            </div>
+            
+            <div style="background: silver; color: #333; padding: 1rem; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
               <div style="font-size: 1.5rem;">📚</div>
-              <div><strong>Narrative</strong></div>
-              <div id="workshop-narrative" style="font-size: 0.9rem; color: #666;">Not set</div>
+              <div style="font-size: 0.7rem; text-align: center;">Fast Learner</div>
             </div>
             
-            <div style="background: white; padding: 1rem; border-radius: 5px; text-align: center;">
-              <div style="font-size: 1.5rem;">🏛️</div>
-              <div><strong>Genre</strong></div>
-              <div id="workshop-genre" style="font-size: 0.9rem; color: #666;">Not set</div>
+            <div style="background: #cd7f32; color: #333; padding: 1rem; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+              <div style="font-size: 1.5rem;">🎯</div>
+              <div style="font-size: 0.7rem; text-align: center;">Quiz Expert</div>
             </div>
             
-            <div style="background: white; padding: 1rem; border-radius: 5px; text-align: center;">
-              <div style="font-size: 1.5rem;">🔍</div>
-              <div><strong>CARS Model</strong></div>
-              <div id="workshop-cars" style="font-size: 0.9rem; color: #666;">Not set</div>
+            <div style="background: var(--secondary); color: white; padding: 1rem; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+              <div style="font-size: 1.5rem;">🃏</div>
+              <div style="font-size: 0.7rem; text-align: center;">Flashcard Pro</div>
             </div>
           </div>
         </div>
         
-        <div style="margin: 1.5rem 0;">
-          <h4>Your Research Topic:</h4>
-          <input type="text" id="research-topic" style="width: 100%; padding: 1rem; font-size: 1.1rem; border: 2px solid #ddd; border-radius: 5px;" 
-                 placeholder="Enter your research topic or question...">
-        </div>
-        
-        <div style="margin: 1.5rem 0;">
-          <h4>Your Audience:</h4>
-          <select id="research-audience" style="width: 100%; padding: 1rem; font-size: 1rem; border: 2px solid #ddd; border-radius: 5px;">
-            <option value="">Select your primary audience</option>
-            <option value="specialists">Specialists in my field</option>
-            <option value="interdisciplinary">Interdisciplinary researchers</option>
-            <option value="general">General academic audience</option>
-            <option value="practitioners">Practitioners/Professionals</option>
-          </select>
-        </div>
-        
-        <div style="margin: 1.5rem 0;">
-          <h4>Your Complete Introduction:</h4>
-          <textarea id="complete-intro" style="width: 100%; min-height: 200px; padding: 1rem; font-family: 'Georgia', serif; font-size: 1.1rem; border: 2px solid #ddd; border-radius: 5px;" 
-                    placeholder="Write your complete research introduction here, incorporating all the elements you've learned..."></textarea>
-        </div>
-        
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <button onclick="analyzeCompleteIntro()" style="background: var(--narrative-color);">Analyze Introduction</button>
-          <button onclick="getWritingTips()" style="background: var(--warning);">Get Writing Tips</button>
-          <button onclick="generateCompleteExample()" style="background: var(--structure-color);">Generate Full Example</button>
-          <button onclick="downloadStory()" style="background: var(--success);">Download My Story</button>
-        </div>
-        
-        <div id="workshop-analysis" style="margin-top: 2rem; padding: 1.5rem; background: #f9f9f9; border-radius: 10px; display: none;"></div>
-      </div>
-    </div>
-
-    <div class="story-element">
-      <h3 class="element-title">🏆 Your Research Story Journey</h3>
-      
-      <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(39, 174, 96, 0.1)); border-radius: 10px;">
-        <div style="font-size: 4rem; margin-bottom: 1rem;">📖</div>
-        <h3 style="color: var(--story-color); margin-bottom: 1rem;">Congratulations!</h3>
-        <p>You've completed the "Tell Your Research Story" journey. You now have the tools to craft compelling academic narratives.</p>
-        
-        <div style="margin-top: 2rem;">
-          <button onclick="showCertificate()" style="background: var(--success); padding: 1rem 2rem; font-size: 1.1rem;">
-            🎓 Generate Your Certificate
-          </button>
+        <div style="margin-top: 2rem; text-align: center;">
+          <button onclick="generateProgressReport()">📄 Generate Progress Report</button>
+          <button onclick="shareProgress()" class="secondary">📤 Share Progress</button>
+          <button onclick="resetProgress()" class="warning">🔄 Reset Progress</button>
         </div>
       </div>
     </div>
 
   </div>
-
 </div>
 
 <!-- Footer -->
-<div style="text-align: center; padding: 2rem; background: var(--story-color); color: white; margin-top: 2rem;">
-  <p><strong>Tell Your Research Story</strong> – Based on the work of John M. Swales</p>
-  <p>Developed by <strong>Halim Faroug A. Elhag</strong>, Lecturer of English Language, UHB / UofK</p>
-  <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Interactive Academic Writing Platform</p>
+<div style="text-align: center; padding: 2rem; background: var(--primary); color: white; margin-top: 2rem;">
+  <p><strong>Tell Your Research Story</strong> – Complete Interactive Learning Platform</p>
+  <p>Based on John M. Swales' Academic Writing Framework</p>
+  <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Developed by Halim Faroug A. Elhag, Lecturer of English Language, UHB / UofK</p>
 </div>
 
 <script>
-  // State management
-  let currentChapter = 1;
-  let userVoice = '';
-  let userNarrative = '';
-  let userGenre = '';
-  let userCARSComplete = false;
-  let storyComponents = {
-    voice: null,
-    narrative: null,
-    genre: null,
-    cars: null
+  // ==================== PLATFORM STATE ====================
+  let currentPanel = 'learning';
+  let currentModule = 1;
+  let currentCardIndex = 0;
+  let quizState = {
+    currentQuestion: 0,
+    score: 0,
+    selectedOption: null,
+    quizCompleted: false
   };
 
-  // Show chapter function
-  function showChapter(chapterNumber) {
-    // Update chapters
-    document.querySelectorAll('.chapter').forEach(chapter => {
-      chapter.classList.remove('active');
-    });
-    document.querySelectorAll('.chapter')[chapterNumber - 1].classList.add('active');
-    
-    // Update content
-    document.querySelectorAll('.chapter-content').forEach(content => {
-      content.classList.remove('active');
-    });
-    document.getElementById('chapter' + chapterNumber).classList.add('active');
-    
-    // Update progress
-    currentChapter = chapterNumber;
-    updateProgress();
-  }
+  // ==================== DATA SETS ====================
+  
+  // Flashcard Data
+  const flashcards = [
+    { id: 1, category: 'cars', question: 'What is the purpose of Move 1 (Territory) in the CARS model?', answer: 'To establish the importance and centrality of the research topic, showing readers why it matters and situating it within existing scholarship.' },
+    { id: 2, category: 'cars', question: 'Name three strategies for establishing a niche (Move 2).', answer: '1. Counter-claiming\n2. Indicating a gap\n3. Question-raising\n4. Continuing a tradition' },
+    { id: 3, category: 'cars', question: 'What linguistic signals indicate Move 3 (Occupation)?', answer: '"The purpose of this study is...", "This paper reports on...", "The aim of this research is...", "This study contributes to..."' },
+    { id: 4, category: 'voice', question: 'What is hedging in academic writing?', answer: 'Using cautious language to express uncertainty or limit claims (e.g., "It appears that...", "The results suggest...")' },
+    { id: 5, category: 'voice', question: 'When should you use boosting in academic writing?', answer: 'When presenting well-supported findings or making confident claims based on strong evidence (e.g., "Clearly, the data shows...", "These findings demonstrate...")' },
+    { id: 6, category: 'genre', question: 'What are genre expectations?', answer: 'The conventional forms, structures, and styles that readers in a particular discipline expect to see in academic writing.' },
+    { id: 7, category: 'vocabulary', question: 'What does "IMRaD" stand for?', answer: 'Introduction, Methods, Results, and Discussion - the standard structure for empirical research articles.' },
+    { id: 8, category: 'cars', question: 'What is a common error in establishing territory?', answer: 'Making unsupported claims without citing relevant literature or demonstrating topic importance.' }
+  ];
 
-  // Update progress
-  function updateProgress() {
-    const progressFill = document.querySelector('.story-progress .progress-bar div');
-    const progressChapter = document.querySelector('.progress-chapter');
-    
-    const chapterNames = [
-      'Finding Your Voice',
-      'Research as Narrative',
-      'Genre Expectations',
-      'The CARS Model',
-      'Writing Workshop'
-    ];
-    
-    progressChapter.textContent = `Chapter ${currentChapter}: ${chapterNames[currentChapter - 1]}`;
-    progressFill.style.width = `${(currentChapter / 5) * 100}%`;
-  }
-
-  // Toggle examples
-  function toggleExample(type) {
-    const example = document.getElementById(`${type}-example`);
-    if (example.style.display === 'none' || example.style.display === '') {
-      example.style.display = 'block';
-      example.style.animation = 'fadeIn 0.5s ease';
-    } else {
-      example.style.display = 'none';
-    }
-  }
-
-  // Voice selector
-  function selectVoice(element, voiceType) {
-    document.querySelectorAll('.voice-option').forEach(opt => {
-      opt.classList.remove('selected');
-    });
-    element.classList.add('selected');
-    
-    const feedback = document.getElementById('voice-feedback');
-    feedback.style.display = 'block';
-    
-    if (voiceType === 'cautious') {
-      feedback.innerHTML = '<strong>✅ Good choice!</strong> Cautious language is appropriate for literature reviews where you synthesize others\' work.';
-      storyComponents.voice = 'cautious';
-    } else if (voiceType === 'confident') {
-      feedback.innerHTML = '<strong>⚠️ Consider your audience:</strong> Confident assertions work best when presenting your own well-supported findings.';
-      storyComponents.voice = 'confident';
-    } else {
-      feedback.innerHTML = '<strong>✓ Neutral option:</strong> This works in many contexts but may lack the precision of more strategic voice choices.';
-      storyComponents.voice = 'neutral';
-    }
-    
-    updateWorkshopComponents();
-  }
-
-  // Analyze voice practice
-  function analyzeVoice() {
-    const text = document.getElementById('voice-practice').value;
-    const analysis = document.getElementById('voice-analysis');
-    
-    if (!text.trim()) {
-      analysis.innerHTML = '<p style="color: var(--voice-color);">Please write something to analyze!</p>';
-      analysis.style.display = 'block';
-      return;
-    }
-    
-    let score = 0;
-    let feedback = '<h4>Voice Analysis:</h4><ul>';
-    
-    // Check for hedging
-    if (text.includes('suggest') || text.includes('indicate') || text.includes('appear')) {
-      score += 25;
-      feedback += '<li>✅ Uses hedging appropriately</li>';
-    }
-    
-    // Check for boosting
-    if (text.includes('clearly') || text.includes('demonstrate') || text.includes('show')) {
-      score += 25;
-      feedback += '<li>✅ Uses boosting appropriately</li>';
-    }
-    
-    // Check for academic vocabulary
-    const academicWords = ['examine', 'investigate', 'analyze', 'explore', 'assess'];
-    if (academicWords.some(word => text.toLowerCase().includes(word))) {
-      score += 25;
-      feedback += '<li>✅ Uses academic vocabulary</li>';
-    }
-    
-    // Check length
-    const wordCount = text.split(' ').length;
-    if (wordCount >= 10 && wordCount <= 30) {
-      score += 25;
-      feedback += '<li>✅ Appropriate sentence length</li>';
-    } else {
-      feedback += `<li>⚠️ Sentence length: ${wordCount} words (aim for 10-30)</li>`;
-    }
-    
-    feedback += `</ul><p><strong>Overall: ${score}/100</strong></p>`;
-    
-    if (score >= 75) {
-      feedback += '<p style="color: var(--success);">Excellent academic voice!</p>';
-    } else if (score >= 50) {
-      feedback += '<p style="color: var(--warning);">Good start, keep refining!</p>';
-    } else {
-      feedback += '<p style="color: var(--voice-color);">Review the voice principles and try again.</p>';
-    }
-    
-    analysis.innerHTML = feedback;
-    analysis.style.display = 'block';
-  }
-
-  // Generate story outline
-  function generateStoryOutline() {
-    const hook = document.getElementById('story-hook').value;
-    const challenge = document.getElementById('story-challenge').value;
-    const journey = document.getElementById('story-journey').value;
-    const discovery = document.getElementById('story-discovery').value;
-    const meaning = document.getElementById('story-meaning').value;
-    
-    const output = document.getElementById('story-output');
-    
-    if (!hook || !challenge) {
-      output.innerHTML = '<p style="color: var(--voice-color);">Please at least complete the hook and challenge sections.</p>';
-      output.style.display = 'block';
-      return;
-    }
-    
-    let story = `<h4>Your Research Story Outline:</h4>`;
-    story += `<div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 5px;">`;
-    story += `<p><strong>1. The Hook:</strong> ${hook}</p>`;
-    story += `<p><strong>2. The Challenge:</strong> ${challenge}</p>`;
-    if (journey) story += `<p><strong>3. The Journey:</strong> ${journey}</p>`;
-    if (discovery) story += `<p><strong>4. The Discovery:</strong> ${discovery}</p>`;
-    if (meaning) story += `<p><strong>5. The Meaning:</strong> ${meaning}</p>`;
-    story += `</div>`;
-    
-    story += `<div style="margin-top: 1rem; padding: 1rem; background: #e8f4f8; border-radius: 5px;">`;
-    story += `<p><strong>🎯 Narrative Strength:</strong> ${calculateNarrativeStrength(hook, challenge, journey, discovery, meaning)}</p>`;
-    story += `<p><em>Tip: Make sure each section logically leads to the next.</em></p>`;
-    story += `</div>`;
-    
-    output.innerHTML = story;
-    output.style.display = 'block';
-    storyComponents.narrative = 'created';
-    updateWorkshopComponents();
-  }
-
-  function calculateNarrativeStrength(hook, challenge, journey, discovery, meaning) {
-    let sections = 0;
-    if (hook) sections++;
-    if (challenge) sections++;
-    if (journey) sections++;
-    if (discovery) sections++;
-    if (meaning) sections++;
-    
-    if (sections === 5) return 'Complete narrative arc';
-    if (sections >= 3) return 'Good narrative structure';
-    return 'Developing narrative';
-  }
-
-  // Save story
-  function saveStory() {
-    alert('Story saved! In a real application, this would save to your account.');
-    // Here you would typically save to localStorage or a backend
-    localStorage.setItem('researchStory', JSON.stringify({
-      hook: document.getElementById('story-hook').value,
-      challenge: document.getElementById('story-challenge').value,
-      journey: document.getElementById('story-journey').value,
-      discovery: document.getElementById('story-discovery').value,
-      meaning: document.getElementById('story-meaning').value
-    }));
-  }
-
-  // Template selection
-  function selectTemplate(type) {
-    document.querySelectorAll('.template-card').forEach(card => {
-      card.style.borderColor = 'transparent';
-    });
-    event.currentTarget.style.borderColor = 'var(--narrative-color)';
-    
-    storyComponents.genre = type;
-    updateWorkshopComponents();
-  }
-
-  // Genre analysis
-  function showGenreAnalysis(type) {
-    const analysis = document.getElementById('genre-analysis');
-    let content = '';
-    
-    if (type === 'humanities') {
-      content = `
-        <h4>Humanities Version:</h4>
-        <p><em>"This essay explores how social media usage shapes, and is shaped by, adolescent conceptions of selfhood and well-being in contemporary digital culture."</em></p>
-        <p><strong>Features:</strong> Interpretive, theoretical, acknowledges complexity</p>
-      `;
-    } else if (type === 'social') {
-      content = `
-        <h4>Social Sciences Version:</h4>
-        <p><em>"This quantitative study investigates the correlation between social media engagement metrics and standardized measures of adolescent psychological well-being."</em></p>
-        <p><strong>Features:</strong> Empirical, methodological, precise measurement</p>
-      `;
-    } else {
-      content = `
-        <h4>Natural Sciences Version:</h4>
-        <p><em>"The present study measures the effect of controlled social media exposure on cortisol levels and self-reported mood states in adolescent participants."</em></p>
-        <p><strong>Features:</strong> Experimental, objective, physiological measures</p>
-      `;
-    }
-    
-    analysis.innerHTML = content;
-    analysis.style.display = 'block';
-  }
-
-  // CARS examples
-  function showCarsExample(move) {
-    let example = '';
-    
-    if (move === 1) {
-      example = `<p><strong>Territory Example:</strong> "Recent years have witnessed growing scholarly interest in online learning environments, with numerous studies documenting their potential to enhance educational access (Smith, 2020; Johnson, 2021)."</p>`;
-    } else if (move === 2) {
-      example = `<p><strong>Niche Example:</strong> "However, despite this increased attention, relatively little research has examined the long-term retention effects of micro-learning modules in asynchronous settings."</p>`;
-    } else {
-      example = `<p><strong>Occupation Example:</strong> "The present study therefore aims to investigate the relationship between micro-learning frequency and knowledge retention over a six-month period, using a mixed-methods approach."</p>`;
-    }
-    
-    alert(example);
-  }
-
-  // Analyze CARS
-  function analyzeCARS() {
-    const territory = document.getElementById('cars-territory').value;
-    const niche = document.getElementById('cars-niche').value;
-    const occupation = document.getElementById('cars-occupation').value;
-    
-    const analysis = document.getElementById('cars-analysis');
-    
-    if (!territory && !niche && !occupation) {
-      analysis.innerHTML = '<p style="color: var(--voice-color);">Please write something to analyze!</p>';
-      analysis.style.display = 'block';
-      return;
-    }
-    
-    let score = 0;
-    let feedback = '<h4>CARS Model Analysis:</h4>';
-    
-    if (territory) {
-      score += 30;
-      feedback += `<p>✅ <strong>Territory:</strong> Good establishment of research importance</p>`;
-    }
-    
-    if (niche) {
-      score += 30;
-      feedback += `<p>✅ <strong>Niche:</strong> Clear identification of gap/problem</p>`;
-    }
-    
-    if (occupation) {
-      score += 40;
-      feedback += `<p>✅ <strong>Occupation:</strong> Effective presentation of your study</p>`;
-    }
-    
-    feedback += `<p><strong>CARS Score: ${score}/100</strong></p>`;
-    
-    if (score === 100) {
-      feedback += '<p style="color: var(--success);">🎉 Complete CARS model! Well done!</p>';
-      storyComponents.cars = 'complete';
-    } else if (score >= 60) {
-      feedback += '<p style="color: var(--warning);">Good start! Try to complete all three moves.</p>';
-      storyComponents.cars = 'partial';
-    } else {
-      feedback += '<p style="color: var(--voice-color);">Review the CARS model structure and try again.</p>';
-    }
-    
-    analysis.innerHTML = feedback;
-    analysis.style.display = 'block';
-    updateWorkshopComponents();
-  }
-
-  // Generate CARS example
-  function generateCARSExample() {
-    const examples = [
+  // Quiz Data
+  const quizzes = {
+    cars: [
       {
-        territory: "In recent years, digital literacy has become a central concern in educational research, with scholars increasingly recognizing its importance in 21st-century learning.",
-        niche: "However, most studies have focused on classroom-based interventions, leaving a gap in our understanding of informal digital literacy practices among adolescents.",
-        occupation: "This study therefore explores how teenagers develop digital literacy skills through peer-to-peer interactions in online gaming communities."
+        question: 'Which of the following is NOT a strategy for Move 1 (Establishing Territory)?',
+        options: [
+          'Claiming centrality',
+          'Making topic generalizations',
+          'Indicating a gap',
+          'Reviewing previous research'
+        ],
+        correct: 2,
+        explanation: 'Indicating a gap is part of Move 2 (Establishing a Niche), not Move 1.'
       },
       {
-        territory: "The relationship between teacher feedback and student writing improvement has been extensively documented in second language acquisition research.",
-        niche: "Despite this extensive literature, few studies have examined how different feedback timing affects long-term writing development in multilingual contexts.",
-        occupation: "The present investigation aims to compare the effects of immediate versus delayed feedback on academic writing skills among university-level ESL students."
+        question: 'What phrase typically signals Move 2 (Establishing a Niche)?',
+        options: [
+          '"Recently, researchers have become interested in..."',
+          '"However, few studies have examined..."',
+          '"The purpose of this study is..."',
+          '"It is generally accepted that..."'
+        ],
+        correct: 1,
+        explanation: '"However, few studies have examined..." is a classic signal for indicating a research gap (Move 2).'
+      },
+      {
+        question: 'Which move involves "occupying the niche"?',
+        options: [
+          'Move 1',
+          'Move 2',
+          'Move 3',
+          'None of the above'
+        ],
+        correct: 2,
+        explanation: 'Move 3 is called "Occupying the Niche" - it presents your research as the solution to the identified gap.'
+      },
+      {
+        question: 'What is the correct order of the CARS model?',
+        options: [
+          'Niche → Territory → Occupation',
+          'Territory → Occupation → Niche',
+          'Occupation → Territory → Niche',
+          'Territory → Niche → Occupation'
+        ],
+        correct: 3,
+        explanation: 'The correct order is: 1. Establish Territory, 2. Establish a Niche, 3. Occupy the Niche.'
+      },
+      {
+        question: 'Which of these sentences demonstrates effective territory establishment?',
+        options: [
+          'This paper is about teaching methods.',
+          'Teaching is important.',
+          'Recent meta-analyses by Hattie (2015) have revitalized interest in evidence-based teaching practices.',
+          'I think teaching methods are interesting.'
+        ],
+        correct: 2,
+        explanation: 'Option 3 demonstrates territory by citing specific research and showing the topic\'s importance.'
       }
-    ];
-    
-    const randomExample = examples[Math.floor(Math.random() * examples.length)];
-    
-    document.getElementById('cars-territory').value = randomExample.territory;
-    document.getElementById('cars-niche').value = randomExample.niche;
-    document.getElementById('cars-occupation').value = randomExample.occupation;
-  }
+    ],
+    voice: [
+      {
+        question: 'Which sentence demonstrates appropriate hedging?',
+        options: [
+          'This proves climate change is man-made.',
+          'The evidence suggests a correlation between human activity and climate patterns.',
+          'Obviously, everyone knows about climate change.',
+          'I believe climate change is real.'
+        ],
+        correct: 1,
+        explanation: 'Option 2 uses "suggests" to express cautious interpretation of evidence.'
+      }
+    ]
+  };
 
-  // Update workshop components
-  function updateWorkshopComponents() {
-    document.getElementById('workshop-voice').textContent = storyComponents.voice || 'Not set';
-    document.getElementById('workshop-narrative').textContent = storyComponents.narrative || 'Not set';
-    document.getElementById('workshop-genre').textContent = storyComponents.genre || 'Not set';
-    document.getElementById('workshop-cars').textContent = storyComponents.cars || 'Not set';
-  }
+  // Mind Map Data
+  const mindMapData = {
+    central: { id: 'central', text: 'CARS Model', x: 50, y: 50, type: 'central' },
+    nodes: [
+      { id: 'move1', text: 'Move 1: Territory', parent: 'central', x: 20, y: 30 },
+      { id: 'move2', text: 'Move 2: Niche', parent: 'central', x: 50, y: 30 },
+      { id: 'move3', text: 'Move 3: Occupation', parent: 'central', x: 80, y: 30 },
+      { id: 'strategies1', text: 'Strategies:\n• Claim centrality\n• Make generalizations\n• Review literature', parent: 'move1', x: 20, y: 15 },
+      { id: 'strategies2', text: 'Strategies:\n• Counter-claim\n• Indicate gap\n• Raise questions', parent: 'move2', x: 50, y: 15 },
+      { id: 'strategies3', text: 'Strategies:\n• Outline purposes\n• Announce research\n• Indicate structure'
+        parent: 'move3', x: 80, y: 15 },
+      { id: 'signals1', text: 'Signals:\n"Recently..."\n"Many studies..."\n"It is accepted..."', parent: 'move1', x: 20, y: 45 },
+      { id: 'signals2', text: 'Signals:\n"However..."\n"Despite..."\n"Little attention..."', parent: 'move2', x: 50, y: 45 },
+      { id: 'signals3', text: 'Signals:\n"The purpose..."\n"This study..."\n"The aim..."', parent: 'move3', x: 80, y: 45 }
+    ]
+  };
 
-  // Analyze complete introduction
-  function analyzeCompleteIntro() {
-    const intro = document.getElementById('complete-intro').value;
-    const analysis = document.getElementById('workshop-analysis');
-    
-    if (!intro.trim()) {
-      analysis.innerHTML = '<p style="color: var(--voice-color);">Please write your introduction first!</p>';
-      analysis.style.display = 'block';
-      return;
-    }
-    
-    let score = 0;
-    let feedback = '<h4>Introduction Analysis:</h4><ul>';
-    
-    // Check for key elements
-    if (intro.length > 100) {
-      score += 20;
-      feedback += '<li>✅ Appropriate length</li>';
-    }
-    
-    if (intro.includes('however') || intro.includes('although') || intro.includes('despite')) {
-      score += 20;
-      feedback += '<li>✅ Contains contrast/gap indication</li>';
-    }
-    
-    if (intro.includes('aim') || intro.includes('purpose') || intro.includes('investigate')) {
-      score += 20;
-      feedback += '<li>✅ States research purpose</li>';
-    }
-    
-    if (intro.includes('study') || intro.includes('research') || intro.includes('paper')) {
-      score += 20;
-      feedback += '<li>✅ Clear research focus</li>';
-    }
-    
-    // Check academic tone
-    const sentences = intro.split(/[.!?]+/).filter(s => s.trim().length > 0);
-    if (sentences.length >= 3) {
-      score += 20;
-      feedback += '<li>✅ Multiple sentences for development</li>';
-    }
-    
-    feedback += `</ul><p><strong>Overall Score: ${score}/100</strong></p>`;
-    
-    if (score >= 80) {
-      feedback += '<div style="background: rgba(39, 174, 96, 0.1); padding: 1rem; border-radius: 5px; margin-top: 1rem;">';
-      feedback += '<p style="color: var(--success);">🌟 Excellent introduction! Your research story is clear and compelling.</p>';
-      feedback += '</div>';
-    } else if (score >= 60) {
-      feedback += '<div style="background: rgba(243, 156, 18, 0.1); padding: 1rem; border-radius: 5px; margin-top: 1rem;">';
-      feedback += '<p style="color: var(--warning);">Good foundation! Consider adding more specific details about your research gap and purpose.</p>';
-      feedback += '</div>';
-    } else {
-      feedback += '<div style="background: rgba(231, 76, 60, 0.1); padding: 1rem; border-radius: 5px; margin-top: 1rem;">';
-      feedback += '<p style="color: var(--voice-color);">Review the CARS model and narrative structure principles.</p>';
-      feedback += '</div>';
-    }
-    
-    analysis.innerHTML = feedback;
-    analysis.style.display = 'block';
-  }
-
-  // Get writing tips
-  function getWritingTips() {
-    const analysis = document.getElementById('workshop-analysis');
-    const tips = [
-      "Start with a 'hook' that shows why your topic matters",
-      "Use the CARS model: Territory → Niche → Occupation",
-      "Be specific about your research gap",
-      "Clearly state your research questions/aims",
-      "Use appropriate hedging or boosting for your field",
-      "Consider your audience's expectations",
-      "Make sure each paragraph has a clear purpose",
-      "Use transition words to guide readers through your argument",
-      "Cite key literature to establish credibility",
-      "End your introduction by previewing your paper's structure"
-    ];
-    
-    let tipsHTML = '<h4>Top 10 Academic Writing Tips:</h4><ol>';
-    tips.forEach(tip => {
-      tipsHTML += `<li>${tip}</li>`;
+  // ==================== PANEL MANAGEMENT ====================
+  
+  function showPanel(panelId) {
+    // Update navigation
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.classList.remove('active');
     });
-    tipsHTML += '</ol>';
+    event.currentTarget.classList.add('active');
     
-    analysis.innerHTML = tipsHTML;
-    analysis.style.display = 'block';
+    // Update content
+    document.querySelectorAll('.content-panel').forEach(panel => {
+      panel.classList.remove('active');
+    });
+    document.getElementById(`${panelId}-panel`).classList.add('active');
+    
+    currentPanel = panelId;
+    
+    // Initialize specific panel
+    if (panelId === 'flashcards') {
+      initializeFlashcards();
+    } else if (panelId === 'mindmaps') {
+      initializeMindMap();
+    } else if (panelId === 'quizzes') {
+      initializeQuiz('cars');
+    }
+  }
+  
+  function loadModule(moduleNumber) {
+    document.querySelectorAll('.module-item').forEach(item => {
+      item.classList.remove('active');
+    });
+    event.currentTarget.classList.add('active');
+    
+    currentModule = moduleNumber;
+    // In a real app, you would load module content here
+    alert(`Loading Module ${moduleNumber}...`);
   }
 
-  // Generate complete example
-  function generateCompleteExample() {
-    const example = `Recent advancements in artificial intelligence have revolutionized many sectors, with education being no exception (Smith, 2022). Researchers have documented AI's potential to personalize learning experiences and provide instant feedback (Johnson, 2023). However, despite this growing body of literature, relatively little attention has been paid to how AI tools affect the development of critical thinking skills in higher education contexts. Most studies have focused on technical implementation rather than pedagogical outcomes.
-
-This gap is significant because as AI becomes more integrated into education, we need to understand its impact on fundamental academic skills. Therefore, this study aims to investigate the relationship between AI-assisted learning tools and the development of critical thinking abilities among university students. Using a mixed-methods approach combining pre/post testing with qualitative interviews, this research will explore whether, and how, AI tools can enhance rather than replace human critical thinking.
-
-The findings of this study will contribute to both pedagogical practice and the ongoing debate about technology's role in education. By examining this under-researched area, we hope to provide evidence-based guidance for educators seeking to integrate AI tools effectively while maintaining academic rigor.`;
-
-    document.getElementById('complete-intro').value = example;
+  // ==================== FLASHCARDS ====================
+  
+  function initializeFlashcards() {
+    currentCardIndex = 0;
+    updateFlashcard();
+    renderFlashcardDeck();
+  }
+  
+  function flipCard() {
+    const card = document.getElementById('main-flashcard');
+    card.classList.toggle('flipped');
+  }
+  
+  function nextCard() {
+    const card = document.getElementById('main-flashcard');
+    card.classList.remove('flipped');
+    
+    currentCardIndex = (currentCardIndex + 1) % flashcards.length;
+    updateFlashcard();
+  }
+  
+  function previousCard() {
+    const card = document.getElementById('main-flashcard');
+    card.classList.remove('flipped');
+    
+    currentCardIndex = currentCardIndex === 0 ? flashcards.length - 1 : currentCardIndex - 1;
+    updateFlashcard();
+  }
+  
+  function updateFlashcard() {
+    const card = flashcards[currentCardIndex];
+    document.getElementById('flashcard-question').textContent = card.question;
+    document.getElementById('flashcard-answer').textContent = card.answer;
+  }
+  
+  function filterCards(category) {
+    // Implementation for filtering flashcards by category
+    alert(`Filtering flashcards by category: ${category}`);
+  }
+  
+  function renderFlashcardDeck() {
+    const deck = document.getElementById('flashcard-deck');
+    deck.innerHTML = '';
+    
+    flashcards.forEach((card, index) => {
+      const miniCard = document.createElement('div');
+      miniCard.className = 'mini-card';
+      miniCard.innerHTML = `
+        <div class="front">
+          <h4>${card.category.toUpperCase()}</h4>
+          <p>${card.question.substring(0, 60)}...</p>
+        </div>
+        <div class="back" style="display: none;">
+          <h4>Answer</h4>
+          <p>${card.answer.substring(0, 80)}...</p>
+        </div>
+      `;
+      miniCard.onclick = () => {
+        currentCardIndex = index;
+        updateFlashcard();
+        const mainCard = document.getElementById('main-flashcard');
+        mainCard.classList.remove('flipped');
+        showPanel('flashcards');
+      };
+      deck.appendChild(miniCard);
+    });
+  }
+  
+  function flipMiniCard(element) {
+    const front = element.querySelector('.front');
+    const back = element.querySelector('.back');
+    
+    if (front.style.display !== 'none') {
+      front.style.display = 'none';
+      back.style.display = 'block';
+      element.classList.add('flipped');
+    } else {
+      front.style.display = 'block';
+      back.style.display = 'none';
+      element.classList.remove('flipped');
+    }
+    }
+  
+  // ==================== MIND MAPS ====================
+  
+  function initializeMindMap() {
+    const container = document.getElementById('mindmap-container');
+    container.innerHTML = '';
+    
+    // Create central node
+    const centralNode = document.createElement('div');
+    centralNode.className = 'mindmap-node central';
+    centralNode.id = 'central-node';
+    centralNode.textContent = mindMapData.central.text;
+    centralNode.style.left = '50%';
+    centralNode.style.top = '50%';
+    centralNode.style.transform = 'translate(-50%, -50%)';
+    centralNode.onclick = () => showNodeDetails(mindMapData.central);
+    container.appendChild(centralNode);
+    
+    // Create other nodes
+    mindMapData.nodes.forEach(node => {
+      const nodeElement = document.createElement('div');
+      nodeElement.className = `mindmap-node ${node.parent === 'central' ? 'branch' : 'sub-branch'}`;
+      nodeElement.id = `node-${node.id}`;
+      nodeElement.textContent = node.text;
+      nodeElement.style.left = `${node.x}%`;
+      nodeElement.style.top = `${node.y}%`;
+      nodeElement.onclick = () => showNodeDetails(node);
+      
+      // Make draggable
+      nodeElement.draggable = true;
+      nodeElement.ondragstart = (e) => dragMindMapNode(e, node.id);
+      
+      container.appendChild(nodeElement);
+      
+      // Create connection line (simplified - in real app you'd use SVG)
+      if (node.parent) {
+        const connection = document.createElement('div');
+        connection.className = 'mindmap-connection';
+        // Position calculation would be more complex in real implementation
+        container.appendChild(connection);
+      }
+    });
+  }
+  
+  function showNodeDetails(node) {
+    alert(`Node: ${node.text}\n\nClick and drag to reposition nodes.`);
+  }
+  
+  function dragMindMapNode(e, nodeId) {
+    e.dataTransfer.setData('text/plain', nodeId);
+  }
+  
+  function resetMindMap() {
+    initializeMindMap();
+  }
+  
+  function exportMindMap() {
+    alert('In a real application, this would export the mind map as an image.');
+  }
+  
+  function printMindMap() {
+    window.print();
   }
 
-  // Download story
-  function downloadStory() {
-    const intro = document.getElementById('complete-intro').value;
-    const topic = document.getElementById('research-topic').value;
-    const audience = document.getElementById('research-audience').value;
+  // ==================== QUIZZES ====================
+  
+  function initializeQuiz(category) {
+    quizState = {
+      currentQuestion: 0,
+      score: 0,
+      selectedOption: null,
+      quizCompleted: false
+    };
     
-    if (!intro.trim()) {
-      alert('Please write your introduction first!');
+    if (!quizzes[category]) {
+      category = 'cars';
+    }
+    
+    loadQuestion(category);
+  }
+  
+  function loadQuestion(category = 'cars') {
+    const quiz = quizzes[category][quizState.currentQuestion];
+    if (!quiz) return;
+    
+    document.getElementById('current-question').textContent = quizState.currentQuestion + 1;
+    document.getElementById('total-questions').textContent = quizzes[category].length;
+    document.getElementById('quiz-score').textContent = quizState.score;
+    document.getElementById('quiz-total').textContent = quizzes[category].length;
+    
+    document.getElementById('quiz-question').textContent = quiz.question;
+    
+    const optionsContainer = document.getElementById('quiz-options');
+    optionsContainer.innerHTML = '';
+    
+    quiz.options.forEach((option, index) => {
+      const optionElement = document.createElement('div');
+      optionElement.className = 'quiz-option';
+      optionElement.textContent = option;
+      optionElement.onclick = () => selectOption(index, optionElement);
+      optionsContainer.appendChild(optionElement);
+    });
+    
+    // Reset buttons
+    document.getElementById('check-btn').style.display = 'block';
+    document.getElementById('next-btn').style.display = 'none';
+    document.getElementById('submit-btn').style.display = 'none';
+    document.getElementById('prev-btn').disabled = quizState.currentQuestion === 0;
+    
+    // Clear feedback
+    const feedback = document.getElementById('quiz-feedback');
+    feedback.className = 'quiz-feedback';
+    feedback.style.display = 'none';
+  }
+  
+  function selectOption(index, element) {
+    // Remove selection from all options
+    document.querySelectorAll('.quiz-option').forEach(opt => {
+      opt.classList.remove('selected');
+    });
+    
+    // Select this option
+    element.classList.add('selected');
+    quizState.selectedOption = index;
+  }
+  
+  function checkAnswer() {
+    if (quizState.selectedOption === null) {
+      alert('Please select an answer first!');
       return;
     }
     
-    const content = `
-TELL YOUR RESEARCH STORY
-========================
+    const category = 'cars'; // Default category
+    const quiz = quizzes[category][quizState.currentQuestion];
+    const options = document.querySelectorAll('.quiz-option');
+    const feedback = document.getElementById('quiz-feedback');
+    
+    // Show correct/incorrect
+    options.forEach((opt, index) => {
+      if (index === quiz.correct) {
+        opt.classList.add('correct');
+      }
+      if (index === quizState.selectedOption && index !== quiz.correct) {
+        opt.classList.add('incorrect');
+      }
+    });
+    
+    // Show feedback
+    if (quizState.selectedOption === quiz.correct) {
+      quizState.score++;
+      feedback.className = 'quiz-feedback correct';
+      feedback.innerHTML = `<strong>✅ Correct!</strong> ${quiz.explanation}`;
+    } else {
+      feedback.className = 'quiz-feedback incorrect';
+      feedback.innerHTML = `<strong>❌ Incorrect.</strong> ${quiz.explanation}`;
+    }
+    
+    feedback.style.display = 'block';
+    
+    // Update buttons
+    document.getElementById('check-btn').style.display = 'none';
+    if (quizState.currentQuestion < quizzes[category].length - 1) {
+      document.getElementById('next-btn').style.display = 'block';
+    } else {
+      document.getElementById('submit-btn').style.display = 'block';
+    }
+  }
+  
+  function nextQuestion() {
+    const category = 'cars';
+    quizState.currentQuestion++;
+    quizState.selectedOption = null;
+    loadQuestion(category);
+  }
+  
+  function previousQuestion() {
+    if (quizState.currentQuestion > 0) {
+      const category = 'cars';
+      quizState.currentQuestion--;
+      quizState.selectedOption = null;
+      loadQuestion(category);
+    }
+  }
+  
+  function submitQuiz() {
+    const category = 'cars';
+    const totalQuestions = quizzes[category].length;
+    const percentage = Math.round((quizState.score / totalQuestions) * 100);
+    
+    alert(`Quiz completed!\n\nScore: ${quizState.score}/${totalQuestions} (${percentage}%)\n\n${percentage >= 80 ? 'Excellent! 🎉' : percentage >= 60 ? 'Good job! 👍' : 'Keep practicing! 📚'}`);
+    
+    // Reset quiz
+    initializeQuiz(category);
+  }
+  
+  function startCategoryQuiz(category) {
+    showPanel('quizzes');
+    initializeQuiz(category);
+  }
 
-Research Topic: ${topic || 'Not specified'}
-Intended Audience: ${audience || 'Not specified'}
+  // ==================== INTERACTIVE EXERCISES ====================
+  
+  // Drag and Drop
+  function allowDrop(event) {
+    event.preventDefault();
+  }
+  
+  function drag(event) {
+    event.dataTransfer.setData('text', event.target.dataset.correct);
+    event.dataTransfer.setData('id', event.target.id);
+  }
+  
+  function drop(event) {
+    event.preventDefault();
+    const correctMove = event.dataTransfer.getData('text');
+    const elementId = event.dataTransfer.getData('id');
+    
+    const dropZone = event.target.classList.contains('drop-zone') ? event.target : event.target.closest('.drop-zone');
+        
+    if (dropZone) {
+      const draggedElement = document.getElementById(elementId);
+      const clone = draggedElement.cloneNode(true);
+      clone.id = `dropped-${Date.now()}`;
+      clone.draggable = false;
+      dropZone.appendChild(clone);
+      
+      // Mark the original as used
+      draggedElement.style.opacity = '0.5';
+      draggedElement.draggable = false;
+    }
+  }
+  
+  function checkDragDrop() {
+    const territoryItems = document.querySelectorAll('#territory-drop .drag-item');
+    const nicheItems = document.querySelectorAll('#niche-drop .drag-item');
+    const occupationItems = document.querySelectorAll('#occupation-drop .drag-item');
+    
+    let correct = 0;
+    let total = 0;
+    
+    // Check territory items
+    territoryItems.forEach(item => {
+      total++;
+      if (item.dataset.correct === 'territory') correct++;
+      else item.classList.add('incorrect');
+    });
+    
+    // Check niche items
+    nicheItems.forEach(item => {
+      total++;
+      if (item.dataset.correct === 'niche') correct++;
+      else item.classList.add('incorrect');
+    });
+    
+    // Check occupation items
+    occupationItems.forEach(item => {
+      total++;
+      if (item.dataset.correct === 'occupation') correct++;
+      else item.classList.add('incorrect');
+    });
+    
+    const feedback = document.getElementById('drag-feedback');
+    const percentage = Math.round((correct / total) * 100);
+    
+    feedback.innerHTML = `
+      <strong>${correct}/${total} correct (${percentage}%)</strong><br>
+      ${percentage === 100 ? 'Perfect! 🎉 All sentences are in the right place.' : 
+        percentage >= 70 ? 'Good job! 👍 Most sentences are correct.' : 
+        'Keep practicing! 📚 Review the CARS model moves.'}
+    `;
+    feedback.style.display = 'block';
+    feedback.style.background = percentage === 100 ? 'rgba(39, 174, 96, 0.1)' : 
+                               percentage >= 70 ? 'rgba(243, 156, 18, 0.1)' : 
+                               'rgba(231, 76, 60, 0.1)';
+    feedback.style.borderLeft = `4px solid ${percentage === 100 ? 'var(--success)' : 
+                                percentage >= 70 ? 'var(--warning)' : 'var(--accent)'}`;
+  }
+  
+  function resetDragDrop() {
+    // Reset source items
+    document.querySelectorAll('#drag-source .drag-item').forEach(item => {
+      item.style.opacity = '1';
+      item.draggable = true;
+    });
+    
+    // Clear drop zones
+    document.querySelectorAll('.drop-zone').forEach(zone => {
+      zone.innerHTML = '';
+    });
+    
+    // Clear feedback
+    document.getElementById('drag-feedback').style.display = 'none';
+  }
+  
+  // Fill in the Blanks
+  function checkFillBlanks() {
+    const blank1 = document.getElementById('blank1').value.toLowerCase();
+    const blank2 = document.getElementById('blank2').value;
+    const blank3 = document.getElementById('blank3').value.toLowerCase();
+    const blank4 = document.getElementById('blank4').value;
+    
+    const feedback = document.getElementById('fill-feedback');
+    
+    // Check answers (simplified)
+    let score = 0;
+    let total = 4;
+    let message = '';
+    
+    if (blank1.includes('online learning') || blank1.includes('digital') || blank1.includes('technology')) {
+      score++;
+    }
+    
+    if (blank2 === 'However') {
+      score++;
+    }
+    
+    if (blank3.includes('long-term') || blank3.includes('retention') || blank3.includes('effectiveness')) {
+      score++;
+    }
+    
+    if (blank4 === 'aims to') {
+      score++;
+    }
+    
+    const percentage = Math.round((score / total) * 100);
+    
+    if (percentage === 100) {
+      message = 'Perfect! 🎉 Your CARS introduction is well-structured.';
+    } else if (percentage >= 75) {
+      message = 'Good job! 👍 Most answers are correct.';
+    } else if (percentage >= 50) {
+      message = 'Not bad! 📝 Review the CARS model structure.';
+    } else {
+      message = 'Keep practicing! 📚 Study the example sentences in the learning modules.';
+    }
+    
+    feedback.innerHTML = `
+      <strong>Score: ${score}/${total} (${percentage}%)</strong><br>
+      ${message}<br><br>
+      <strong>Expected answers:</strong><br>
+      1. online learning / digital education / technology-enhanced learning<br>
+      2. However<br>
+      3. long-term retention / effectiveness / outcomes<br>
+      4. aims to
+    `;
+    feedback.style.display = 'block';
+    feedback.style.background = percentage === 100 ? 'rgba(39, 174, 96, 0.1)' : 
+                               percentage >= 75 ? 'rgba(243, 156, 18, 0.1)' : 
+                               'rgba(231, 76, 60, 0.1)';
+  }
+  
+  function showFillBlanksHint() {
+    alert('💡 Hint: Review the CARS model structure:\n1. Territory: Establish importance\n2. Niche: Show the gap (often starts with "However")\n3. Occupation: Present your study ("aims to investigate")');
+  }
 
-YOUR RESEARCH INTRODUCTION:
-${intro}
-
----
-Generated using "Tell Your Research Story" Platform
-Based on John M. Swales' academic writing framework
-Developed by Halim Faroug A. Elhag
+  // ==================== PROGRESS TRACKING ====================
+  
+  function generateProgressReport() {
+    const report = `
+      TELL YOUR RESEARCH STORY - PROGRESS REPORT
+      ===========================================
+      
+      Generated: ${new Date().toLocaleDateString()}
+      
+      OVERALL PROGRESS: 65%
+      
+      MODULES COMPLETED: 6/10
+      • CARS Model Fundamentals: 100%
+      • Academic Voice & Stance: 85%
+      • Research as Narrative: 70%
+      • Genre Expectations: 45%
+      
+      ASSESSMENT RESULTS:
+      • Average Quiz Score: 85%
+      • Flashcards Mastered: 42/60
+      • Exercises Completed: 8/12
+      
+      BADGES EARNED:
+      🥇 CARS Master
+      📚 Fast Learner
+      🎯 Quiz Expert
+      🃏 Flashcard Pro
+      
+      RECOMMENDATIONS:
+      1. Focus on completing Genre Expectations module
+      2. Review flashcards in weaker areas
+      3. Practice more exercises on academic voice
+      
+      ---
+      Keep up the great work! Continue telling your research story.
     `;
     
-    const blob = new Blob([content], { type: 'text/plain' });
+    // Download as text file
+    const blob = new Blob([report], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'my-research-story.txt';
+    a.download = 'research-story-progress.txt';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    
-    alert('Your research story has been downloaded!');
   }
-
-  // Show certificate
-  function showCertificate() {
-    const certificateHTML = `
-      <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 2000;">
-        <div style="background: white; padding: 3rem; border-radius: 15px; max-width: 800px; text-align: center; position: relative;">
-          <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
-          
-          <h1 style="color: var(--story-color); margin-bottom: 2rem;">🎓 Certificate of Completion</h1>
-          
-          <div style="border: 5px double var(--narrative-color); padding: 2rem; margin: 2rem 0;">
-            <p style="font-size: 1.2rem; margin-bottom: 1rem;">This certifies that</p>
-            <h2 style="color: var(--story-color); font-size: 2.5rem; margin: 1rem 0;">The Researcher</h2>
-            <p style="font-size: 1.2rem;">has successfully completed the</p>
-            <h3 style="color: var(--narrative-color); margin: 1rem 0;">"Tell Your Research Story" Program</h3>
-            <p>Mastering academic writing through narrative construction</p>
-            
-            <div style="margin-top: 2rem; display: flex; justify-content: space-around;">
-              <div>
-                <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
-              </div>
-              <div>
-                <p><strong>Based on:</strong> John M. Swales' framework</p>
-              </div>
-            </div>
-          </div>
-          
-          <p style="margin-top: 2rem; color: #666;">Developed by Halim Faroug A. Elhag, Lecturer of English Language</p>
-          
-          <button onclick="printCertificate()" style="margin-top: 2rem; background: var(--success); padding: 1rem 2rem;">Print Certificate</button>
-        </div>
-      </div>
-    `;
-    
-    const div = document.createElement('div');
-    div.innerHTML = certificateHTML;
-    document.body.appendChild(div);
-  }
-
-  function printCertificate() {
-    window.print();
-  }
-
-  // Initialize
-  document.addEventListener('DOMContentLoaded', function() {
-    updateProgress();
-    
-    // Load saved data if exists
-    const savedStory = localStorage.getItem('researchStory');
-    if (savedStory) {
-      const story = JSON.parse(savedStory);
-      document.getElementById('story-hook').value = story.hook || '';
-      document.getElementById('story-challenge').value = story.challenge || '';
-      document.getElementById('story-journey').value = story.journey || '';
-      document.getElementById('story-discovery').value = story.discovery || '';
-      document.getElementById('story-meaning').value = story.meaning || '';
+  
+  function shareProgress() {
+    if (navigator.share) {
+      navigator.share({
+        title: 'My Research Story Progress',
+        text: 'I\'m making great progress on the "Tell Your Research Story" platform!',
+        url: window.location.href
+      });
+    } else {
+      alert('Share your progress on social media or with colleagues!');
     }
+  }
+  
+  function resetProgress() {
+    if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+      alert('Progress reset! Starting fresh.');
+      // In a real app, you would clear localStorage or reset server data
+    }
+  }
+  
+  // ==================== INITIALIZATION ====================
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize flashcards
+    initializeFlashcards();
+    
+    // Initialize mind map
+    initializeMindMap();
+    
+    // Initialize quiz
+    initializeQuiz('cars');
+    
+    // Make drag items draggable
+    document.querySelectorAll('.drag-item').forEach(item => {
+      item.ondragstart = drag;
+    });
   });
 </script>
 </body>
 </html>
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+  
