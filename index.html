@@ -2,11 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tell Your Research Story</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 { color: #60a5fa; }
+    .box {
+      background: #020617;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin-top: 8px;
+      padding: 8px;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to Tell Your Research Story</h1>
-  <!-- Your app content here -->
+
+<h1>Tell Your Research Story</h1>
+
+<div class="box">
+  <input id="title" placeholder="Section title">
+  <textarea id="content" placeholder="Write your research story here..."></textarea>
+  <button onclick="addSection()">Add Section</button>
+</div>
+
+<div id="output"></div>
+
+<script>
+  function addSection() {
+    const title = document.getElementById("title").value;
+    const content = document.getElementById("content").value;
+
+    if (!title || !content) return;
+
+    const section = document.createElement("div");
+    section.className = "box";
+    section.innerHTML = `<h3>${title}</h3><p>${content}</p>`;
+
+    document.getElementById("output").appendChild(section);
+
+    document.getElementById("title").value = "";
+    document.getElementById("content").value = "";
+  }
+</script>
+
 </body>
 </html>
