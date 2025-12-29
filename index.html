@@ -2,63 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gamified Swales CARS Platform</title>
+  <title>Swales CARS Interactive Learning Platform</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Ultimate Gamified Swales CARS Platform</h1>
 
-    <div id="confetti" class="confetti"></div>
-
-    <div class="status-bar">
-      <div id="points">Points: 0</div>
-      <div class="progress">
-        <div id="progress-bar" class="progress-bar"></div>
-      </div>
-      <div id="badges" class="badges"></div>
-      <div id="streak">Streak: 0</div>
-    </div>
-
-    <div class="story-map-container">
-      <svg class="story-map-arrows">
-        <line x1="110" y1="25" x2="210" y2="25" class="arrow" id="arrow1"></line>
-        <line x1="310" y1="25" x2="410" y2="25" class="arrow" id="arrow2"></line>
-      </svg>
-      <div class="story-map">
-        <div class="story-node" id="move1">Move 1</div>
-        <div class="story-node" id="move2">Move 2</div>
-        <div class="story-node" id="move3">Move 3</div>
-      </div>
-    </div>
-
-    <div class="module-box" id="module-box">
-      <h2 id="module-title">Move 1</h2>
-      <p id="module-tip">Tip will appear here.</p>
-      <button id="play-audio">🔊 Play Audio</button>
-      <button id="complete-move">Mark Complete</button>
-
-      <div class="quiz-box" id="quiz-box">
-        <strong>Mini-Quiz:</strong>
-        <div id="quiz-sentences"></div>
-        <div id="drop-box" class="drop-box">Drop here</div>
-      </div>
-    </div>
-
-    <div class="sandbox">
-      <h2>Writing Sandbox</h2>
-      <textarea id="sandbox"></textarea>
-      <div id="sandbox-feedback" class="tooltip"></div>
-      <div id="sandbox-preview" class="sandbox-preview"></div>
-      <button id="download-pdf">Download PDF</button>
-    </div>
-
-    <footer>
-      Developed by Halim Faroug A. Elhag, Lecturer of English Language, UHB/UofK.
-    </footer>
+<header>
+  <h1>Swales CARS: Telling a Research Story</h1>
+  <p class="subtitle">Understanding knowledge construction in academic writing</p>
+  <div class="status">
+    <span id="points">Points: 0</span>
+    <span id="progress">Progress: 0%</span>
   </div>
+</header>
 
-  <script src="script.js"></script>
+<nav>
+  <button onclick="loadMove(0)">Move 1: Territory</button>
+  <button onclick="loadMove(1)">Move 2: Niche</button>
+  <button onclick="loadMove(2)">Move 3: Occupying</button>
+</nav>
+
+<main>
+
+<section class="panel theory">
+  <h2 id="moveTitle"></h2>
+  <p id="movePurpose"></p>
+
+  <h3>Key Strategies</h3>
+  <ul id="moveStrategies"></ul>
+
+  <h3>Linguistic Signals</h3>
+  <ul id="moveSignals"></ul>
+
+  <h3>Common Errors</h3>
+  <ul id="moveErrors"></ul>
+</section>
+
+<section class="panel examples">
+  <h3>Contrastive Examples</h3>
+  <div class="example good">
+    <strong>Effective:</strong>
+    <p id="goodExample"></p>
+  </div>
+  <div class="example bad">
+    <strong>Ineffective:</strong>
+    <p id="badExample"></p>
+  </div>
+</section>
+
+<section class="panel interaction">
+  <h3>Decision Task</h3>
+  <p id="taskQuestion"></p>
+  <div id="taskOptions"></div>
+  <p id="taskFeedback"></p>
+</section>
+
+<section class="panel sandbox">
+  <h3>Guided Writing Sandbox</h3>
+  <p id="sandboxPrompt"></p>
+  <textarea id="studentText" placeholder="Write ONE sentence only..."></textarea>
+  <button onclick="checkSandbox()">Self-Check</button>
+  <div id="sandboxFeedback"></div>
+</section>
+
+</main>
+
+<footer>
+  <p>
+    Based on Swales (1990, 2004) & Swales & Feak (Academic Writing for Graduate Students).<br>
+    Developed by <strong>Halim Faroug A. Elhag</strong>, Lecturer of English Language, UHB / UofK.
+  </p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
