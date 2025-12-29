@@ -40,15 +40,24 @@ clearly and coherently for academic and general audiences.
 <body>
 
 <h1>Tell Your Research Story</h1>
-
+<div class="box">
+  <strong>Quick Templates</strong><br><br>
+  <button onclick="loadTemplate('humanities')">Humanities</button>
+  <button onclick="loadTemplate('sciences')">Sciences</button>
+  <button onclick="loadTemplate('education')">Education</button>
+</div>
 <div class="box">
   <input id="title" placeholder="Section title">
-  <textarea id="content" placeholder="Write your research story here..."></textarea>
+  <textarea id="content" placeholder="Write in clear academic prose. Focus on argument, evidence, and coherence."></textarea>
   <button onclick="addSection()">Add Section</button>
 </div>
 
 <div id="output"></div>
-
+<footer style="margin-top:40px; font-size:14px; color:#94a3b8;">
+  Developed as a lightweight academic writing support tool.  
+  No data is stored or collected beyond the user's browser.
+</footer>
+  
 <script>
   const output = document.getElementById("output");
 
@@ -88,6 +97,45 @@ clearly and coherently for academic and general audiences.
     if (confirm("This will delete the entire draft. Continue?")) {
       localStorage.removeItem("story");
       output.innerHTML = "";
+      function loadTemplate(type) {
+  const templates = {
+    humanities: [
+      "Research Context",
+      "Critical Framework",
+      "Textual Analysis",
+      "Discussion",
+      "Conclusion"
+    ],
+    sciences: [
+      "Research Problem",
+      "Methodology",
+      "Data Analysis",
+      "Results",
+      "Conclusion"
+    ],
+    education: [
+      "Problem Statement",
+      "Literature Context",
+      "Method",
+      "Findings",
+      "Implications"
+    ]
+  };
+
+  if (!confirm("This will start a new structured draft. Continue?")) return;
+
+  output.innerHTML = "";
+  localStorage.removeItem("story");
+
+  templates[type].forEach(title => {
+    const section = document.createElement("div");
+    section.className = "box";
+    section.innerHTML = `<h3>${title}</h3><p></p>`;
+    output.appendChild(section);
+  });
+
+  localStorage.setItem("story", output.innerHTML);
+      }
     }
   }
 </script>
