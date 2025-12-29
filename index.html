@@ -2,164 +2,194 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Swales-Based Research Story Tool</title>
+<title>Ultimate Gamified Swales CARS Learning Platform</title>
 <style>
-  body { font-family: Georgia, "Times New Roman", serif; background: #f8fafc; color: #0f172a; margin:0; padding:30px;}
-  h1 { font-size:2.2rem; margin-bottom:10px;}
-  p { max-width:800px; line-height:1.6;}
-  .box { background:white; padding:16px; margin-bottom:16px; border-left:4px solid #2563eb;}
-  input, textarea { width:100%; font-family:inherit; font-size:1rem; padding:10px; margin-top:8px; border:1px solid #cbd5f5;}
-  textarea { min-height:120px; }
-  button { background:#2563eb; color:white; border:none; padding:8px 14px; margin:4px 4px 0 0; cursor:pointer; font-size:0.9rem;}
-  button:hover { background:#1e40af;}
-  #output h3 { margin-bottom:6px; }
-  footer { margin-top:50px; font-size:0.85rem; color:#475569;}
-  .tooltip { font-size:0.85rem; color:#475569; margin-top:5px; }
-  .quiz-box { background:#e0e7ff; padding:10px; margin:10px 0; border-left:4px solid #4f46e5;}
+body { font-family: Georgia, "Times New Roman", serif; background:#f4f7fc; color:#1e293b; margin:0; padding:20px;}
+h1,h2,h3 { margin:0 0 10px 0;}
+h1 { font-size:2rem; color:#0f172a; }
+h2 { font-size:1.5rem; margin-top:20px;}
+h3 { font-size:1.2rem; margin-top:10px;}
+.box { background:white; padding:16px; margin-bottom:16px; border-left:6px solid #2563eb; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,0.05);}
+button { background:#2563eb; color:white; border:none; padding:8px 14px; margin:4px 4px 0 0; cursor:pointer; font-size:0.9rem; border-radius:4px;}
+button:hover { background:#1e40af; }
+textarea { width:100%; font-family:inherit; font-size:1rem; padding:10px; margin-top:8px; border:1px solid #cbd5f5; border-radius:4px; min-height:120px;}
+.quiz-box { background:#e0e7ff; padding:12px; margin:12px 0; border-left:4px solid #4f46e5; border-radius:4px;}
+.tooltip { font-size:0.85rem; color:#475569; margin-top:4px;}
+#progress { height:12px; background:#cbd5f5; border-radius:6px; margin-bottom:16px; }
+#progress-bar { height:12px; background:#2563eb; width:0%; border-radius:6px; transition:0.5s;}
+.drag-sentence { background:#f1f5f9; padding:6px; margin:4px 0; cursor:pointer; border-radius:4px; border:1px solid #cbd5f5;}
+.drag-sentence.dragging { opacity:0.5; border:2px dashed #2563eb;}
+.drop-box { background:#f0f0f0; padding:10px; min-height:80px; margin-bottom:10px; border-radius:6px; border:1px dashed #a5b4fc;}
+#sandbox { background:#f1f5f9; padding:10px; border-radius:6px; border:1px solid #cbd5f5; min-height:120px;}
+footer { margin-top:40px; font-size:0.85rem; color:#475569; text-align:center;}
+.audio-btn { margin-top:6px; background:#4f46e5; }
+.audio-btn:hover { background:#3730a3;}
+.badge { display:inline-block; background:#facc15; color:#1e293b; padding:4px 8px; margin:2px; border-radius:4px; font-weight:bold;}
+.diagram { display:flex; justify-content:space-around; margin:10px 0; }
+.diagram div { padding:10px 20px; border-radius:6px; color:white; cursor:pointer;}
+#diagram1{background:#2563eb;} #diagram2{background:#f97316;} #diagram3{background:#16a34a;}
+.correct { background:#bbf7d0 !important;}
 </style>
 </head>
 <body>
 <div style="max-width:900px; margin:auto;">
+<h1>Ultimate Gamified Swales CARS Learning Platform</h1>
+<p>Complete interactive lessons, exercises, and a sandbox to draft your research story. Earn points and badges!</p>
+<div id="progress"><div id="progress-bar"></div></div>
+<div>Points: <span id="points">0</span></div>
 
-<h1>Tell Your Research Story (Swales’ CARS Model)</h1>
-
-<p>This tool guides you in drafting a research story based on Swales’ Academic Writing for Graduate Students. Follow the Moves to structure your paper, add content, and export a polished PDF.</p>
-
-<div class="box">
-  <strong>Start with Swales Template:</strong><br><br>
-  <button onclick="loadTemplate('swales')">CARS Model Template</button>
+<!-- Diagram Flow -->
+<div class="diagram">
+<div id="diagram1" onclick="highlightModule(1)">Move 1</div>
+<div id="diagram2" onclick="highlightModule(2)">Move 2</div>
+<div id="diagram3" onclick="highlightModule(3)">Move 3</div>
 </div>
 
-<div class="box">
-  <input id="title" placeholder="Section title">
-  <textarea id="content" placeholder="Write your paragraph according to the prompt."></textarea>
-  <br>
-  <button onclick="addSection()">Add Section</button>
-  <button onclick="quickAdd('Move 1: Establishing a Territory')">Move 1</button>
-  <button onclick="quickAdd('Move 2: Establishing a Niche')">Move 2</button>
-  <button onclick="quickAdd('Move 3: Occupying the Niche')">Move 3</button>
+<!-- Modules -->
+<div class="box" id="module1">
+<h2 style="color:#2563eb;">Move 1: Establishing a Territory</h2>
+<p>Introduce your research area, importance, and key literature.</p>
+<div class="tooltip">Tip: Use phrases like "Research on X has shown..."</div>
+<button class="audio-btn" onclick="playAudio('audio1')">🔊 Play Audio Explanation</button>
+<audio id="audio1" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+<button onclick="completeModule(1)">Mark Complete</button>
+
+<div class="quiz-box">
+<strong>Drag & Drop Exercise:</strong><br>
+<p>Drag the sentence to the correct Move box.</p>
+<div class="drag-sentence" draggable="true" data-move="1">Previous studies explored X in various contexts.</div>
+<div class="drag-sentence" draggable="true" data-move="2">Several studies ignored the effect of Y.</div>
+<div class="drag-sentence" draggable="true" data-move="3">This research aims to investigate Z.</div>
+
+<div class="drop-box" data-target="1">Move 1 Box</div>
+<div class="drop-box" data-target="2">Move 2 Box</div>
+<div class="drop-box" data-target="3">Move 3 Box</div>
+<div id="feedback1" class="tooltip"></div>
+</div>
 </div>
 
-<div id="output"></div>
-
-<div class="box">
-  <button onclick="copyStory()">Copy Full Story</button>
-  <button onclick="resetStory()">Reset Draft</button>
-  <button onclick="downloadPDF()">Download PDF</button>
+<div class="box" id="module2" style="display:none;">
+<h2 style="color:#f97316;">Move 2: Establishing a Niche</h2>
+<p>Identify gaps, problems, or limitations in existing research.</p>
+<div class="tooltip">Tip: Use phrases like "However, previous research has not..."</div>
+<button class="audio-btn" onclick="playAudio('audio2')">🔊 Play Audio Explanation</button>
+<audio id="audio2" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
+<button onclick="completeModule(2)">Mark Complete</button>
 </div>
 
+<div class="box" id="module3" style="display:none;">
+<h2 style="color:#16a34a;">Move 3: Occupying the Niche</h2>
+<p>State your purpose, research questions, and contribution.</p>
+<div class="tooltip">Tip: "This study aims to..."</div>
+<button class="audio-btn" onclick="playAudio('audio3')">🔊 Play Audio Explanation</button>
+<audio id="audio3" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"></audio>
+<button onclick="completeModule(3)">Mark Complete</button>
+</div>
+
+<!-- Sandbox Writing -->
 <div class="box">
-  <strong>Mini Exercises:</strong>
-  <div class="quiz-box">
-    Q1: Identify the Move in the following sentence: "Previous studies have shown inconsistent results regarding X." <br>
-    Options: Move 1 / Move 2 / Move 3
-  </div>
-  <div class="quiz-box">
-    Q2: Which sentence illustrates Move 3: "This study aims to explore Y to address the gap in Z"? <br>
-    Options: Move 1 / Move 2 / Move 3
-  </div>
+<h2>Writing Sandbox</h2>
+<p>Write paragraphs for each Move. Real-time guidance and feedback appear below.</p>
+<select id="move-select" onchange="updateHint()">
+<option value="1">Move 1</option>
+<option value="2">Move 2</option>
+<option value="3">Move 3</option>
+</select>
+<div id="hint" class="tooltip">Introduce research context.</div>
+<textarea id="sandbox"></textarea>
+<button onclick="saveSandbox()">Save Draft</button>
+<button onclick="downloadPDF()">Download PDF</button>
+<div id="badges"></div>
+<div id="sandbox-feedback" class="tooltip"></div>
 </div>
 
 <footer>
-  Developed by Halim Faroug A. Elhag, Lecturer of English Language, UHB/UofK.<br>
-  Lightweight academic writing support tool. No data is stored beyond the user's browser.
+Developed by Halim Faroug A. Elhag, Lecturer of English Language, UHB/UofK.
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-const output = document.getElementById("output");
+let points = 0; let badges = [];
 
-output.innerHTML = localStorage.getItem("story") || "";
+function playAudio(id){ document.getElementById(id).play(); }
 
-function addSection() {
-  const title = document.getElementById("title").value;
-  const content = document.getElementById("content").value;
-  if(!title || !content) return;
-  const count = output.children.length + 1;
-  const section = document.createElement("div");
-  section.className = "box";
-  section.innerHTML = `<h3>${count}. ${title}</h3><p>${content}</p>`;
-  output.appendChild(section);
-  localStorage.setItem("story", output.innerHTML);
-  document.getElementById("title").value = "";
-  document.getElementById("content").value = "";
+function completeModule(m){
+  document.getElementById('module'+m).style.display='none';
+  points+=50; document.getElementById('points').innerText=points;
+  badges.push('Move '+m+' Badge'); renderBadges();
+  let next=m+1;
+  if(document.getElementById('module'+next)) document.getElementById('module'+next).style.display='block';
+  document.getElementById('progress-bar').style.width=(points/150*100)+'%';
 }
 
-function quickAdd(title){
-  document.getElementById("title").value = title;
-  let promptText = "";
-  if(title.includes("Move 1")) promptText="Explain the research context, importance, and key literature.";
-  if(title.includes("Move 2")) promptText="Identify the research gap, problem, or limitations.";
-  if(title.includes("Move 3")) promptText="State the purpose, research questions, and contribution of your study.";
-  document.getElementById("content").value = promptText;
-  document.getElementById("content").focus();
+function renderBadges(){
+  let div=document.getElementById('badges'); div.innerHTML='';
+  badges.forEach(b=>{ div.innerHTML+='<span class="badge">'+b+'</span>'; });
 }
 
-function copyStory() {
-  navigator.clipboard.writeText(output.innerText);
-  alert("Story copied. Paste it anywhere.");
+function highlightModule(m){
+  [1,2,3].forEach(i=>document.getElementById('module'+i)?.style.display='none');
+  document.getElementById('module'+m)?.style.display='block';
 }
 
-function resetStory(){
-  if(confirm("This will delete the entire draft. Continue?")){
-    localStorage.removeItem("story");
-    output.innerHTML="";
-  }
-}
-
-function loadTemplate(type){
-  if(!confirm("This will start a new Swales-structured draft. Continue?")) return;
-  output.innerHTML="";
-  localStorage.removeItem("story");
-  const templateSections = [
-    {title:"Move 1: Establishing a Territory", prompt:"Explain the research context, importance, and key literature."},
-    {title:"Move 2: Establishing a Niche", prompt:"Identify the research gap, problem, or limitations."},
-    {title:"Move 3: Occupying the Niche", prompt:"State the purpose, research questions, and contribution of your study."}
-  ];
-  templateSections.forEach((s,i)=>{
-    const section = document.createElement("div");
-    section.className="box";
-    section.innerHTML = `<h3>${i+1}. ${s.title}</h3><p>${s.prompt}</p>`;
-    output.appendChild(section);
+// Drag and Drop
+let dragged=null;
+document.querySelectorAll('.drag-sentence').forEach(item=>{
+  item.addEventListener('dragstart',e=>{ dragged=e.target; e.target.classList.add('dragging'); });
+  item.addEventListener('dragend',e=>{ e.target.classList.remove('dragging'); });
+});
+document.querySelectorAll('.drop-box').forEach(box=>{
+  box.addEventListener('dragover',e=>e.preventDefault());
+  box.addEventListener('drop',e=>{
+    e.preventDefault();
+    let moveTarget=box.dataset.target;
+    if(dragged.dataset.move===moveTarget){
+      box.appendChild(dragged); box.classList.add('correct');
+      points+=10; document.getElementById('points').innerText=points;
+    }else{
+      document.getElementById('feedback1').innerText="Incorrect, try again.";
+      setTimeout(()=>{document.getElementById('feedback1').innerText='';},2000);
+    }
+    document.getElementById('progress-bar').style.width=(points/150*100)+'%';
   });
-  localStorage.setItem("story", output.innerHTML);
+});
+
+// Sandbox Feedback (simple keyword detection)
+function updateHint(){ 
+  let move=document.getElementById('move-select').value;
+  let hint=document.getElementById('hint');
+  if(move==='1'){ hint.innerText="Introduce research context and key literature."; checkSandboxKeywords(['research','studies','previous']); }
+  if(move==='2'){ hint.innerText="Identify gaps or limitations in existing research."; checkSandboxKeywords(['gap','however','not']); }
+  if(move==='3'){ hint.innerText="State purpose, questions, and contribution."; checkSandboxKeywords(['aim','investigate','contribution']); }
 }
+
+function checkSandboxKeywords(keywords){
+  let text=document.getElementById('sandbox').value.toLowerCase();
+  let feedback=document.getElementById('sandbox-feedback');
+  let found=keywords.some(k=>text.includes(k));
+  feedback.innerText=found?'Good, your paragraph contains key phrases for this Move.':'Try adding key phrases for this Move.';
+}
+
+function saveSandbox(){ localStorage.setItem('sandbox',document.getElementById('sandbox').value); alert('Draft saved!'); }
+document.getElementById('sandbox').value=localStorage.getItem('sandbox')||'';
 
 function downloadPDF(){
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF('p','pt','a4');
-  doc.setFont("Times",""); 
-  doc.setFontSize(14);
-  let y=50;
-  const sections = output.children;
-  for(let i=0;i<sections.length;i++){
-    if(y>700){ doc.addPage(); y=50; }
-    const h=sections[i].querySelector('h3').innerText;
-    const p=sections[i].querySelector('p').innerText;
-    doc.setFontSize(16);
-    doc.text(h,40,y);
-    y+=20;
-    doc.setFontSize(12);
-    const splitText = doc.splitTextToSize(p,500);
-    doc.text(splitText,40,y);
-    y+=splitText.length*14 + 20;
-    const pageCount = doc.getNumberOfPages();
-    doc.setFontSize(10);
-    doc.text(`${pageCount}`,550,800);
+  const { jsPDF } = window.jspdf; const doc=new jsPDF('p','pt','a4'); doc.setFont("Times",""); doc.setFontSize(16); let y=50;
+  for(let m=1;m<=3;m++){
+    const module=document.getElementById('module'+m); if(!module) continue;
+    const h=module.querySelector('h2').innerText; const p=module.querySelector('p').innerText;
+    if(y>700){ doc.addPage(); y=50;}
+    doc.text(h,40,y); y+=20; const splitText=doc.splitTextToSize(p,500);
+    doc.setFontSize(12); doc.text(splitText,40,y); y+=splitText.length*14+20;
+    doc.setFontSize(10); doc.text(doc.getNumberOfPages(),550,800);
   }
-  // References
-  doc.addPage();
-  doc.setFontSize(16);
-  doc.text("References",40,50);
-  doc.setFontSize(12);
-  doc.text("1. [Add your sources here]",40,80);
-  const pageCount = doc.getNumberOfPages();
-  doc.setFontSize(10);
-  doc.text(`${pageCount}`,550,800);
-  doc.save("Research_Story.pdf");
+  let sandboxText=document.getElementById('sandbox').value;
+  if(sandboxText){ if(y>700){ doc.addPage(); y=50;} doc.setFontSize(14); doc.text("Your Draft",40,y); y+=20;
+    doc.setFontSize(12); let splitText=doc.splitTextToSize(sandboxText,500); doc.text(splitText,40,y); y+=splitText.length*14+20;
+    doc.setFontSize(10); doc.text(doc.getNumberOfPages(),550,800);}
+  doc.addPage(); doc.setFontSize(16); doc.text("References",40,50); doc.setFontSize(12); doc.text("1. [Add your sources here]",40,80);
+  doc.setFontSize(10); doc.text(doc.getNumberOfPages(),550,800); doc.save("Ultimate_Swales_CARS.pdf");
 }
 </script>
-
-</div>
 </body>
 </html>
