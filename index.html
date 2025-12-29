@@ -44,6 +44,11 @@
 <div id="output"></div>
 
 <script>
+  const output = document.getElementById("output");
+
+  // Load saved content
+  output.innerHTML = localStorage.getItem("story") || "";
+
   function addSection() {
     const title = document.getElementById("title").value;
     const content = document.getElementById("content").value;
@@ -54,7 +59,8 @@
     section.className = "box";
     section.innerHTML = `<h3>${title}</h3><p>${content}</p>`;
 
-    document.getElementById("output").appendChild(section);
+    output.appendChild(section);
+    localStorage.setItem("story", output.innerHTML);
 
     document.getElementById("title").value = "";
     document.getElementById("content").value = "";
