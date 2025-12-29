@@ -1,112 +1,182 @@
-/* =========================
-   CORE STATE
-========================= */
-let currentLesson = 0;
-let score = 0;
+let points = 0;
+let currentMove = 0;
 
-/* =========================
-   LESSON DATA (EDIT THIS)
-========================= */
-const lessons = [
+const moves = [
   {
-    title: "Academic Writing Basics",
-    content: "Academic writing is formal, objective, and evidence-based."
+    title: "Move 1: Establishing a Territory",
+    purpose: "To show that the research area is important, relevant, and established.",
+    strategies: [
+      "Claiming centrality",
+      "Making topic generalizations",
+      "Reviewing previous research"
+    ],
+    signals: [
+      "Recent studies have shown...",
+      "There has been growing interest in...",
+      "X has been widely investigated"
+    ],
+    errors: [
+      "Starting too narrowly",
+      "Using personal opinion",
+      "Listing facts without synthesis"
+    ],
+    goodExample:
+      "In recent years, increasing attention has been paid to academic discourse practices in second language contexts.",
+    badExample:
+      "I am interested in academic writing and want to talk about it.",
+    task: {
+      question: "What is the main function of the effective sentence?",
+      options: [
+        { text: "Establishing importance of the field", correct: true },
+        { text: "Stating personal motivation", correct: false },
+        { text: "Describing methodology", correct: false }
+      ]
+    },
+    sandbox:
+      "Write ONE sentence that establishes the importance of a research area using general reference (no 'I')."
   },
+
   {
-    title: "Thesis Statements",
-    content: "A thesis statement presents the main argument clearly and concisely."
-  }
-];
+    title: "Move 2: Establishing a Niche",
+    purpose: "To indicate a gap, limitation, or problem in previous research.",
+    strategies: [
+      "Indicating a gap",
+      "Questioning previous findings",
+      "Extending prior research"
+    ],
+    signals: [
+      "However, little attention has been given to...",
+      "Previous studies have not addressed...",
+      "Despite extensive research..."
+    ],
+    errors: [
+      "Being aggressive",
+      "Inventing gaps",
+      "Criticizing without evidence"
+    ],
+    goodExample:
+      "However, little research has examined how novice researchers construct rhetorical moves in introductions.",
+    badExample:
+      "No one has studied this before.",
+    task: {
+      question: "What rhetorical action is being performed?",
+      options: [
+        { text: "Indicating a research gap", correct: true },
+        { text: "Summarizing results", correct: false },
+        { text: "Presenting conclusions", correct: false }
+      ]
+    },
+    sandbox:
+      "Write ONE sentence that indicates a research gap without exaggeration."
+  },
 
-const flashcards = [
-  { front: "Thesis", back: "Main argument of a paper" },
-  { front: "Citation", back: "Reference to a source" }
-];
-
-const quiz = [
   {
-    question: "Academic writing should be:",
-    options: ["Informal", "Objective", "Personal"],
-    answer: 1
+    title: "Move 3: Occupying the Niche",
+    purpose: "To state the purpose, scope, or structure of the present research.",
+    strategies: [
+      "Outlining purpose",
+      "Describing methodology",
+      "Announcing structure"
+    ],
+    signals: [
+      "This study aims to...",
+      "The present paper investigates...",
+      "This article is organized as follows..."
+    ],
+    errors: [
+      "Repeating the gap",
+      "Overloading one sentence",
+      "Vague objectives"
+    ],
+    goodExample:
+      "This study aims to analyze how graduate students deploy rhetorical moves in research article introductions.",
+    badExample:
+      "This paper is about many things.",
+    task: {
+      question: "Which element is essential in Move 3?",
+      options: [
+        { text: "Clear statement of purpose", correct: true },
+        { text: "Literature review", correct: false },
+        { text: "Personal reflection", correct: false }
+      ]
+    },
+    sandbox:
+      "Write ONE sentence clearly stating the aim of a study."
   }
 ];
 
-/* =========================
-   LESSON FUNCTIONS
-========================= */
-function loadLesson() {
-  document.getElementById("lessonTitle").innerText =
-    lessons[currentLesson].title;
+function loadMove(index) {
+  currentMove = index;
+  const m = moves[index];
 
-  document.getElementById("lessonContent").innerText =
-    lessons[currentLesson].content;
+  document.getElementById("moveTitle").innerText = m.title;
+  document.getElementById("movePurpose").innerText = m.purpose;
+
+  fillList("moveStrategies", m.strategies);
+  fillList("moveSignals", m.signals);
+  fillList("moveErrors", m.errors);
+
+  document.getElementById("goodExample").innerText = m.goodExample;
+  document.getElementById("badExample").innerText = m.badExample;
+
+  document.getElementById("taskQuestion").innerText = m.task.question;
+  renderOptions(m.task.options);
+
+  document.getElementById("sandboxPrompt").innerText = m.sandbox;
+  document.getElementById("sandboxFeedback").innerText = "";
 }
 
-function nextLesson() {
-  if (currentLesson < lessons.length - 1) {
-    currentLesson++;
-    loadLesson();
-  } else {
-    alert("You completed all lessons.");
-  }
-}
-
-/* =========================
-   FLASHCARDS
-========================= */
-let cardIndex = 0;
-let flipped = false;
-
-function loadFlashcard() {
-  const card = flashcards[cardIndex];
-  document.getElementById("cardText").innerText =
-    flipped ? card.back : card.front;
-}
-
-function flipCard() {
-  flipped = !flipped;
-  loadFlashcard();
-}
-
-function nextCard() {
-  cardIndex = (cardIndex + 1) % flashcards.length;
-  flipped = false;
-  loadFlashcard();
-}
-
-/* =========================
-   QUIZ
-========================= */
-function loadQuiz() {
-  const q = quiz[0];
-  document.getElementById("quizQuestion").innerText = q.question;
-
-  const optionsDiv = document.getElementById("quizOptions");
-  optionsDiv.innerHTML = "";
-
-  q.options.forEach((opt, index) => {
-    const btn = document.createElement("button");
-    btn.innerText = opt;
-    btn.onclick = () => checkAnswer(index);
-    optionsDiv.appendChild(btn);
+function fillList(id, items) {
+  const ul = document.getElementById(id);
+  ul.innerHTML = "";
+  items.forEach(i => {
+    const li = document.createElement("li");
+    li.innerText = i;
+    ul.appendChild(li);
   });
 }
 
-function checkAnswer(selected) {
-  if (selected === quiz[0].answer) {
-    score++;
-    alert("Correct");
-  } else {
-    alert("Wrong");
-  }
-  document.getElementById("quizScore").innerText = `Score: ${score}`;
+function renderOptions(options) {
+  const div = document.getElementById("taskOptions");
+  div.innerHTML = "";
+  options.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.innerText = opt.text;
+    btn.onclick = () => checkAnswer(opt.correct);
+    div.appendChild(btn);
+  });
 }
 
-/* =========================
-   INIT
-========================= */
-document.addEventListener("DOMContentLoaded", () => {
-  if (document.getElementById("lessonTitle")) loadLesson();
-  if (document.getElementById("cardText")) loadFlashcard();
-  if (document.getElementById("quizQuestion")) loadQuiz();
-});
+function checkAnswer(correct) {
+  const feedback = document.getElementById("taskFeedback");
+  if (correct) {
+    feedback.innerText = "Correct. This aligns with Swales’ rhetorical purpose.";
+    points += 10;
+  } else {
+    feedback.innerText = "Incorrect. Reconsider the rhetorical function.";
+  }
+  updateStatus();
+}
+
+function checkSandbox() {
+  const text = document.getElementById("studentText").value.trim();
+  const fb = document.getElementById("sandboxFeedback");
+
+  if (text.length < 20) {
+    fb.innerText = "Too short. Academic moves require development.";
+    return;
+  }
+
+  fb.innerText =
+    "Self-check: Does your sentence match the stated purpose and avoid personal reference?";
+  points += 5;
+  updateStatus();
+}
+
+function updateStatus() {
+  document.getElementById("points").innerText = "Points: " + points;
+  const percent = Math.round(((currentMove + 1) / moves.length) * 100);
+  document.getElementById("progress").innerText = "Progress: " + percent + "%";
+}
+
+loadMove(0);
