@@ -5,72 +5,126 @@
   <title>Tell Your Research Story</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
+      font-family: Georgia, "Times New Roman", serif;
+      background: #f8fafc;
+      color: #0f172a;
       margin: 0;
-      padding: 20px;
+      padding: 30px;
     }
-    h1 { color: #60a5fa; }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
     .box {
-      background: #020617;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-      <p>
-A lightweight tool to structure, draft, and communicate research narratives
-clearly and coherently for academic and general audiences.
-</p>
+      background: white;
+      padding: 16px;
+      margin-bottom: 16px;
+      border-left: 4px solid #2563eb;
     }
-    input, textarea, button {
+
+    input, textarea {
       width: 100%;
+      font-family: inherit;
+      font-size: 1rem;
+      padding: 10px;
       margin-top: 8px;
-      padding: 8px;
+      border: 1px solid #cbd5f5;
     }
+
+    textarea {
+      min-height: 120px;
+    }
+
     button {
       background: #2563eb;
       color: white;
       border: none;
+      padding: 8px 14px;
+      margin: 4px 4px 0 0;
       cursor: pointer;
-      <button onclick="copyStory()">Copy Full Story</button>
-<button onclick="resetStory()">Reset Draft</button>
+      font-size: 0.9rem;
+    }
+
+    button:hover {
+      background: #1e40af;
+    }
+
+    #output h3 {
+      margin-bottom: 6px;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.85rem;
+      color: #475569;
     }
   </style>
 </head>
 <body>
+<div style="max-width:900px; margin:auto;">
 
 <h1>Tell Your Research Story</h1>
+
+<p>
+A lightweight tool to structure, draft, and communicate research narratives
+clearly and coherently for academic and general audiences.
+</p>
+
+<!-- Discipline Templates -->
 <div class="box">
   <strong>Quick Templates</strong><br><br>
   <button onclick="loadTemplate('humanities')">Humanities</button>
   <button onclick="loadTemplate('sciences')">Sciences</button>
   <button onclick="loadTemplate('education')">Education</button>
 </div>
+
+<!-- Section Input -->
 <div class="box">
   <input id="title" placeholder="Section title">
   <textarea id="content" placeholder="Write in clear academic prose. Focus on argument, evidence, and coherence."></textarea>
+  <br>
   <button onclick="addSection()">Add Section</button>
+  <button onclick="quickAdd('Research Problem')">Research Problem</button>
+  <button onclick="quickAdd('Methodology')">Methodology</button>
+  <button onclick="quickAdd('Key Findings')">Key Findings</button>
+  <button onclick="quickAdd('Conclusion')">Conclusion</button>
 </div>
 
+<!-- Output / Preview -->
 <div id="output"></div>
-<footer style="margin-top:40px; font-size:14px; color:#94a3b8;">
-  Developed as a lightweight academic writing support tool.  
-  No data is stored or collected beyond the user's browser.
+
+<!-- Copy / Reset / PDF -->
+<div class="box">
+  <button onclick="copyStory()">Copy Full Story</button>
+  <button onclick="resetStory()">Reset Draft</button>
+  <button onclick="downloadPDF()">Download PDF</button>
+</div>
+
+<footer>
+  Developed by Halim Faroug A. Elhag, Lecturer of English Language, UHB/UofK.<br>
+  Lightweight academic writing support tool. No data is stored beyond the user's browser.
 </footer>
-  
+
 <script>
   const output = document.getElementById("output");
 
+  // Load saved content
   output.innerHTML = localStorage.getItem("story") || "";
 
+  // Add section
   function addSection() {
     const title = document.getElementById("title").value;
     const content = document.getElementById("content").value;
-
     if (!title || !content) return;
 
     const count = output.children.length + 1;
-
     const section = document.createElement("div");
     section.className = "box";
     section.innerHTML = `<h3>${count}. ${title}</h3><p>${content}</p>`;
@@ -82,63 +136,100 @@ clearly and coherently for academic and general audiences.
     document.getElementById("content").value = "";
   }
 
+  // Quick pre-filled section
   function quickAdd(title) {
     document.getElementById("title").value = title;
     document.getElementById("content").focus();
   }
 
+  // Copy all text
   function copyStory() {
     const text = output.innerText;
     navigator.clipboard.writeText(text);
     alert("Story copied. Paste it anywhere.");
   }
 
+  // Reset draft
   function resetStory() {
     if (confirm("This will delete the entire draft. Continue?")) {
       localStorage.removeItem("story");
       output.innerHTML = "";
-      function loadTemplate(type) {
-  const templates = {
-    humanities: [
-      "Research Context",
-      "Critical Framework",
-      "Textual Analysis",
-      "Discussion",
-      "Conclusion"
-    ],
-    sciences: [
-      "Research Problem",
-      "Methodology",
-      "Data Analysis",
-      "Results",
-      "Conclusion"
-    ],
-    education: [
-      "Problem Statement",
-      "Literature Context",
-      "Method",
-      "Findings",
-      "Implications"
-    ]
-  };
-
-  if (!confirm("This will start a new structured draft. Continue?")) return;
-
-  output.innerHTML = "";
-  localStorage.removeItem("story");
-
-  templates[type].forEach(title => {
-    const section = document.createElement("div");
-    section.className = "box";
-    section.innerHTML = `<h3>${title}</h3><p></p>`;
-    output.appendChild(section);
-  });
-
-  localStorage.setItem("story", output.innerHTML);
-      }
     }
+  }
+
+  // Load discipline template
+  function loadTemplate(type) {
+    const templates = {
+      humanities: [
+        "Research Context",
+        "Critical Framework",
+        "Textual Analysis",
+        "Discussion",
+        "Conclusion"
+      ],
+      sciences: [
+        "Research Problem",
+        "Methodology",
+        "Data Analysis",
+        "Results",
+        "Conclusion"
+      ],
+      education: [
+        "Problem Statement",
+        "Literature Context",
+        "Method",
+        "Findings",
+        "Implications"
+      ]
+    };
+
+    if (!confirm("This will start a new structured draft. Continue?")) return;
+
+    output.innerHTML = "";
+    localStorage.removeItem("story");
+
+    templates[type].forEach(title => {
+      const section = document.createElement("div");
+      section.className = "box";
+      section.innerHTML = `<h3>${title}</h3><p></p>`;
+      output.appendChild(section);
+    });
+
+    localStorage.setItem("story", output.innerHTML);
+  }
+
+  // Download as PDF
+  function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('p', 'pt', 'a4');
+    let y = 40;
+    const sections = output.children;
+    doc.setFontSize(14);
+    for (let i = 0; i < sections.length; i++) {
+      const h = sections[i].querySelector('h3').innerText;
+      const p = sections[i].querySelector('p').innerText;
+      doc.text(h, 40, y);
+      y += 20;
+      const splitText = doc.splitTextToSize(p, 500);
+      doc.text(splitText, 40, y);
+      y += splitText.length * 14 + 20;
+      if (y > 750) doc.addPage(), y = 40;
+    }
+
+    // Add References placeholder
+    doc.addPage();
+    doc.setFontSize(16);
+    doc.text("References", 40, 40);
+    doc.setFontSize(12);
+    doc.text("1. [Add your sources here]", 40, 70);
+
+    doc.save("Research_Story.pdf");
   }
 </script>
 
+<!-- jsPDF library for PDF download -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</div>
 </body>
 </html>
