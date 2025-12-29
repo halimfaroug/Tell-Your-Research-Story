@@ -2,66 +2,528 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Swales CARS Interactive Learning Platform</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Swales CARS: Interactive Learning Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #2c3e50;
+      --secondary: #3498db;
+      --accent: #e74c3c;
+      --success: #27ae60;
+      --warning: #f39c12;
+      --light: #ecf0f1;
+      --dark: #2c3e50;
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: white;
+      padding: 1.5rem 2rem;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--secondary), var(--accent));
+    }
+
+    h1 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 2.2rem;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Status Bar */
+    .status {
+      display: flex;
+      gap: 2rem;
+      background: var(--light);
+      padding: 0.8rem 1.5rem;
+      border-radius: 10px;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .status span {
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    #points {
+      color: var(--success);
+      animation: pulse 2s infinite;
+    }
+
+    #progress {
+      color: var(--secondary);
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+
+    nav button {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      background: white;
+      color: var(--primary);
+      font-weight: bold;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s;
+    }
+
+    nav button:hover::before {
+      left: 100%;
+    }
+
+    nav button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    nav button.active {
+      background: var(--secondary);
+      color: white;
+      transform: scale(1.05);
+    }
+
+    /* Main Content */
+    main {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 0 1.5rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .panel {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--secondary);
+    }
+
+    .panel:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .panel h2, .panel h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .panel h2 {
+      border-bottom: 2px solid var(--light);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Lists */
+    ul {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    ul li {
+      padding: 0.8rem;
+      margin-bottom: 0.5rem;
+      background: var(--light);
+      border-radius: 8px;
+      border-left: 4px solid var(--secondary);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    ul li:hover {
+      transform: translateX(5px);
+      background: #e3f2fd;
+    }
+
+    ul li::before {
+      content: '✓';
+      color: var(--success);
+      font-weight: bold;
+    }
+
+    /* Examples */
+    .examples {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .example {
+      padding: 1rem;
+      border-radius: 10px;
+      border-left: 5px solid;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .good {
+      background: rgba(39, 174, 96, 0.1);
+      border-left-color: var(--success);
+    }
+
+    .bad {
+      background: rgba(231, 76, 60, 0.1);
+      border-left-color: var(--accent);
+    }
+
+    /* Interaction Panel */
+    .interaction {
+      grid-column: span 2;
+    }
+
+    #taskOptions {
+      display: grid;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+    }
+
+    .option {
+      padding: 1rem;
+      background: white;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: left;
+      font-size: 1rem;
+    }
+
+    .option:hover {
+      border-color: var(--secondary);
+      background: #f8f9fa;
+      transform: translateX(5px);
+    }
+
+    .option.correct {
+      border-color: var(--success);
+      background: rgba(39, 174, 96, 0.1);
+      animation: correctPulse 0.5s;
+    }
+
+    .option.incorrect {
+      border-color: var(--accent);
+      background: rgba(231, 76, 60, 0.1);
+      animation: shake 0.5s;
+    }
+
+    #taskFeedback {
+      min-height: 60px;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 10px;
+      background: var(--light);
+      animation: fadeIn 0.5s;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .feedback-icon {
+      font-size: 1.5rem;
+    }
+
+    /* Sandbox */
+    .sandbox {
+      grid-column: span 2;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      margin: 1rem 0;
+      padding: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      resize: vertical;
+      transition: var(--transition);
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    }
+
+    button {
+      padding: 0.8rem 1.5rem;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: var(--transition);
+      margin-right: 0.5rem;
+    }
+
+    button:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    #sandboxFeedback {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 10px;
+      animation: fadeIn 0.5s;
+      display: none;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: white;
+      background: rgba(0,0,0,0.8);
+      margin-top: 2rem;
+    }
+
+    footer strong {
+      color: var(--warning);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes correctPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+      
+      .interaction, .sandbox {
+        grid-column: 1;
+      }
+      
+      nav {
+        flex-direction: column;
+      }
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      margin-top: 0.5rem;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--secondary), var(--success));
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: var(--warning);
+      color: white;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+  </style>
 </head>
 <body>
 
 <header>
-  <h1>Swales CARS: Telling a Research Story</h1>
-  <p class="subtitle">Understanding knowledge construction in academic writing</p>
+  <h1>🔬 Swales CARS: Telling a Research Story</h1>
+  <p class="subtitle">Master academic writing through interactive exploration of knowledge construction</p>
   <div class="status">
-    <span id="points">Points: 0</span>
-    <span id="progress">Progress: 0%</span>
+    <span id="points">🏆 Points: 0</span>
+    <span id="progress">📈 Progress: <span id="progressPercent">0</span>%</span>
+    <span id="badges">🎖️ Badges: 0</span>
+  </div>
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <small>Complete all tasks to unlock achievement!</small>
   </div>
 </header>
 
 <nav>
-  <button onclick="loadMove(0)">Move 1: Territory</button>
-  <button onclick="loadMove(1)">Move 2: Niche</button>
-  <button onclick="loadMove(2)">Move 3: Occupying</button>
+  <button onclick="loadMove(0)" class="active">📍 Move 1: Establishing Territory</button>
+  <button onclick="loadMove(1)">🎯 Move 2: Establishing a Niche</button>
+  <button onclick="loadMove(2)">💡 Move 3: Occupying the Niche</button>
 </nav>
 
 <main>
 
 <section class="panel theory">
-  <h2 id="moveTitle"></h2>
-  <p id="movePurpose"></p>
+  <h2 id="moveTitle">Move 1: Establishing Territory</h2>
+  <p id="movePurpose" class="purpose">Claiming centrality and/or making topic generalizations</p>
 
-  <h3>Key Strategies</h3>
-  <ul id="moveStrategies"></ul>
+  <h3>🎯 Key Strategies</h3>
+  <ul id="moveStrategies">
+    <li>Claiming centrality</li>
+    <li>Making topic generalizations</li>
+    <li>Reviewing items of previous research</li>
+  </ul>
 
-  <h3>Linguistic Signals</h3>
-  <ul id="moveSignals"></ul>
+  <h3>📝 Linguistic Signals</h3>
+  <ul id="moveSignals">
+    <li>Recently, researchers have become increasingly interested in...</li>
+    <li>Many studies have shown that...</li>
+    <li>It is generally accepted that...</li>
+  </ul>
 
-  <h3>Common Errors</h3>
-  <ul id="moveErrors"></ul>
+  <h3>⚠️ Common Errors</h3>
+  <ul id="moveErrors">
+    <li>Making claims without evidence</li>
+    <li>Failing to demonstrate topic importance</li>
+    <li>Overgeneralizing previous research</li>
+  </ul>
 </section>
 
 <section class="panel examples">
-  <h3>Contrastive Examples</h3>
+  <h3>📊 Contrastive Examples</h3>
   <div class="example good">
-    <strong>Effective:</strong>
-    <p id="goodExample"></p>
+    <strong>✅ Effective:</strong>
+    <p id="goodExample">"In recent years, climate change has emerged as a critical area of research, with numerous studies documenting its impact on coastal ecosystems (Smith, 2020; Jones, 2021)."</p>
+    <small>⭐ Demonstrates centrality with evidence</small>
   </div>
   <div class="example bad">
-    <strong>Ineffective:</strong>
-    <p id="badExample"></p>
+    <strong>❌ Ineffective:</strong>
+    <p id="badExample">"Climate change is happening. People study it."</p>
+    <small>⚠️ Vague, lacks academic rigor</small>
   </div>
 </section>
 
 <section class="panel interaction">
-  <h3>Decision Task</h3>
-  <p id="taskQuestion"></p>
-  <div id="taskOptions"></div>
-  <p id="taskFeedback"></p>
+  <h3>🤔 Decision Task <span class="badge" id="taskBadge">New!</span></h3>
+  <p id="taskQuestion">Which sentence BEST establishes research territory?</p>
+  <div id="taskOptions">
+    <!-- Options will be injected by JavaScript -->
+  </div>
+  <div id="taskFeedback"></div>
+  <button onclick="nextTask()" style="display:none;" id="nextBtn">Next Challenge →</button>
 </section>
 
 <section class="panel sandbox">
-  <h3>Guided Writing Sandbox</h3>
-  <p id="sandboxPrompt"></p>
-  <textarea id="studentText" placeholder="Write ONE sentence only..."></textarea>
-  <button onclick="checkSandbox()">Self-Check</button>
+  <h3>✍️ Guided Writing Sandbox</h3>
+  <p id="sandboxPrompt">Write ONE sentence establishing territory for a study on "online learning effectiveness":</p>
+  <textarea id="studentText" placeholder="Start typing your academic sentence here... (Try to use the strategies above!)"></textarea>
+  <div>
+    <button onclick="checkSandbox()">🔍 Analyze My Sentence</button>
+    <button onclick="showHint()">💡 Get a Hint</button>
+    <button onclick="generateExample()">🎲 See Random Example</button>
+  </div>
   <div id="sandboxFeedback"></div>
 </section>
 
@@ -69,11 +531,637 @@
 
 <footer>
   <p>
-    Based on Swales (1990, 2004) & Swales & Feak (Academic Writing for Graduate Students).<br>
+    Based on Swales (1990, 2004) & Swales & Feak's Academic Writing for Graduate Students<br>
     Developed by <strong>Halim Faroug A. Elhag</strong>, Lecturer of English Language, UHB / UofK.
+    <br>
+    <small>🎯 Interactive Edition with Gamification Elements</small>
   </p>
 </footer>
 
-<script src="script.js"></script>
+<script>
+  // Enhanced Data Structure
+  const moves = [
+    {
+      title: "Move 1: Establishing Territory",
+      purpose: "Claiming centrality and/or making topic generalizations about the research area.",
+      strategies: [
+        "Claiming centrality (importance of topic)",
+        "Making topic generalizations",
+        "Reviewing items of previous research",
+        "Establishing chronological framework"
+      ],
+      signals: [
+        "Recently, there has been growing interest in...",
+        "Many researchers have investigated...",
+        "The study of X has received considerable attention",
+        "It is widely recognized that..."
+      ],
+      errors: [
+        "Making unsupported claims",
+        "Failing to demonstrate topic importance",
+        "Overgeneralizing previous research",
+        "Lack of citation support"
+      ],
+      goodExample: "In recent years, digital literacy has become a central concern in educational research, with scholars like Jenkins (2009) and Buckingham (2013) highlighting its importance in 21st-century learning environments.",
+      badExample: "Digital literacy is important. Some people have studied it.",
+      tasks: [
+        {
+          question: "Which sentence BEST establishes research territory?",
+          options: [
+            "This paper is about teaching methods.",
+            "Recent meta-analyses by Hattie (2015) and Marzano (2017) have revitalized interest in evidence-based teaching practices.",
+            "Teaching is good and teachers should teach well.",
+            "I think teaching methods are interesting to study."
+          ],
+          correct: 1,
+          feedback: "Excellent choice! Option 2 demonstrates centrality through recent scholarship and specific citations."
+        },
+        {
+          question: "What's missing in this territory statement: 'Online education is popular now.'?",
+          options: [
+            "Citations to support the claim",
+            "More adjectives",
+            "Longer sentences",
+            "Personal opinions"
+          ],
+          correct: 0,
+          feedback: "Correct! Academic writing requires evidence. Add citations like 'According to UNESCO (2022)...'"
+        }
+      ],
+      sandboxPrompt: "Write ONE sentence establishing territory for a study on 'AI in language teaching'"
+    },
+    {
+      title: "Move 2: Establishing a Niche",
+      purpose: "Indicating a gap, raising questions, or challenging existing knowledge.",
+      strategies: [
+        "Counter-claiming (however, but)",
+        "Indicating a gap (little attention, few studies)",
+        "Question-raising",
+        "Continuing a tradition (refining)"
+      ],
+      signals: [
+        "However, few studies have examined...",
+        "Despite extensive research on X, little is known about Y",
+        "The existing literature fails to address...",
+        "A key question that remains unanswered is..."
+      ],
+      errors: [
+        "Creating artificial or trivial gaps",
+        "Overcriticizing previous research",
+        "Failing to logically connect gap to research",
+        "Missing hedging in claims"
+      ],
+      goodExample: "While numerous studies have examined synchronous online learning, scant attention has been paid to the long-term retention effects of asynchronous micro-learning modules.",
+      badExample: "Nobody has ever studied this before in any way.",
+      tasks: [
+        {
+          question: "Which phrase effectively indicates a research gap?",
+          options: [
+            "Everybody knows about this topic.",
+            "Previous research has thoroughly covered all aspects.",
+            "Despite extensive work on classroom motivation, few studies address virtual environments.",
+            "This topic is very interesting and important."
+          ],
+          correct: 2,
+          feedback: "Perfect! 'Despite... few studies...' effectively establishes a niche by contrasting existing work with the gap."
+        }
+      ],
+      sandboxPrompt: "Identify the niche in this research: 'Previous studies show grammar drills improve accuracy, but...'"
+    },
+    {
+      title: "Move 3: Occupying the Niche",
+      purpose: "Outlining purposes, announcing research, or indicating structure.",
+      strategies: [
+        "Outlining purposes",
+        "Announcing present research",
+        "Indicating structure of paper",
+        "Stating value/contributions"
+      ],
+      signals: [
+        "The purpose of this study is to...",
+        "This paper reports on...",
+        "The aim of this research is to...",
+        "This study contributes to... by..."
+      ],
+      errors: [
+        "Overpromising results",
+        "Vague or ambiguous purpose statements",
+        "Failing to connect purpose to gap",
+        "Omitting methodological preview"
+      ],
+      goodExample: "This study therefore aims to investigate the relationship between formative assessment frequency and student self-efficacy in large university classes, using a mixed-methods approach.",
+      badExample: "We did some research and found some things.",
+      tasks: [
+        {
+          question: "What makes this occupation effective: 'This study addresses this gap by...'?",
+          options: [
+            "It uses fancy words",
+            "It directly connects to the established gap",
+            "It's very long",
+            "It includes personal opinions"
+          ],
+          correct: 1,
+          feedback: "Exactly! Effective occupation explicitly bridges the gap with research actions."
+        }
+      ],
+      sandboxPrompt: "Complete this occupation: 'Therefore, this study examines ______ to address ______'"
+    }
+  ];
+
+  // Game State
+  let currentMove = 0;
+  let points = 0;
+  let progress = 0;
+  let badges = 0;
+  let currentTask = 0;
+  let completedTasks = new Set();
+  let sandboxAttempts = 0;
+
+  // DOM Elements
+  const pointsEl = document.getElementById('points');
+  const progressEl = document.getElementById('progressPercent');
+  const progressFill = document.getElementById('progressFill');
+  const badgesEl = document.getElementById('badges');
+  const moveTitle = document.getElementById('moveTitle');
+  const movePurpose = document.getElementById('movePurpose');
+  const moveStrategies = document.getElementById('moveStrategies');
+  const moveSignals = document.getElementById('moveSignals');
+  const moveErrors = document.getElementById('moveErrors');
+  const goodExample = document.getElementById('goodExample');
+  const badExample = document.getElementById('badExample');
+  const taskQuestion = document.getElementById('taskQuestion');
+  const taskOptions = document.getElementById('taskOptions');
+  const taskFeedback = document.getElementById('taskFeedback');
+  const sandboxPrompt = document.getElementById('sandboxPrompt');
+  const studentText = document.getElementById('studentText');
+  const sandboxFeedback = document.getElementById('sandboxFeedback');
+  const nextBtn = document.getElementById('nextBtn');
+  const taskBadge = document.getElementById('taskBadge');
+  const navButtons = document.querySelectorAll('nav button');
+
+  // Initialize
+  function init() {
+    loadMove(0);
+    updateStatus();
+    createConfetti(); // Initialize confetti canvas
+  }
+
+  // Load Move
+  function loadMove(index) {
+    currentMove = index;
+    const move = moves[index];
+    
+    // Update navigation
+    navButtons.forEach((btn, i) => {
+      btn.classList.toggle('active', i === index);
+    });
+    
+    // Update theory panel
+    moveTitle.textContent = move.title;
+    movePurpose.textContent = move.purpose;
+    
+    updateList(moveStrategies, move.strategies);
+    updateList(moveSignals, move.signals);
+    updateList(moveErrors, move.errors);
+
+    // Update examples
+    goodExample.textContent = move.goodExample;
+    badExample.textContent = move.badExample;
+    
+    // Update interaction
+    currentTask = 0;
+    loadTask();
+    
+    // Update sandbox
+    sandboxPrompt.textContent = move.sandboxPrompt;
+    studentText.value = '';
+    sandboxFeedback.style.display = 'none';
+    sandboxFeedback.innerHTML = '';
+    
+    // Animate panel entrance
+    document.querySelectorAll('.panel').forEach((panel, i) => {
+      panel.style.animation = 'fadeIn 0.5s ease ' + (i * 0.1) + 's forwards';
+      panel.style.opacity = '0';
+    });
+    
+    // Update badge
+    taskBadge.style.display = completedTasks.has(`${index}-${currentTask}`) ? 'none' : 'inline-block';
+  }
+  // Update List
+  function updateList(element, items) {
+    element.innerHTML = '';
+    items.forEach(item => {
+      const li = document.createElement('li');
+      li.innerHTML = `<span>${item}</span>`;
+      element.appendChild(li);
+    });
+  }
+
+  // Load Task
+  function loadTask() {
+    const task = moves[currentMove].tasks[currentTask];
+    taskQuestion.textContent = task.question;
+    taskOptions.innerHTML = '';
+    taskFeedback.innerHTML = '';
+    nextBtn.style.display = 'none';
+    
+    // Create options
+    task.options.forEach((option, index) => {
+      const button = document.createElement('button');
+      button.className = 'option';
+      button.textContent = option;
+      button.onclick = () => checkAnswer(index, task.correct, task.feedback);
+      taskOptions.appendChild(button);
+    });
+    
+    // Check if already completed
+    if (completedTasks.has(`${currentMove}-${currentTask}`)) {
+      taskBadge.style.display = 'none';
+    }
+  }
+
+  // Check Answer
+  function checkAnswer(selected, correct, feedback) {
+    const options = document.querySelectorAll('.option');
+    const isCorrect = selected === correct;
+
+     // Disable all buttons
+    options.forEach(opt => {
+      opt.style.pointerEvents = 'none';
+      opt.classList.remove('correct', 'incorrect');
+    });
+    
+    // Mark correct/incorrect
+    options[selected].classList.add(isCorrect ? 'correct' : 'incorrect');
+    options[correct].classList.add('correct');
+    
+    // Update points
+    if (isCorrect && !completedTasks.has(`${currentMove}-${currentTask}`)) {
+      points += 100;
+      progress += 10;
+      badges++;
+      completedTasks.add(`${currentMove}-${currentTask}`);
+      showFeedback(feedback, true);
+      updateStatus();
+      triggerConfetti();
+      playSound('correct');
+      
+      // Check for move completion
+      if (progress >= 100) {
+        showAchievement();
+      }
+    } else if (!isCorrect) {
+      showFeedback(feedback, false);
+      playSound('incorrect');
+    }
+    
+    nextBtn.style.display = 'block';
+    taskBadge.style.display = 'none';
+  }
+
+  // Next Task
+  function nextTask() {
+    currentTask = (currentTask + 1) % moves[currentMove].tasks.length;
+    loadTask();
+  }
+
+   // Check Sandbox
+  function checkSandbox() {
+    const text = studentText.value.trim();
+    sandboxAttempts++;
+    
+    if (!text) {
+      showSandboxFeedback('Please write something first!', 'warning');
+      return;
+    }
+    
+    // Simple analysis (in a real app, this could use NLP)
+    const move = moves[currentMove];
+    let feedback = '';
+    let score = 0;
+    
+    // Check for key signals
+    const signalsFound = move.signals.filter(signal => 
+      text.toLowerCase().includes(signal.split(' ')[0].toLowerCase())
+    ).length;
+    
+    // Check length
+    const wordCount = text.split(' ').length;
+    
+    // Generate feedback
+    if (signalsFound > 0) {
+      score += 30;
+      feedback += '✅ Good use of academic signals<br>';
+    }
+    
+    if (wordCount > 10 && wordCount < 30) {
+      score += 30;
+      feedback += '✅ Appropriate sentence length<br>';
+    } else {
+      feedback += '⚠️ Aim for 10-30 words in academic sentences<br>';
+    }
+    
+    if (text.includes('(') && text.includes(')')) {
+      score += 20;
+      feedback += '✅ Includes citation (good practice!)<br>';
+    }
+    
+    if (text.endsWith('.')) {
+      score += 10;
+      feedback += '✅ Proper punctuation<br>';
+  }
+
+     // Add badges for improvement
+    if (score > 70 && sandboxAttempts === 1) {
+      badges++;
+      feedback += '<br>🏅 <strong>First Try Excellence Badge Earned!</strong>';
+      updateStatus();
+    }
+    
+    // Display feedback
+    showSandboxFeedback(
+      `<strong>Score: ${score}/100</strong><br>${feedback}`,
+      score > 60 ? 'success' : score > 40 ? 'warning' : 'error'
+    );
+    
+    // Update points
+    if (score > 50) {
+      points += 50;
+      updateStatus();
+    }
+  }
+
+  // Show Hint
+  function showHint() {
+    const move = moves[currentMove];
+    const randomSignal = move.signals[Math.floor(Math.random() * move.signals.length)];
+    showSandboxFeedback(
+      `💡 <strong>Hint:</strong> Try starting with phrases like "${randomSignal}"<br>
+      <small>Academic writing often uses established patterns to signal intentions.</small>`,
+      'info'
+    );
+  }
+
+  // Generate Example
+  function generateExample() {
+    const examples = [
+      "Recent scholarship in applied linguistics has increasingly focused on multimodal literacies in digital environments.",
+      "While considerable research exists on classroom assessment, fewer studies examine peer assessment in online courses.",
+      "This study therefore investigates the correlation between feedback timing and writing improvement among L2 learners."
+    ];
+    const randomExample = examples[Math.floor(Math.random() * examples.length)];
+    studentText.value = randomExample;
+    showSandboxFeedback("🎲 Here's a sample sentence for inspiration! Modify it to make it your own.", 'info');
+  }
+
+    // Show Feedback
+  function showFeedback(message, isCorrect) {
+    const icon = isCorrect ? '✅' : '❌';
+    const color = isCorrect ? 'var(--success)' : 'var(--accent)';
+    taskFeedback.innerHTML = `
+      <span class="feedback-icon" style="color: ${color}; font-size: 2rem;">${icon}</span>
+      <span>${message}</span>
+    `;
+    taskFeedback.style.background = isCorrect ? 'rgba(39, 174, 96, 0.1)' : 'rgba(231, 76, 60, 0.1)';
+    taskFeedback.style.borderLeft = `5px solid ${color}`;
+  }
+
+  function showSandboxFeedback(message, type) {
+    const colors = {
+      success: 'var(--success)',
+      warning: 'var(--warning)',
+      error: 'var(--accent)',
+      info: 'var(--secondary)'
+    };
+    
+    sandboxFeedback.innerHTML = message;
+    sandboxFeedback.style.borderLeft = `5px solid ${colors[type]}`;
+    sandboxFeedback.style.background = colors[type] + '15';
+    sandboxFeedback.style.display = 'block';
+  }
+
+  // Update Status
+  function updateStatus() {
+    pointsEl.textContent = `🏆 Points: ${points}`;
+    progressEl.textContent = progress;
+    progressFill.style.width = `${progress}%`;
+    badgesEl.textContent = `🎖️ Badges: ${badges}`;
+  }
+
+  // Show Achievement
+  function showAchievement() {
+    const achievement = document.createElement('div');
+    achievement.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      text-align: center;
+      z-index: 1000;
+      animation: fadeIn 0.5s ease;
+    `;
+    achievement.innerHTML = `
+      <h2 style="color: var(--success); margin-bottom: 1rem;">🎉 Achievement Unlocked! 🎉</h2>
+      <p style="font-size: 1.2rem; margin-bottom: 1rem;">Master Academic Writer</p>
+      <p>You've completed all CARS moves! Your research story is ready to be told.</p>
+      <button onclick="this.parentElement.remove(); triggerConfetti();" 
+              style="margin-top: 1rem; background: var(--success);">
+        Continue Learning
+      </button>
+    `;
+    document.body.appendChild(achievement);
+    triggerConfetti();
+  }
+
+   // Confetti Effect
+  let confettiCanvas, confettiCtx;
+  let confettiParticles = [];
+  
+  function createConfetti() {
+    confettiCanvas = document.createElement('canvas');
+    confettiCtx = confettiCanvas.getContext('2d');
+    confettiCanvas.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    `;
+    document.body.appendChild(confettiCanvas);
+    resizeConfetti();
+    window.addEventListener('resize', resizeConfetti);
+  }
+  
+  function resizeConfetti() {
+    confettiCanvas.width = window.innerWidth;
+    confettiCanvas.height = window.innerHeight;
+  }
+  
+  function triggerConfetti() {
+    for (let i = 0; i < 150; i++) {
+      confettiParticles.push({
+        x: Math.random() * confettiCanvas.width,
+        y: -20,
+        size: Math.random() * 10 + 5,
+        speed: Math.random() * 3 + 2,
+        color: `hsl(${Math.random() * 360}, 100%, 60%)`,
+        rotation: Math.random() * 360,
+        rotationSpeed: Math.random() * 10 - 5
+      });
+    }
+    animateConfetti();
+  }
+  
+  function animateConfetti() {
+    confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    
+    confettiParticles = confettiParticles.filter(p => {
+      p.y += p.speed;
+      p.x += Math.sin(p.y * 0.01) * 0.5;
+      p.rotation += p.rotationSpeed;
+      
+      confettiCtx.save();
+      confettiCtx.translate(p.x, p.y);
+      confettiCtx.rotate(p.rotation * Math.PI / 180);
+      confettiCtx.fillStyle = p.color;
+      confettiCtx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+      confettiCtx.restore();
+      
+      return p.y < confettiCanvas.height + 20;
+    });
+    
+    if (confettiParticles.length > 0) {
+      requestAnimationFrame(animateConfetti);
+    }
+  }
+
+    // Sound Effects
+  function playSound(type) {
+    // In a real implementation, you would use actual audio files
+    console.log(`Playing ${type} sound`);
+    // Example: new Audio('correct.mp3').play();
+  }
+
+  // Initialize on load
+  window.addEventListener('DOMContentLoaded', init);
+  
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.key === 'Enter') {
+      checkSandbox();
+    }
+    if (e.key === 'Escape') {
+      document.querySelector('[style*="position: fixed"]')?.remove();
+    }
+  });
+</script>
 </body>
 </html>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
