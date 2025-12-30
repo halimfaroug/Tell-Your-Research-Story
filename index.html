@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,7 @@
   <title>Tell Your Research Story | Complete Interactive Learning Platform</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Complete Interactive Platform */
+    /* Complete Interactive Platform - RICH VERSION */
     * {
       margin: 0;
       padding: 0;
@@ -23,13 +22,14 @@
       --text-color: #000000;
       --transition: all 0.3s ease;
       --shadow: 0 5px 20px rgba(0,0,0,0.1);
+      --shadow-hover: 0 10px 30px rgba(0,0,0,0.2);
     }
 
     body {
       font-family: 'Georgia', 'Palatino', serif;
       line-height: 1.8;
       color: var(--text-color);
-      background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+      background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.98)),
                   url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><text x="50" y="50" font-family="Georgia" font-size="10" text-anchor="middle" dominant-baseline="middle">✍️</text></svg>');
       min-height: 100vh;
     }
@@ -38,34 +38,42 @@
     .platform-header {
       background: linear-gradient(135deg, var(--primary), #34495e);
       color: white;
-      padding: 2rem;
+      padding: 2.5rem 2rem;
       text-align: center;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
 
     .platform-header::before {
       content: '📚';
       position: absolute;
-      font-size: 15rem;
+      font-size: 20rem;
       opacity: 0.05;
-      right: -3rem;
-      top: -3rem;
+      right: -5rem;
+      top: -5rem;
+      z-index: 0;
     }
 
     .platform-title {
-      font-size: 2.8rem;
+      font-size: 3rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
       color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 1;
     }
 
     .platform-subtitle {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       opacity: 0.9;
-      max-width: 800px;
-      margin: 0 auto 1rem;
+      max-width: 900px;
+      margin: 0 auto 1.5rem;
       color: white;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
     }
 
     /* Platform Navigation */
@@ -73,49 +81,59 @@
       display: flex;
       overflow-x: auto;
       background: white;
-      border-radius: 10px;
-      margin: 1rem auto;
-      max-width: 1200px;
+      border-radius: 15px;
+      margin: 1.5rem auto;
+      max-width: 1300px;
       box-shadow: var(--shadow);
-      padding: 0.5rem;
+      padding: 0.8rem;
       gap: 0.5rem;
+      border: 1px solid #e0e0e0;
+      position: relative;
+      z-index: 10;
     }
 
     .nav-item {
-      padding: 0.8rem 1.2rem;
+      padding: 1rem 1.5rem;
       background: none;
       border: none;
       cursor: pointer;
       font-weight: bold;
       color: #666;
       white-space: nowrap;
-      border-radius: 8px;
+      border-radius: 10px;
       transition: var(--transition);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.8rem;
+      font-size: 1.1rem;
+      border: 2px solid transparent;
     }
 
     .nav-item:hover {
       background: var(--light);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
     .nav-item.active {
       background: var(--secondary);
       color: white;
+      border-color: var(--secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
     }
 
     /* Main Content Grid */
     .main-grid {
       display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 2rem;
+      grid-template-columns: 320px 1fr;
+      gap: 2.5rem;
       max-width: 1400px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+      margin: 2.5rem auto;
+      padding: 0 2rem;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1100px) {
       .main-grid {
         grid-template-columns: 1fr;
       }
@@ -124,62 +142,114 @@
     /* Sidebar Modules */
     .modules-sidebar {
       background: white;
-      border-radius: 15px;
+      border-radius: 20px;
       box-shadow: var(--shadow);
-      padding: 1.5rem;
+      padding: 2rem;
       height: fit-content;
       position: sticky;
       top: 2rem;
+      border: 1px solid #e0e0e0;
+    }
+
+    .modules-sidebar h3 {
+      color: var(--primary);
+      margin-bottom: 1.8rem;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding-bottom: 1rem;
+      border-bottom: 3px solid var(--secondary);
     }
 
     .module-list {
       list-style: none;
+      margin-bottom: 2rem;
     }
 
     .module-item {
-      padding: 1rem;
-      margin-bottom: 0.5rem;
-      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 0.8rem;
+      border-radius: 12px;
       cursor: pointer;
       transition: var(--transition);
       border-left: 4px solid transparent;
+      font-size: 1.05rem;
+      background: #f8fafc;
+      border: 1px solid #e8eaed;
     }
 
     .module-item:hover {
-      background: var(--light);
-      transform: translateX(5px);
+      background: #e3f2fd;
+      transform: translateX(8px);
+      border-color: var(--secondary);
+      box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
     }
 
     .module-item.active {
-      background: rgba(52, 152, 219, 0.1);
+      background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), rgba(52, 152, 219, 0.05));
       border-left-color: var(--secondary);
       font-weight: bold;
+      color: var(--primary);
+      border-color: var(--secondary);
+    }
+
+    .module-item.completed {
+      border-left-color: var(--success);
+    }
+
+    .module-item.completed::after {
+      content: ' ✓';
+      color: var(--success);
+      font-weight: bold;
+      float: right;
     }
 
     /* Content Area */
     .content-area {
-      min-height: 600px;
+      min-height: 700px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 2.5rem;
+      border: 1px solid #e0e0e0;
     }
 
     .content-panel {
-      background: white;
-      border-radius: 15px;
-      box-shadow: var(--shadow);
-      padding: 2rem;
       display: none;
-      animation: fadeIn 0.5s ease;
+      animation: fadeIn 0.6s ease;
     }
 
     .content-panel.active {
       display: block;
     }
 
+    .panel-header {
+      color: var(--primary);
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      border-bottom: 3px solid var(--secondary);
+      padding-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     /* Flashcards */
+    .flashcard-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 2.5rem 0;
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
     .flashcard-container {
-      perspective: 1000px;
-      height: 300px;
-      margin: 2rem auto;
-      max-width: 500px;
+      perspective: 1200px;
+      height: 350px;
+      margin: 2.5rem auto;
+      max-width: 600px;
     }
 
     .flashcard {
@@ -187,7 +257,7 @@
       height: 100%;
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 0.8s;
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer;
     }
 
@@ -201,319 +271,611 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: 15px;
-      padding: 2rem;
+      border-radius: 20px;
+      padding: 2.5rem;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      box-shadow: var(--shadow);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     }
 
     .flashcard-front {
-      background: linear-gradient(135deg, var(--secondary), #2980b9);
-      color: white;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      color: var(--primary);
+      border: 3px solid var(--secondary);
+    }
+
+    .flashcard-front h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--secondary);
+    }
+
+    .flashcard-front p {
       font-size: 1.2rem;
-      font-weight: bold;
+      line-height: 1.6;
     }
 
     .flashcard-back {
-      background: white;
-      color: var(--text-color);
+      background: linear-gradient(135deg, var(--secondary), #2980b9);
+      color: white;
       transform: rotateY(180deg);
-      border: 2px solid var(--secondary);
+    }
+
+    .flashcard-back h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+
+    .flashcard-back p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      max-width: 90%;
     }
 
     .flashcard-controls {
       display: flex;
       justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
     }
 
     .flashcard-stack {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1rem;
-      margin: 2rem 0;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2.5rem 0;
     }
 
     .mini-card {
       background: white;
-      padding: 1.5rem;
-      border-radius: 10px;
+      padding: 2rem;
+      border-radius: 15px;
       box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mini-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: var(--secondary);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .mini-card .front h4 {
+      color: var(--secondary);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .mini-card .back h4 {
+      color: var(--success);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .category-badges {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+
+    .category-badge {
+      padding: 0.8rem 1.5rem;
+      background: var(--light);
+      border-radius: 25px;
+      font-weight: bold;
       cursor: pointer;
       transition: var(--transition);
       border: 2px solid transparent;
     }
 
-    .mini-card:hover {
-      transform: translateY(-5px);
+    .category-badge:hover {
+      background: var(--secondary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .category-badge.active {
+      background: var(--secondary);
+      color: white;
       border-color: var(--secondary);
     }
 
-    .mini-card.flipped {
-      background: var(--light);
-      border-color: var(--success);
+    /* Mind Maps */
+    .mindmap-section {
+      background: #f8fafc;
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin: 2.5rem 0;
+      border: 2px dashed #c5d9ed;
     }
 
-    /* Mind Maps */
     .mindmap-container {
-      height: 500px;
-      background: #f8f9fa;
-      border-radius: 10px;
+      height: 550px;
+      background: white;
+      border-radius: 15px;
       position: relative;
-      overflow: hidden;
+      overflow: auto;
       margin: 2rem 0;
+      border: 2px solid #e0e0e0;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
 
     .mindmap-node {
       position: absolute;
       background: white;
-      padding: 1rem 1.5rem;
-      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      border-radius: 15px;
       box-shadow: var(--shadow);
       cursor: pointer;
       transition: var(--transition);
-      border: 2px solid transparent;
-      min-width: 150px;
+      border: 3px solid transparent;
+      min-width: 180px;
       text-align: center;
+      font-weight: 500;
+      z-index: 2;
     }
 
     .mindmap-node:hover {
-      transform: scale(1.05);
+      transform: scale(1.1);
       z-index: 10;
+      box-shadow: var(--shadow-hover);
     }
 
     .mindmap-node.central {
       background: linear-gradient(135deg, var(--secondary), #2980b9);
       color: white;
       font-weight: bold;
-      font-size: 1.1rem;
+      font-size: 1.3rem;
+      border: 3px solid white;
+      box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
     }
 
     .mindmap-node.branch {
       background: white;
-      color: var(--text-color);
+      color: var(--primary);
+      border: 3px solid var(--secondary);
     }
 
-    .mindmap-connection {
-      position: absolute;
-      background: #ddd;
-      height: 2px;
-      transform-origin: 0 0;
+    .mindmap-node.leaf {
+      background: #f8f9fa;
+      color: var(--text-color);
+      border: 2px solid #ddd;
+      font-size: 0.95rem;
+    }
+
+    .mindmap-controls {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
     }
 
     /* Quizzes */
+    .quiz-section {
+      background: linear-gradient(135deg, rgba(39, 174, 96, 0.1), rgba(52, 152, 219, 0.1));
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin: 2.5rem 0;
+    }
+
     .quiz-container {
       background: white;
-      border-radius: 15px;
-      padding: 2rem;
+      border-radius: 20px;
+      padding: 2.5rem;
       box-shadow: var(--shadow);
       margin: 2rem 0;
+      border: 2px solid #e0e0e0;
     }
 
     .quiz-progress {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid var(--light);
+      align-items: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 3px solid var(--light);
+    }
+
+    .progress-bar-container {
+      flex-grow: 1;
+      margin: 0 2rem;
+    }
+
+    .progress-bar {
+      height: 12px;
+      background: #e0e0e0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--secondary), var(--success));
+      width: 0%;
+      transition: width 0.5s ease;
     }
 
     .quiz-question {
-      font-size: 1.3rem;
-      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
       color: var(--primary);
+      line-height: 1.6;
+      padding: 1.5rem;
+      background: #f8f9fa;
+      border-radius: 12px;
+      border-left: 5px solid var(--secondary);
     }
 
     .quiz-options {
       display: grid;
-      gap: 1rem;
-      margin-bottom: 2rem;
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
     }
 
     .quiz-option {
-      padding: 1rem 1.5rem;
-      background: var(--light);
-      border: 2px solid #ddd;
-      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      background: white;
+      border: 3px solid #e0e0e0;
+      border-radius: 12px;
       cursor: pointer;
       transition: var(--transition);
       text-align: left;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
     .quiz-option:hover {
       border-color: var(--secondary);
-      background: rgba(52, 152, 219, 0.1);
+      background: rgba(52, 152, 219, 0.05);
+      transform: translateX(10px);
     }
 
     .quiz-option.selected {
       border-color: var(--secondary);
-      background: rgba(52, 152, 219, 0.2);
+      background: rgba(52, 152, 219, 0.1);
       font-weight: bold;
+      transform: translateX(10px);
     }
 
     .quiz-option.correct {
       border-color: var(--success);
-      background: rgba(39, 174, 96, 0.2);
+      background: rgba(39, 174, 96, 0.1);
     }
 
     .quiz-option.incorrect {
       border-color: var(--accent);
-      background: rgba(231, 76, 60, 0.2);
+      background: rgba(231, 76, 60, 0.1);
+    }
+
+    .quiz-option-number {
+      background: var(--light);
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
     }
 
     .quiz-feedback {
-      padding: 1.5rem;
-      border-radius: 10px;
-      margin-top: 1rem;
+      padding: 2rem;
+      border-radius: 15px;
+      margin-top: 2rem;
       display: none;
+      animation: slideIn 0.5s ease;
     }
 
     .quiz-feedback.correct {
       background: rgba(39, 174, 96, 0.1);
-      border-left: 4px solid var(--success);
+      border-left: 6px solid var(--success);
       display: block;
     }
 
     .quiz-feedback.incorrect {
       background: rgba(231, 76, 60, 0.1);
-      border-left: 4px solid var(--accent);
+      border-left: 6px solid var(--accent);
       display: block;
     }
 
+    .quiz-controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2.5rem;
+    }
+
     /* Interactive Exercises */
+    .exercise-section {
+      background: linear-gradient(135deg, rgba(243, 156, 18, 0.1), rgba(231, 76, 60, 0.1));
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin: 2.5rem 0;
+    }
+
     .exercise-container {
       background: white;
-      border-radius: 15px;
-      padding: 2rem;
+      border-radius: 20px;
+      padding: 2.5rem;
       box-shadow: var(--shadow);
-      margin: 2rem 0;
+      margin: 2.5rem 0;
+      border: 2px solid #e0e0e0;
     }
 
     .drag-drop-area {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin: 2rem 0;
+      gap: 2.5rem;
+      margin: 2.5rem 0;
+    }
+
+    @media (max-width: 900px) {
+      .drag-drop-area {
+        grid-template-columns: 1fr;
+      }
     }
 
     .drag-source, .drag-target {
-      min-height: 300px;
-      border: 2px dashed #ddd;
-      border-radius: 10px;
-      padding: 1.5rem;
-      background: #f8f9fa;
+      min-height: 350px;
+      border: 3px dashed #c5d9ed;
+      border-radius: 15px;
+      padding: 2rem;
+      background: #f8fafc;
+      transition: var(--transition);
+    }
+
+    .drag-source:hover, .drag-target:hover {
+      border-color: var(--secondary);
+      background: #f0f7ff;
     }
 
     .drag-item {
       background: white;
-      padding: 1rem;
-      margin: 0.5rem 0;
-      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      margin: 0.8rem 0;
+      border-radius: 10px;
       cursor: move;
       box-shadow: var(--shadow);
       transition: var(--transition);
+      border: 2px solid transparent;
+      font-size: 1.05rem;
     }
 
     .drag-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      transform: translateY(-3px);
+      border-color: var(--secondary);
+      box-shadow: var(--shadow-hover);
     }
 
     .drag-item.correct {
-      background: rgba(39, 174, 96, 0.2);
+      background: rgba(39, 174, 96, 0.15);
       border: 2px solid var(--success);
     }
 
     .drag-item.incorrect {
-      background: rgba(231, 76, 60, 0.2);
+      background: rgba(231, 76, 60, 0.15);
       border: 2px solid var(--accent);
     }
 
+    .drop-zone {
+      min-height: 100px;
+      border: 3px dashed #ddd;
+      border-radius: 10px;
+      margin: 1rem 0;
+      padding: 1rem;
+      background: white;
+      transition: var(--transition);
+    }
+
+    .drop-zone.hover {
+      border-color: var(--secondary);
+      background: rgba(52, 152, 219, 0.05);
+    }
+
     /* Progress Tracking */
+    .progress-section {
+      background: linear-gradient(135deg, rgba(155, 89, 182, 0.1), rgba(52, 152, 219, 0.1));
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin: 2.5rem 0;
+    }
+
     .progress-dashboard {
       background: white;
-      border-radius: 15px;
-      padding: 2rem;
+      border-radius: 20px;
+      padding: 2.5rem;
       box-shadow: var(--shadow);
       margin: 2rem 0;
+      border: 2px solid #e0e0e0;
     }
 
     .progress-stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin: 2rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin: 2.5rem 0;
     }
 
     .stat-box {
-      background: var(--light);
-      padding: 1.5rem;
-      border-radius: 10px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 2rem;
+      border-radius: 15px;
       text-align: center;
       transition: var(--transition);
+      color: white;
     }
 
     .stat-box:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: var(--shadow-hover);
     }
 
     .stat-value {
-      font-size: 2.5rem;
+      font-size: 3rem;
       font-weight: bold;
-      color: var(--secondary);
       display: block;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
 
     .stat-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .module-progress {
+      margin: 2.5rem 0;
+    }
+
+    .module-progress-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .module-progress-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    .module-progress-bar {
+      height: 12px;
+      background: #e0e0e0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .module-progress-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.8s ease;
+    }
+
+    .badges-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    .badge-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 3px solid transparent;
+      cursor: pointer;
+    }
+
+    .badge-card:hover {
+      transform: translateY(-8px) scale(1.05);
+      border-color: var(--secondary);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .badge-card.earned {
+      border-color: gold;
+    }
+
+    .badge-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge-title {
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .badge-desc {
       font-size: 0.9rem;
       color: #666;
     }
 
     /* Buttons */
     button {
-      padding: 0.8rem 1.5rem;
+      padding: 1rem 2rem;
       background: var(--secondary);
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
       font-weight: bold;
       transition: var(--transition);
       font-family: inherit;
+      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
     }
 
     button:hover {
       background: #2980b9;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     }
 
     button:active {
-      transform: translateY(0);
+      transform: translateY(-1px);
     }
 
     button.secondary {
       background: var(--light);
       color: var(--text-color);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    button.secondary:hover {
+      background: #d5dbdd;
     }
 
     button.success {
       background: var(--success);
+      box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
     }
 
     button.warning {
       background: var(--warning);
+      box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
+    }
+
+    button.danger {
+      background: var(--accent);
+      box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+    }
+
+    button.large {
+      padding: 1.2rem 2.5rem;
+      font-size: 1.2rem;
     }
 
     /* Animations */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
     @keyframes pulse {
@@ -521,10 +883,20 @@
       50% { transform: scale(1.05); }
     }
 
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      75% { transform: translateX(5px); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
     }
 
     /* Utility Classes */
@@ -536,13 +908,53 @@
       text-align: center;
     }
 
-    .mt-2 { margin-top: 2rem; }
-    .mb-2 { margin-bottom: 2rem; }
+    .mt-3 { margin-top: 3rem; }
+    .mb-3 { margin-bottom: 3rem; }
+    .p-3 { padding: 3rem; }
+
+    .highlight {
+      background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    /* Tooltips */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 200px;
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 10px;
+      position: absolute;
+      z-index: 1000;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
 
     /* Responsive */
     @media (max-width: 768px) {
       .platform-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
+      }
+      
+      .platform-subtitle {
+        font-size: 1.1rem;
       }
       
       .platform-nav {
@@ -551,15 +963,43 @@
       
       .nav-item {
         flex: 1;
-        min-width: 120px;
+        min-width: 140px;
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
       }
       
-      .drag-drop-area {
-        grid-template-columns: 1fr;
+      .main-grid {
+        padding: 0 1rem;
       }
       
-      .flashcard-stack {
-        grid-template-columns: 1fr;
+      .content-area {
+        padding: 1.5rem;
+      }
+      
+      .flashcard-container {
+        height: 300px;
+      }
+      
+      .stat-box {
+        padding: 1.5rem;
+      }
+      
+      .stat-value {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .platform-nav,
+      .modules-sidebar,
+      button {
+        display: none !important;
+      }
+      
+      .content-area {
+        box-shadow: none;
+        border: none;
       }
     }
   </style>
@@ -571,20 +1011,27 @@
   <h1 class="platform-title">📚 Tell Your Research Story</h1>
   <p class="platform-subtitle">Complete Interactive Learning Platform with Flashcards, Mindmaps, Quizzes & Exercises</p>
   
-  <div class="progress-dashboard" style="max-width: 800px; margin: 1rem auto; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+  <div class="progress-dashboard" style="max-width: 900px; margin: 1.5rem auto; background: rgba(255,255,255,0.15); backdrop-filter: blur(15px); border-radius: 15px; padding: 1.5rem;">
     <div style="display: flex; justify-content: space-between; align-items: center; color: white;">
       <div>
-        <div style="font-size: 0.9rem; opacity: 0.8;">Progress</div>
-        <div style="font-size: 1.5rem; font-weight: bold;">65%</div>
+        <div style="font-size: 1rem; opacity: 0.9;">Overall Progress</div>
+        <div style="font-size: 2rem; font-weight: bold;">65%</div>
       </div>
       <div>
-        <div style="font-size: 0.9rem; opacity: 0.8;">Points</div>
-        <div style="font-size: 1.5rem; font-weight: bold;">1,250</div>
+        <div style="font-size: 1rem; opacity: 0.9;">Points Earned</div>
+        <div style="font-size: 2rem; font-weight: bold;">1,250</div>
       </div>
       <div>
-        <div style="font-size: 0.9rem; opacity: 0.8;">Badges</div>
-        <div style="font-size: 1.5rem; font-weight: bold;">8</div>
+        <div style="font-size: 1rem; opacity: 0.9;">Modules Completed</div>
+        <div style="font-size: 2rem; font-weight: bold;">6/10</div>
       </div>
+      <div>
+        <div style="font-size: 1rem; opacity: 0.9;">Badges Earned</div>
+        <div style="font-size: 2rem; font-weight: bold;">8</div>
+      </div>
+    </div>
+    <div style="margin-top: 1rem; height: 8px; background: rgba(255,255,255,0.3); border-radius: 4px; overflow: hidden;">
+      <div style="width: 65%; height: 100%; background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 100%);"></div>
     </div>
   </div>
 </div>
@@ -595,13 +1042,13 @@
     📖 Learning Modules
   </button>
   <button class="nav-item" onclick="showPanel('flashcards')">
-    🃏 Flashcards
+    🃏 Flashcards (42)
   </button>
   <button class="nav-item" onclick="showPanel('mindmaps')">
     🗺️ Mind Maps
   </button>
   <button class="nav-item" onclick="showPanel('quizzes')">
-    📝 Quizzes
+    📝 Quizzes (85%)
   </button>
   <button class="nav-item" onclick="showPanel('exercises')">
     💪 Interactive Exercises
@@ -616,40 +1063,46 @@
   
   <!-- Sidebar Modules -->
   <div class="modules-sidebar">
-    <h3 style="color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-      📚 Learning Modules
-    </h3>
+    <h3>📚 Learning Modules</h3>
     
     <ul class="module-list">
-      <li class="module-item active" onclick="loadModule(1)">1. CARS Model Fundamentals</li>
-      <li class="module-item" onclick="loadModule(2)">2. Academic Voice & Stance</li>
-      <li class="module-item" onclick="loadModule(3)">3. Research as Narrative</li>
-      <li class="module-item" onclick="loadModule(4)">4. Genre Expectations</li>
-      <li class="module-item" onclick="loadModule(5)">5. Literature Review Strategies</li>
-      <li class="module-item" onclick="loadModule(6)">6. Method Section Writing</li>
-      <li class="module-item" onclick="loadModule(7)">7. Results & Discussion</li>
-      <li class="module-item" onclick="loadModule(8)">8. Conclusion Crafting</li>
-      <li class="module-item" onclick="loadModule(9)">9. Abstract Writing</li>
-      <li class="module-item" onclick="loadModule(10)">10. Revision Strategies</li>
+      <li class="module-item active completed" onclick="loadModule(1)">Module 1: CARS Model Fundamentals</li>
+      <li class="module-item completed" onclick="loadModule(2)">Module 2: Academic Voice & Stance</li>
+      <li class="module-item completed" onclick="loadModule(3)">Module 3: Research as Narrative</li>
+      <li class="module-item completed" onclick="loadModule(4)">Module 4: Genre Expectations</li>
+      <li class="module-item completed" onclick="loadModule(5)">Module 5: Literature Review Strategies</li>
+      <li class="module-item" onclick="loadModule(6)">Module 6: Method Section Writing</li>
+      <li class="module-item" onclick="loadModule(7)">Module 7: Results & Discussion</li>
+      <li class="module-item" onclick="loadModule(8)">Module 8: Conclusion Crafting</li>
+      <li class="module-item" onclick="loadModule(9)">Module 9: Abstract Writing</li>
+      <li class="module-item" onclick="loadModule(10)">Module 10: Revision Strategies</li>
     </ul>
     
     <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid var(--light);">
-      <h4 style="color: var(--primary); margin-bottom: 1rem;">Quick Stats</h4>
-      <div style="display: grid; gap: 0.5rem;">
-        <div style="display: flex; justify-content: space-between;">
-          <span>Modules Completed:</span>
-          <strong>6/10</strong>
+      <h4 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.2rem;">🎯 Quick Stats</h4>
+      <div style="display: grid; gap: 0.8rem; background: #f8fafc; padding: 1.5rem; border-radius: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="color: #666;">Modules Completed:</span>
+          <strong style="color: var(--success); font-size: 1.3rem;">6/10</strong>
         </div>
-        <div style="display: flex; justify-content: space-between;">
-          <span>Flashcards Mastered:</span>
-          <strong>42/60</strong>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="color: #666;">Flashcards Mastered:</span>
+          <strong style="color: var(--secondary); font-size: 1.3rem;">42/60</strong>
         </div>
-        <div style="display: flex; justify-content: space-between;">
-          <span>Quiz Score Average:</span>
-          <strong>85%</strong>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="color: #666;">Quiz Score Average:</span>
+          <strong style="color: var(--warning); font-size: 1.3rem;">85%</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="color: #666;">Exercises Completed:</span>
+          <strong style="color: var(--accent); font-size: 1.3rem;">12/18</strong>
         </div>
       </div>
     </div>
+    
+    <button onclick="showAllModules()" class="secondary" style="width: 100%; margin-top: 1.5rem; justify-content: center;">
+      📋 View All Modules
+    </button>
   </div>
 
   <!-- Content Area -->
@@ -657,174 +1110,346 @@
     
     <!-- Learning Modules Panel -->
     <div class="content-panel active" id="learning-panel">
-      <h2 style="color: var(--primary); margin-bottom: 1.5rem;">CARS Model Fundamentals</h2>
+      <h2 class="panel-header">📖 CARS Model Fundamentals</h2>
       
-      <div style="background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(39, 174, 96, 0.1)); padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
-        <h3 style="color: var(--primary); margin-bottom: 1rem;">🎯 Learning Objectives</h3>
-        <ul style="margin-left: 1.5rem;">
-          <li>Understand the three moves of the CARS model</li>
-          <li>Identify linguistic signals for each move</li>
-          <li>Apply CARS to your own research writing</li>
-          <li>Avoid common errors in research introductions</li>
+      <div style="background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), rgba(39, 174, 96, 0.15)); padding: 2.5rem; border-radius: 20px; margin-bottom: 2.5rem; border: 2px solid rgba(52, 152, 219, 0.3);">
+        <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.6rem; display: flex; align-items: center; gap: 1rem;">
+          🎯 Learning Objectives
+        </h3>
+        <ul style="margin-left: 1.5rem; font-size: 1.15rem; line-height: 1.8;">
+          <li>Understand the three moves of the CARS model and their purposes</li>
+          <li>Identify linguistic signals and strategies for each move</li>
+          <li>Apply CARS model principles to your own research writing</li>
+          <li>Recognize and avoid common errors in research introductions</li>
+          <li>Analyze and improve existing research article introductions</li>
         </ul>
       </div>
       
+      <!-- CARS Model Overview -->
       <div class="flashcard-stack">
         <div class="mini-card" onclick="flipMiniCard(this)">
           <div class="front">
-            <h4>Move 1: Territory</h4>
-            <p>Click to reveal strategies</p>
+            <h4>Move 1: Establishing Territory</h4>
+            <p>Claiming centrality and making topic generalizations about the research area.</p>
+            <div style="margin-top: 1rem; color: #666; font-size: 0.9rem;">Click to reveal strategies →</div>
           </div>
           <div class="back" style="display: none;">
-            <h4>Territory Strategies</h4>
-            <p>• Claim centrality</p>
-            <p>• Make topic generalizations</p>
-            <p>• Review previous research</p>
+            <h4>📌 Territory Strategies</h4>
+            <ul style="margin-left: 1rem; margin-top: 0.8rem;">
+              <li><strong>Claiming centrality:</strong> Show topic importance (e.g., "Recent years have witnessed growing interest in...")</li>
+              <li><strong>Making topic generalizations:</strong> State established knowledge (e.g., "It is generally accepted that...")</li>
+              <li><strong>Reviewing previous research:</strong> Cite key studies (e.g., "Smith (2020) and Jones (2021) have shown...")</li>
+            </ul>
           </div>
         </div>
         
         <div class="mini-card" onclick="flipMiniCard(this)">
           <div class="front">
-            <h4>Move 2: Niche</h4>
-            <p>Click to reveal strategies</p>
+            <h4>Move 2: Establishing a Niche</h4>
+            <p>Indicating a gap, raising questions, or challenging existing knowledge.</p>
+            <div style="margin-top: 1rem; color: #666; font-size: 0.9rem;">Click to reveal strategies →</div>
           </div>
           <div class="back" style="display: none;">
-            <h4>Niche Strategies</h4>
-            <p>• Counter-claiming</p>
-            <p>• Indicating a gap</p>
-            <p>• Question-raising</p>
+            <h4>🎯 Niche Strategies</h4>
+            <ul style="margin-left: 1rem; margin-top: 0.8rem;">
+              <li><strong>Counter-claiming:</strong> Challenge existing views (e.g., "However, recent evidence suggests...")</li>
+              <li><strong>Indicating a gap:</strong> Show what's missing (e.g., "Despite extensive research, little attention has been paid to...")</li>
+              <li><strong>Question-raising:</strong> Pose unanswered questions (e.g., "A key question that remains is...")</li>
+            </ul>
           </div>
         </div>
         
         <div class="mini-card" onclick="flipMiniCard(this)">
           <div class="front">
-            <h4>Move 3: Occupation</h4>
-            <p>Click to reveal strategies</p>
+            <h4>Move 3: Occupying the Niche</h4>
+            <p>Outlining purposes, announcing research, and indicating structure.</p>
+            <div style="margin-top: 1rem; color: #666; font-size: 0.9rem;">Click to reveal strategies →</div>
           </div>
           <div class="back" style="display: none;">
-            <h4>Occupation Strategies</h4>
-            <p>• Outlining purposes</p>
-            <p>• Announcing present research</p>
-            <p>• Indicating structure</p>
+            <h4>💡 Occupation Strategies</h4>
+            <ul style="margin-left: 1rem; margin-top: 0.8rem;">
+              <li><strong>Outlining purposes:</strong> State study aims (e.g., "The purpose of this study is to...")</li>
+              <li><strong>Announcing present research:</strong> Introduce your study (e.g., "This paper reports on...")</li>
+              <li><strong>Indicating structure:</strong> Preview paper organization (e.g., "The paper is organized as follows...")</li>
+            </ul>
           </div>
         </div>
       </div>
       
-      <div style="margin-top: 2rem;">
-        <h3 style="color: var(--primary); margin-bottom: 1rem;">📝 Interactive Example</h3>
-        <div style="background: white; padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--secondary);">
-          <p><strong>Original:</strong> "This paper is about online learning."</p>
-          <p><strong>CARS Improved:</strong> "Recent years have witnessed growing scholarly interest in online learning environments (Territory). However, few studies have examined their long-term effectiveness for skill retention (Niche). This study therefore investigates the impact of online micro-learning modules on six-month knowledge retention (Occupation)."</p>
+      <!-- Detailed Explanation -->
+      <div style="margin-top: 3rem;">
+        <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.6rem; display: flex; align-items: center; gap: 1rem;">
+          📝 Interactive Example
+        </h3>
+        <div style="background: white; padding: 2.5rem; border-radius: 20px; border: 2px solid #e0e0e0; box-shadow: var(--shadow);">
+          <div style="margin-bottom: 2rem;">
+            <h4 style="color: var(--accent); margin-bottom: 1rem;">❌ Weak Introduction (Without CARS):</h4>
+            <div style="background: #fff5f5; padding: 1.5rem; border-radius: 12px; border-left: 5px solid var(--accent); font-style: italic;">
+              "This paper is about online learning. Online learning is important. I studied online learning in universities."
+            </div>
+            <div style="margin-top: 1rem; color: #666; font-size: 0.95rem;">
+              <strong>Problems:</strong> No territory establishment, vague statements, no niche identification, weak occupation.
+            </div>
+          </div>
+          
+          <div>
+            <h4 style="color: var(--success); margin-bottom: 1rem;">✅ Strong Introduction (Using CARS):</h4>
+            <div style="background: #f0fff4; padding: 1.5rem; border-radius: 12px; border-left: 5px solid var(--success);">
+              <p style="margin-bottom: 1rem;"><span class="highlight" style="background: rgba(52, 152, 219, 0.2);">[Territory]</span> Recent years have witnessed growing scholarly interest in online learning environments, with numerous studies documenting their potential to enhance educational access and flexibility (Smith, 2020; Johnson, 2021).</p>
+              
+              <p style="margin-bottom: 1rem;"><span class="highlight" style="background: rgba(231, 76, 60, 0.2);">[Niche]</span> However, despite this increased attention, relatively little research has examined the long-term retention effects of asynchronous micro-learning modules, particularly in higher education contexts.</p>
+              
+              <p><span class="highlight" style="background: rgba(39, 174, 96, 0.2);">[Occupation]</span> This study therefore aims to investigate the relationship between micro-learning frequency and six-month knowledge retention among university students, using a mixed-methods approach combining quantitative assessment with qualitative interviews.</p>
+            </div>
+            <div style="margin-top: 1rem; color: #666; font-size: 0.95rem;">
+              <strong>Strengths:</strong> Clear territory establishment, specific niche identification, detailed occupation with methodology.
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Practice Exercise -->
+      <div style="margin-top: 3rem;">
+        <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.6rem; display: flex; align-items: center; gap: 1rem;">
+          ✍️ Quick Practice
+        </h3>
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 15px; border: 2px dashed #c5d9ed;">
+          <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Identify which CARS move this sentence represents:</p>
+          
+          <div style="background: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; border: 2px solid #e0e0e0;">
+            <p style="font-style: italic; font-size: 1.15rem;">"While previous studies have extensively examined classroom motivation, few have investigated how these principles apply in fully virtual learning environments."</p>
+          </div>
+          
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <button onclick="checkPracticeAnswer('territory', this)" class="secondary">Move 1: Territory</button>
+            <button onclick="checkPracticeAnswer('niche', this)" class="secondary">Move 2: Niche</button>
+            <button onclick="checkPracticeAnswer('occupation', this)" class="secondary">Move 3: Occupation</button>
+          </div>
+          
+          <div id="practice-feedback" style="margin-top: 1.5rem; padding: 1.5rem; border-radius: 10px; display: none;"></div>
         </div>
       </div>
     </div>
     
     <!-- Flashcards Panel -->
     <div class="content-panel" id="flashcards-panel">
-      <h2 style="color: var(--primary); margin-bottom: 1.5rem;">🃏 CARS Model Flashcards</h2>
+      <h2 class="panel-header">🃏 CARS Model Flashcards</h2>
       
-      <div class="flashcard-container">
-        <div class="flashcard" id="main-flashcard" onclick="flipCard()">
-          <div class="flashcard-front">
-            <h3 id="flashcard-question">What is the purpose of Move 1 (Territory) in the CARS model?</h3>
+      <div class="flashcard-section">
+        <div class="flashcard-container">
+          <div class="flashcard" id="main-flashcard" onclick="flipCard()">
+            <div class="flashcard-front">
+              <h3 id="flashcard-question">What is the primary purpose of Move 1 (Establishing Territory) in the CARS model?</h3>
+              <p style="margin-top: 1.5rem; color: #666; font-size: 1rem;">Click the card or use the Flip button to see the answer</p>
+            </div>
+            <div class="flashcard-back">
+              <h3>Answer:</h3>
+              <p id="flashcard-answer">The primary purpose of Move 1 is to establish the importance and centrality of the research topic, showing readers why it matters and situating it within existing scholarship. This involves claiming centrality, making topic generalizations, and reviewing previous research to create a context for the study.</p>
+            </div>
           </div>
-          <div class="flashcard-back">
-            <p id="flashcard-answer">To establish the importance and centrality of the research topic, showing readers why it matters and situating it within existing scholarship.</p>
-          </div>
+        </div>
+        
+        <div class="flashcard-controls">
+          <button onclick="previousCard()" class="secondary">
+            ← Previous Card
+          </button>
+          <button onclick="flipCard()">
+            🔄 Flip Card
+          </button>
+          <button onclick="nextCard()" class="secondary">
+            Next Card →
+          </button>
+          <button onclick="markCardAsMastered()" class="success">
+            ✅ Mark as Mastered
+          </button>
+        </div>
+        
+        <div style="text-align: center; margin-top: 1.5rem; color: white;">
+          <p>Card <span id="current-card-number">1</span> of <span id="total-cards">8</span> | Mastered: <span id="mastered-cards">3</span>/8</p>
         </div>
       </div>
       
-      <div class="flashcard-controls">
-        <button onclick="previousCard()">← Previous</button>
-        <button onclick="flipCard()">🔄 Flip Card</button>
-        <button onclick="nextCard()">Next →</button>
-      </div>
-      
-      <div style="margin-top: 2rem;">
-        <h3 style="color: var(--primary); margin-bottom: 1rem;">Flashcard Categories</h3>
-        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
-          <button class="secondary" onclick="filterCards('all')">All Cards</button>
-          <button class="secondary" onclick="filterCards('cars')">CARS Model</button>
-          <button class="secondary" onclick="filterCards('voice')">Academic Voice</button>
-          <button class="secondary" onclick="filterCards('genre')">Genre Conventions</button>
-          <button class="secondary" onclick="filterCards('vocabulary')">Academic Vocabulary</button>
+      <div style="margin-top: 2.5rem;">
+        <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">📚 Flashcard Categories</h3>
+        <div class="category-badges">
+          <div class="category-badge active" onclick="filterCards('all')">All Cards (8)</div>
+          <div class="category-badge" onclick="filterCards('cars')">CARS Model (4)</div>
+          <div class="category-badge" onclick="filterCards('voice')">Academic Voice (2)</div>
+          <div class="category-badge" onclick="filterCards('genre')">Genre Conventions (1)</div>
+          <div class="category-badge" onclick="filterCards('vocabulary')">Academic Vocabulary (1)</div>
         </div>
       </div>
       
+      <h3 style="color: var(--primary); margin: 2.5rem 0 1.5rem 0; font-size: 1.5rem;">🃏 Flashcard Deck</h3>
       <div class="flashcard-stack" id="flashcard-deck">
         <!-- Mini flashcards will be generated by JavaScript -->
+      </div>
+      
+      <div style="margin-top: 2.5rem; text-align: center;">
+        <button onclick="shuffleCards()" class="secondary">
+          🔀 Shuffle Deck
+        </button>
+        <button onclick="resetCardProgress()" class="warning">
+          🔄 Reset Progress
+        </button>
+        <button onclick="exportFlashcards()">
+          📥 Export Flashcards
+        </button>
       </div>
     </div>
     
     <!-- Mind Maps Panel -->
     <div class="content-panel" id="mindmaps-panel">
-      <h2 style="color: var(--primary); margin-bottom: 1.5rem;">🗺️ CARS Model Mind Map</h2>
+      <h2 class="panel-header">🗺️ CARS Model Mind Map</h2>
       
-      <div class="mindmap-container" id="mindmap-container">
-        <!-- Mind map nodes will be created by JavaScript -->
+      <div class="mindmap-section">
+        <div class="mindmap-container" id="mindmap-container">
+          <!-- Mind map nodes will be created by JavaScript -->
+        </div>
+        
+        <div class="mindmap-controls">
+          <button onclick="resetMindMap()">
+            🔄 Reset Layout
+          </button>
+          <button onclick="zoomInMindMap()" class="secondary">
+            🔍 Zoom In
+          </button>
+          <button onclick="zoomOutMindMap()" class="secondary">
+            🔎 Zoom Out
+          </button>
+          <button onclick="exportMindMap()">
+            📤 Export as Image
+          </button>
+          <button onclick="printMindMap()" class="secondary">
+            🖨️ Print Mind Map
+          </button>
+        </div>
       </div>
       
-      <div style="margin-top: 2rem;">
-        <h3 style="color: var(--primary); margin-bottom: 1rem;">🎯 Mind Map Instructions</h3>
-        <p>Click on any node to see more details. Drag nodes to rearrange. The central node represents the CARS model, with branches for each move and sub-branches for strategies and examples.</p>
-        
-        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-          <button onclick="resetMindMap()">Reset Layout</button>
-          <button onclick="exportMindMap()">Export as Image</button>
-          <button onclick="printMindMap()">Print Mind Map</button>
+      <div style="margin-top: 2.5rem;">
+        <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">🎯 Mind Map Instructions</h3>
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 15px; border: 2px solid #e0e0e0;">
+          <p style="margin-bottom: 1rem; font-size: 1.1rem;">This interactive mind map visualizes the complete CARS model structure. Here's how to use it:</p>
+          <ul style="margin-left: 1.5rem; line-height: 1.8;">
+            <li><strong>Click on any node</strong> to see detailed information about that concept</li>
+            <li><strong>Drag nodes</strong> to rearrange the layout to your preference</li>
+            <li><strong>Central node (blue)</strong> represents the overall CARS model</li>
+            <li><strong>Branch nodes (white)</strong> show the three main moves</li>
+            <li><strong>Leaf nodes (light grey)</strong> display strategies and examples</li>
+          </ul>
+          <p style="margin-top: 1.5rem; font-style: italic; color: #666;">Tip: Try dragging the "Establishing Territory" node to see how connections adjust dynamically.</p>
+        </div>
+      </div>
+      
+      <div style="margin-top: 2.5rem;">
+        <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">📖 Detailed Explanations</h3>
+        <div id="mindmap-details" style="background: white; padding: 2rem; border-radius: 15px; border: 2px solid var(--secondary); box-shadow: var(--shadow);">
+          <p style="text-align: center; color: #666; font-style: italic;">Click on any mind map node to see detailed explanations here...</p>
         </div>
       </div>
     </div>
     
     <!-- Quizzes Panel -->
     <div class="content-panel" id="quizzes-panel">
-      <h2 style="color: var(--primary); margin-bottom: 1.5rem;">📝 CARS Model Quiz</h2>
+      <h2 class="panel-header">📝 CARS Model Quiz</h2>
       
-      <div class="quiz-container" id="quiz-container">
-        <div class="quiz-progress">
-          <span>Question <span id="current-question">1</span> of <span id="total-questions">5</span></span>
-          <span>Score: <span id="quiz-score">0</span>/<span id="quiz-total">0</span></span>
-        </div>
-        
-        <div class="quiz-question" id="quiz-question">
-          Which of the following is NOT a strategy for Move 1 (Establishing Territory)?
-        </div>
-        
-        <div class="quiz-options" id="quiz-options">
-          <!-- Options will be generated by JavaScript -->
-        </div>
-        
-        <div class="quiz-feedback" id="quiz-feedback">
-          <!-- Feedback will appear here -->
-        </div>
-        
-        <div style="display: flex; justify-content: space-between;">
-          <button onclick="previousQuestion()" id="prev-btn" disabled>← Previous</button>
-          <button onclick="checkAnswer()" id="check-btn">Check Answer</button>
-          <button onclick="nextQuestion()" id="next-btn" style="display: none;">Next Question →</button>
-          <button onclick="submitQuiz()" id="submit-btn" style="display: none;">Submit Quiz</button>
+      <div class="quiz-section">
+        <div class="quiz-container">
+          <div class="quiz-progress">
+            <div>
+              <strong>Question <span id="current-question">1</span> of <span id="total-questions">5</span></strong>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar">
+                <div class="progress-fill" id="quiz-progress-fill" style="width: 20%;"></div>
+              </div>
+            </div>
+            <div>
+              <strong>Score: <span id="quiz-score">0</span>/<span id="quiz-total">0</span></strong>
+            </div>
+          </div>
+          
+          <div class="quiz-question" id="quiz-question">
+            Which of the following is NOT a strategy for Move 1 (Establishing Territory) in the CARS model?
+          </div>
+          
+          <div class="quiz-options" id="quiz-options">
+            <!-- Options will be generated by JavaScript -->
+          </div>
+          
+          <div class="quiz-feedback" id="quiz-feedback">
+            <!-- Feedback will appear here -->
+          </div>
+          
+          <div class="quiz-controls">
+            <button onclick="previousQuestion()" id="prev-btn" disabled class="secondary">
+              ← Previous Question
+            </button>
+            <button onclick="checkAnswer()" id="check-btn">
+              ✅ Check Answer
+            </button>
+            <button onclick="nextQuestion()" id="next-btn" style="display: none;" class="secondary">
+              Next Question →
+            </button>
+            <button onclick="submitQuiz()" id="submit-btn" style="display: none;">
+              🏁 Submit Quiz
+            </button>
+          </div>
         </div>
       </div>
       
-      <div style="margin-top: 2rem;">
-        <h3 style="color: var(--primary); margin-bottom: 1rem;">📊 Quiz Categories</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
-          <div style="background: var(--light); padding: 1rem; border-radius: 10px; text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: bold; color: var(--secondary);">CARS Model</div>
-            <div>5 quizzes available</div>
-            <button onclick="startCategoryQuiz('cars')" style="margin-top: 0.5rem;">Start Quiz</button>
+      <div style="margin-top: 2.5rem;">
+        <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">📊 Quiz Categories</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;">
+          <div style="background: white; padding: 2rem; border-radius: 15px; text-align: center; box-shadow: var(--shadow); border: 2px solid var(--secondary);">
+            <div style="font-size: 2rem; font-weight: bold; color: var(--secondary); margin-bottom: 1rem;">CARS Model</div>
+            <div style="margin-bottom: 1.5rem; color: #666;">Test your understanding of the three moves</div>
+            <button onclick="startCategoryQuiz('cars')" style="width: 100%; justify-content: center;">
+              Start Quiz (5 questions)
+            </button>
           </div>
           
-          <div style="background: var(--light); padding: 1rem; border-radius: 10px; text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: bold; color: var(--secondary);">Academic Voice</div>
-            <div>3 quizzes available</div>
-            <button onclick="startCategoryQuiz('voice')" style="margin-top: 0.5rem;">Start Quiz</button>
+          <div style="background: white; padding: 2rem; border-radius: 15px; text-align: center; box-shadow: var(--shadow); border: 2px solid var(--warning);">
+            <div style="font-size: 2rem; font-weight: bold; color: var(--warning); margin-bottom: 1rem;">Academic Voice</div>
+            <div style="margin-bottom: 1.5rem; color: #666;">Practice hedging, boosting, and positioning</div>
+            <button onclick="startCategoryQuiz('voice')" style="width: 100%; justify-content: center; background: var(--warning);">
+              Start Quiz (3 questions)
+            </button>
           </div>
           
-          <div style="background: var(--light); padding: 1rem; border-radius: 10px; text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: bold; color: var(--secondary);">Genre Analysis</div>
-            <div>4 quizzes available</div>
-            <button onclick="startCategoryQuiz('genre')" style="margin-top: 0.5rem;">Start Quiz</button>
+          <div style="background: white; padding: 2rem; border-radius: 15px; text-align: center; box-shadow: var(--shadow); border: 2px solid var(--success);">
+            <div style="font-size: 2rem; font-weight: bold; color: var(--success); margin-bottom: 1rem;">Genre Analysis</div>
+            <div style="margin-bottom: 1.5rem; color: #666;">Learn disciplinary conventions</div>
+            <button onclick="startCategoryQuiz('genre')" style="width: 100%; justify-content: center; background: var(--success);">
+              Start Quiz (4 questions)
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 2.5rem; background: #f8fafc; padding: 2rem; border-radius: 15px; border: 2px solid #e0e0e0;">
+        <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.5rem;">🏆 Quiz Leaderboard</h3>
+        <div style="display: grid; gap: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: white; border-radius: 10px;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <span style="font-weight: bold; color: gold; font-size: 1.2rem;">🥇</span>
+              <span>You</span>
+            </div>
+            <span style="font-weight: bold; color: var(--success);">85% Average</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: white; border-radius: 10px;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <span style="font-weight: bold; color: silver; font-size: 1.2rem;">🥈</span>
+              <span>Alex Johnson</span>
+            </div>
+            <span style="font-weight: bold; color: var(--warning);">78% Average</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: white; border-radius: 10px;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <span style="font-weight: bold; color: #cd7f32; font-size: 1.2rem;">🥉</span>
+              <span>Sam Wilson</span>
+            </div>
+            <span style="font-weight: bold; color: var(--accent);">72% Average</span>
           </div>
         </div>
       </div>
@@ -832,175 +1457,346 @@
     
     <!-- Interactive Exercises Panel -->
     <div class="content-panel" id="exercises-panel">
-      <h2 style="color: var(--primary); margin-bottom: 1.5rem;">💪 Interactive Exercises</h2>
+      <h2 class="panel-header">💪 Interactive Exercises</h2>
       
-      <div class="exercise-container">
-        <h3 style="color: var(--primary); margin-bottom: 1rem;">Exercise 1: Drag & Drop CARS Model</h3>
-        <p>Drag the sentences on the left to their correct CARS move on the right:</p>
-        
-        <div class="drag-drop-area">
-          <div class="drag-source" id="drag-source">
-            <div class="drag-item" draggable="true" data-correct="territory">Recent studies have shown increasing interest in online learning environments.</div>
-            <div class="drag-item" draggable="true" data-correct="niche">However, little research has examined long-term retention in these settings.</div>
-            <div class="drag-item" draggable="true" data-correct="occupation">This study therefore investigates six-month knowledge retention in online courses.</div>
-            <div class="drag-item" draggable="true" data-correct="territory">Digital literacy has become a central concern in educational research.</div>
-            <div class="drag-item" draggable="true" data-correct="niche">Despite extensive work on motivation, few studies address virtual environments.</div>
+      <div class="exercise-section">
+        <!-- Exercise 1: Drag & Drop -->
+        <div class="exercise-container">
+          <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.6rem;">Exercise 1: Drag & Drop CARS Model</h3>
+          <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Drag the sentences from the left column to their correct CARS move category on the right:</p>
+          
+          <div class="drag-drop-area">
+            <div class="drag-source" id="drag-source">
+              <div class="drag-item" draggable="true" data-correct="territory" id="drag1">Recent studies have shown increasing interest in online learning environments across various educational contexts.</div>
+              <div class="drag-item" draggable="true" data-correct="niche" id="drag2">However, despite this growing body of research, little attention has been paid to the long-term retention effects in these digital settings.</div>
+              <div class="drag-item" draggable="true" data-correct="occupation" id="drag3">This study therefore investigates the impact of micro-learning modules on six-month knowledge retention among university students.</div>
+              <div class="drag-item" draggable="true" data-correct="territory" id="drag4">Digital literacy has emerged as a central concern in contemporary educational research, with scholars highlighting its importance for 21st-century skills development.</div>
+              <div class="drag-item" draggable="true" data-correct="niche" id="drag5">Although extensive work exists on classroom motivation, few studies have systematically examined motivational factors in fully virtual learning environments.</div>
+            </div>
+            
+            <div class="drag-target">
+              <div style="margin-bottom: 1rem;">
+                <div style="font-weight: bold; color: var(--secondary); font-size: 1.2rem; margin-bottom: 0.5rem;">Move 1: Territory</div>
+                <div id="territory-drop" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)">
+                  <div style="color: #999; text-align: center; padding: 2rem 1rem;">Drop Territory sentences here</div>
+                </div>
+              </div>
+              
+              <div style="margin: 1.5rem 0;">
+                <div style="font-weight: bold; color: var(--accent); font-size: 1.2rem; margin-bottom: 0.5rem;">Move 2: Niche</div>
+                <div id="niche-drop" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)">
+                  <div style="color: #999; text-align: center; padding: 2rem 1rem;">Drop Niche sentences here</div>
+                </div>
+              </div>
+              
+              <div style="margin: 1.5rem 0;">
+                <div style="font-weight: bold; color: var(--success); font-size: 1.2rem; margin-bottom: 0.5rem;">Move 3: Occupation</div>
+                <div id="occupation-drop" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)">
+                  <div style="color: #999; text-align: center; padding: 2rem 1rem;">Drop Occupation sentences here</div>
+                </div>
+              </div>
+            </div>
           </div>
           
-          <div class="drag-target">
-            <div style="margin-bottom: 1rem; font-weight: bold; color: var(--secondary);">Move 1: Territory</div>
-            <div id="territory-drop" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div style="text-align: center; margin-top: 2rem;">
+            <button onclick="checkDragDrop()" class="large">
+              ✅ Check Answers
+            </button>
+            <button onclick="resetDragDrop()" class="secondary large">
+              🔄 Reset Exercise
+            </button>
+            <button onclick="showDragDropHint()" class="secondary large">
+              💡 Get Hint
+            </button>
+          </div>
+          
+          <div id="drag-feedback" style="margin-top: 2rem; padding: 2rem; border-radius: 15px; display: none;"></div>
+        </div>
+        
+        <!-- Exercise 2: Fill in the Blanks -->
+        <div class="exercise-container" style="margin-top: 2.5rem;">
+          <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.6rem;">Exercise 2: Complete the CARS Introduction</h3>
+          <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Fill in the blanks to complete this CARS model introduction:</p>
+          
+          <div style="background: #f8fafc; padding: 2.5rem; border-radius: 15px; margin: 2rem 0; border: 2px solid #e0e0e0; font-size: 1.15rem; line-height: 1.8;">
+            <p>
+              <span style="color: var(--secondary); font-weight: bold;">[Territory]</span> Recent years have witnessed growing scholarly interest in 
+              <input type="text" id="blank1" style="width: 200px; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="research topic"> 
+              , with numerous studies documenting their potential to enhance 
+              <input type="text" id="blank2" style="width: 180px; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="benefit"> 
+              (Smith, 2020; Johnson, 2021).
+            </p>
             
-            <div style="margin: 1rem 0; font-weight: bold; color: var(--accent);">Move 2: Niche</div>
-            <div id="niche-drop" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <p style="margin: 1.5rem 0;">
+              <span style="color: var(--accent); font-weight: bold;">[Niche]</span> 
+              <select id="blank3" style="padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; margin: 0 0.5rem;">
+                <option value="">Choose transition</option>
+                <option value="However">However</option>
+                <option value="Therefore">Therefore</option>
+                <option value="Moreover">Moreover</option>
+                <option value="Consequently">Consequently</option>
+              </select>
+              , despite this increased attention, relatively little research has examined 
+              <input type="text" id="blank4" style="width: 220px; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="specific aspect"> 
+              , particularly in 
+              <input type="text" id="blank5" style="width: 150px; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="context"> 
+              contexts.
+            </p>
             
-            <div style="margin: 1rem 0; font-weight: bold; color: var(--success);">Move 3: Occupation</div>
-            <div id="occupation-drop" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <p>
+              <span style="color: var(--success); font-weight: bold;">[Occupation]</span> This study 
+              <select id="blank6" style="padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; margin: 0 0.5rem;">
+                <option value="">Choose verb</option>
+                <option value="aims to">aims to</option>
+                <option value="discusses">discusses</option>
+                <option value="ignores">ignores</option>
+                <option value="questions">questions</option>
+              </select> 
+              investigate the 
+              <input type="text" id="blank7" style="width: 180px; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="relationship/impact"> 
+              between these factors using a 
+              <input type="text" id="blank8" style="width: 160px; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="methodology"> 
+              approach.
+            </p>
+          </div>
+          
+          <div style="text-align: center;">
+            <button onclick="checkFillBlanks()" class="large">
+              ✅ Check Answers
+            </button>
+            <button onclick="showFillBlanksHint()" class="secondary large">
+              💡 Get Hint
+            </button>
+            <button onclick="generateExample()" class="secondary large">
+              🎲 Generate Example
+            </button>
+          </div>
+          
+          <div id="fill-feedback" style="margin-top: 2rem; padding: 2rem; border-radius: 15px; display: none;"></div>
+          
+          <div id="example-output" style="margin-top: 2rem; padding: 2rem; background: #f0fff4; border-radius: 15px; border: 2px solid var(--success); display: none;">
+            <h4 style="color: var(--success); margin-bottom: 1rem;">Example Complete Introduction:</h4>
+            <p id="generated-example" style="font-style: italic; line-height: 1.8;"></p>
           </div>
         </div>
         
-        <div style="text-align: center; margin-top: 1rem;">
-          <button onclick="checkDragDrop()">Check Answers</button>
-          <button onclick="resetDragDrop()" class="secondary">Reset Exercise</button>
+        <!-- Exercise 3: Error Identification -->
+        <div class="exercise-container" style="margin-top: 2.5rem;">
+          <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.6rem;">Exercise 3: Identify CARS Model Errors</h3>
+          <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Read this research introduction and identify the CARS model errors:</p>
+          
+          <div style="background: #fff5f5; padding: 2.5rem; border-radius: 15px; margin: 2rem 0; border: 2px solid #fed7d7; font-size: 1.15rem; line-height: 1.8;">
+            <p>"I think online learning is interesting. Many people use computers now. Some studies have been done. I want to study this more. My paper will talk about online learning."</p>
+          </div>
+          
+          <div style="margin: 2rem 0;">
+            <h4 style="color: var(--primary); margin-bottom: 1rem;">Select all the errors you can identify:</h4>
+            <div style="display: grid; gap: 1rem;">
+              <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer; padding: 1rem; background: white; border-radius: 10px; border: 2px solid #e0e0e0;">
+                <input type="checkbox" class="error-checkbox" value="personal">
+                <span>Uses personal opinion ("I think") instead of academic voice</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer; padding: 1rem; background: white; border-radius: 10px; border: 2px solid #e0e0e0;">
+                <input type="checkbox" class="error-checkbox" value="vague">
+                <span>Vague statements without specific evidence or citations</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer; padding: 1rem; background: white; border-radius: 10px; border: 2px solid #e0e0e0;">
+                <input type="checkbox" class="error-checkbox" value="no-niche">
+                <span>No clear niche or gap identification</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer; padding: 1rem; background: white; border-radius: 10px; border: 2px solid #e0e0e0;">
+                <input type="checkbox" class="error-checkbox" value="weak-occupation">
+                <span>Weak occupation - doesn't specify research purpose or methods</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer; padding: 1rem; background: white; border-radius: 10px; border: 2px solid #e0e0e0;">
+                <input type="checkbox" class="error-checkbox" value="no-structure">
+                <span>No indication of paper structure or organization</span>
+              </label>
+            </div>
+          </div>
+          
+          <div style="text-align: center;">
+            <button onclick="checkErrors()" class="large">
+              ✅ Check My Analysis
+            </button>
+            <button onclick="showErrorCorrection()" class="secondary large">
+              ✍️ Show Corrected Version
+            </button>
+          </div>
+          
+          <div id="error-feedback" style="margin-top: 2rem; padding: 2rem; border-radius: 15px; display: none;"></div>
+          
+          <div id="correction-output" style="margin-top: 2rem; padding: 2rem; background: #f0fff4; border-radius: 15px; border: 2px solid var(--success); display: none;">
+            <h4 style="color: var(--success); margin-bottom: 1rem;">Corrected Version:</h4>
+            <p style="font-style: italic; line-height: 1.8;">"Recent years have witnessed growing scholarly interest in online learning environments, with numerous studies documenting their potential to enhance educational access and flexibility (Smith, 2020). However, despite this increased attention, relatively little research has examined the long-term retention effects of asynchronous micro-learning modules in higher education. This study therefore aims to investigate the relationship between micro-learning frequency and six-month knowledge retention among university students, using a mixed-methods approach. The paper is organized as follows: first, we review relevant literature; second, we describe our methodology; third, we present findings; and finally, we discuss implications."</p>
+          </div>
         </div>
-        
-        <div id="drag-feedback" style="margin-top: 1rem; padding: 1rem; border-radius: 10px; display: none;"></div>
-      </div>
-      
-      <div class="exercise-container" style="margin-top: 2rem;">
-        <h3 style="color: var(--primary); margin-bottom: 1rem;">Exercise 2: Fill in the Blanks</h3>
-        <p>Complete the CARS introduction by filling in the blanks:</p>
-        
-        <div style="background: var(--light); padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0;">
-          <p>Recent years have witnessed growing scholarly interest in 
-          <input type="text" id="blank1" style="width: 150px; padding: 0.5rem; border: 2px solid #ddd; border-radius: 5px;" placeholder="Fill blank"> 
-          (Territory). 
-          <select id="blank2" style="padding: 0.5rem; border: 2px solid #ddd; border-radius: 5px;">
-            <option value="">Choose</option>
-            <option value="However">However</option>
-            <option value="Therefore">Therefore</option>
-            <option value="Moreover">Moreover</option>
-          </select>, 
-          little research has examined 
-          <input type="text" id="blank3" style="width: 200px; padding: 0.5rem; border: 2px solid #ddd; border-radius: 5px;" placeholder="Fill blank"> 
-          (Niche). This study 
-          <select id="blank4" style="padding: 0.5rem; border: 2px solid #ddd; border-radius: 5px;">
-            <option value="">Choose</option>
-            <option value="aims to">aims to</option>
-            <option value="discusses">discusses</option>
-            <option value="ignores">ignores</option>
-          </select> 
-          investigate the impact of these environments on long-term learning (Occupation).</p>
-        </div>
-        
-        <button onclick="checkFillBlanks()">Check Answers</button>
-        <button onclick="showFillBlanksHint()" class="secondary">Get Hint</button>
-        
-        <div id="fill-feedback" style="margin-top: 1rem; padding: 1rem; border-radius: 10px; display: none;"></div>
       </div>
     </div>
     
     <!-- Progress Tracking Panel -->
     <div class="content-panel" id="progress-panel">
-      <h2 style="color: var(--primary); margin-bottom: 1.5rem;">📊 Your Learning Progress</h2>
+      <h2 class="panel-header">📊 Your Learning Progress</h2>
       
-      <div class="progress-dashboard">
-        <div class="progress-stats">
-          <div class="stat-box">
-            <span class="stat-value">65%</span>
-            <span class="stat-label">Overall Progress</span>
+      <div class="progress-section">
+        <div class="progress-dashboard">
+          <!-- Overall Stats -->
+          <div class="progress-stats">
+            <div class="stat-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+              <span class="stat-value">65%</span>
+              <span class="stat-label">Overall Progress</span>
+            </div>
+            
+            <div class="stat-box" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+              <span class="stat-value">6/10</span>
+              <span class="stat-label">Modules Completed</span>
+            </div>
+            
+            <div class="stat-box" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+              <span class="stat-value">85%</span>
+              <span class="stat-label">Average Quiz Score</span>
+            </div>
+            
+            <div class="stat-box" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+              <span class="stat-value">42</span>
+              <span class="stat-label">Flashcards Mastered</span>
+            </div>
           </div>
           
-          <div class="stat-box">
-            <span class="stat-value">6/10</span>
-            <span class="stat-label">Modules Completed</span>
-          </div>
-          
-          <div class="stat-box">
-            <span class="stat-value">85%</span>
-            <span class="stat-label">Average Quiz Score</span>
-          </div>
-          
-          <div class="stat-box">
-            <span class="stat-value">42</span>
-            <span class="stat-label">Flashcards Mastered</span>
-          </div>
-        </div>
-        
-        <div style="margin: 2rem 0;">
-          <h3 style="color: var(--primary); margin-bottom: 1rem;">📈 Progress by Module</h3>
-          <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px;">
-            <div style="margin-bottom: 1rem;">
-              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                <span>CARS Model Fundamentals</span>
+          <!-- Progress by Module -->
+          <div class="module-progress">
+            <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.6rem;">📈 Progress by Module</h3>
+            
+            <div class="module-progress-item">
+              <div class="module-progress-header">
+                <span>Module 1: CARS Model Fundamentals</span>
                 <span>100%</span>
               </div>
-              <div style="height: 10px; background: #ddd; border-radius: 5px; overflow: hidden;">
-                <div style="width: 100%; height: 100%; background: var(--success);"></div>
+              <div class="module-progress-bar">
+                <div class="module-progress-fill" style="width: 100%; background: linear-gradient(90deg, var(--success), #2ecc71);"></div>
               </div>
             </div>
             
-            <div style="margin-bottom: 1rem;">
-              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                <span>Academic Voice & Stance</span>
+            <div class="module-progress-item">
+              <div class="module-progress-header">
+                <span>Module 2: Academic Voice & Stance</span>
                 <span>85%</span>
               </div>
-              <div style="height: 10px; background: #ddd; border-radius: 5px; overflow: hidden;">
-                <div style="width: 85%; height: 100%; background: var(--success);"></div>
+              <div class="module-progress-bar">
+                <div class="module-progress-fill" style="width: 85%; background: linear-gradient(90deg, var(--success), #2ecc71);"></div>
               </div>
             </div>
             
-            <div style="margin-bottom: 1rem;">
-              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                <span>Research as Narrative</span>
+            <div class="module-progress-item">
+              <div class="module-progress-header">
+                <span>Module 3: Research as Narrative</span>
                 <span>70%</span>
               </div>
-              <div style="height: 10px; background: #ddd; border-radius: 5px; overflow: hidden;">
-                <div style="width: 70%; height: 100%; background: var(--warning);"></div>
+              <div class="module-progress-bar">
+                <div class="module-progress-fill" style="width: 70%; background: linear-gradient(90deg, var(--warning), #f1c40f);"></div>
               </div>
             </div>
             
-            <div style="margin-bottom: 1rem;">
-              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                <span>Genre Expectations</span>
+            <div class="module-progress-item">
+              <div class="module-progress-header">
+                <span>Module 4: Genre Expectations</span>
                 <span>45%</span>
               </div>
-              <div style="height: 10px; background: #ddd; border-radius: 5px; overflow: hidden;">
-                <div style="width: 45%; height: 100%; background: var(--accent);"></div>
+              <div class="module-progress-bar">
+                <div class="module-progress-fill" style="width: 45%; background: linear-gradient(90deg, var(--accent), #e74c3c);"></div>
+              </div>
+            </div>
+            
+            <div class="module-progress-item">
+              <div class="module-progress-header">
+                <span>Module 5: Literature Review Strategies</span>
+                <span>60%</span>
+              </div>
+              <div class="module-progress-bar">
+                <div class="module-progress-fill" style="width: 60%; background: linear-gradient(90deg, var(--warning), #f1c40f);"></div>
               </div>
             </div>
           </div>
-        </div>
-        
-        <div style="margin: 2rem 0;">
-          <h3 style="color: var(--primary); margin-bottom: 1rem;">🏆 Earned Badges</h3>
-          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-            <div style="background: gold; color: #333; padding: 1rem; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-              <div style="font-size: 1.5rem;">🥇</div>
-              <div style="font-size: 0.7rem; text-align: center;">CARS Master</div>
-            </div>
-            
-            <div style="background: silver; color: #333; padding: 1rem; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-              <div style="font-size: 1.5rem;">📚</div>
-              <div style="font-size: 0.7rem; text-align: center;">Fast Learner</div>
-            </div>
-            
-            <div style="background: #cd7f32; color: #333; padding: 1rem; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-              <div style="font-size: 1.5rem;">🎯</div>
-              <div style="font-size: 0.7rem; text-align: center;">Quiz Expert</div>
-            </div>
-            
-            <div style="background: var(--secondary); color: white; padding: 1rem; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-              <div style="font-size: 1.5rem;">🃏</div>
-              <div style="font-size: 0.7rem; text-align: center;">Flashcard Pro</div>
+          
+          <!-- Earned Badges -->
+          <div style="margin: 2.5rem 0;">
+            <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.6rem;">🏆 Earned Badges</h3>
+            <div class="badges-container">
+              <div class="badge-card earned" onclick="showBadgeDetails('cars-master')">
+                <div class="badge-icon">🥇</div>
+                <div class="badge-title">CARS Master</div>
+                <div class="badge-desc">Completed all CARS exercises with 90%+ score</div>
+              </div>
+              
+              <div class="badge-card earned" onclick="showBadgeDetails('fast-learner')">
+                <div class="badge-icon">📚</div>
+                <div class="badge-title">Fast Learner</div>
+                <div class="badge-desc">Completed 5+ modules in first week</div>
+              </div>
+              
+              <div class="badge-card earned" onclick="showBadgeDetails('quiz-expert')">
+                <div class="badge-icon">🎯</div>
+                <div class="badge-title">Quiz Expert</div>
+                <div class="badge-desc">Scored 85%+ on all quizzes</div>
+              </div>
+              
+              <div class="badge-card earned" onclick="showBadgeDetails('flashcard-pro')">
+                <div class="badge-icon">🃏</div>
+                <div class="badge-title">Flashcard Pro</div>
+                <div class="badge-desc">Mastered 40+ flashcards</div>
+              </div>
+              
+              <div class="badge-card" onclick="showBadgeDetails('perfect-score')">
+                <div class="badge-icon">💯</div>
+                <div class="badge-title">Perfect Score</div>
+                <div class="badge-desc">Score 100% on any quiz</div>
+              </div>
+              
+              <div class="badge-card" onclick="showBadgeDetails('completionist')">
+                <div class="badge-icon">🏁</div>
+                <div class="badge-title">Completionist</div>
+                <div class="badge-desc">Complete all 10 modules</div>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div style="margin-top: 2rem; text-align: center;">
-          <button onclick="generateProgressReport()">📄 Generate Progress Report</button>
-          <button onclick="shareProgress()" class="secondary">📤 Share Progress</button>
-          <button onclick="resetProgress()" class="warning">🔄 Reset Progress</button>
+          
+          <!-- Learning Analytics -->
+          <div style="margin: 2.5rem 0;">
+            <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.6rem;">📊 Learning Analytics</h3>
+            <div style="background: #f8fafc; padding: 2rem; border-radius: 15px; border: 2px solid #e0e0e0;">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                <div>
+                  <div style="font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;">Total Study Time</div>
+                  <div style="font-size: 1.8rem; font-weight: bold; color: var(--primary);">14h 30m</div>
+                </div>
+                <div>
+                  <div style="font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;">Current Streak</div>
+                  <div style="font-size: 1.8rem; font-weight: bold; color: var(--success);">7 days</div>
+                </div>
+                <div>
+                  <div style="font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;">Exercises Completed</div>
+                  <div style="font-size: 1.8rem; font-weight: bold; color: var(--warning);">12/18</div>
+                </div>
+                <div>
+                  <div style="font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;">Avg. Daily Progress</div>
+                  <div style="font-size: 1.8rem; font-weight: bold; color: var(--secondary);">8.2%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Action Buttons -->
+          <div style="text-align: center; margin-top: 3rem;">
+            <button onclick="generateProgressReport()" class="large">
+              📄 Generate Progress Report
+            </button>
+            <button onclick="shareProgress()" class="secondary large">
+              📤 Share Progress
+            </button>
+            <button onclick="resetProgress()" class="warning large">
+              🔄 Reset Progress
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -1009,76 +1805,132 @@
 </div>
 
 <!-- Footer -->
-<div style="text-align: center; padding: 2rem; background: var(--primary); color: white; margin-top: 2rem;">
-  <p><strong>Tell Your Research Story</strong> – Complete Interactive Learning Platform</p>
-  <p>Based on John M. Swales' Academic Writing Framework</p>
-  <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Developed by Halim Faroug A. Elhag, Lecturer of English Language, UHB / UofK</p>
+<div style="text-align: center; padding: 3rem; background: var(--primary); color: white; margin-top: 3rem;">
+  <p style="font-size: 1.2rem; margin-bottom: 1rem;"><strong>Tell Your Research Story</strong> – Complete Interactive Learning Platform</p>
+  <p style="margin-bottom: 1rem;">Based on John M. Swales' Academic Writing Framework</p>
+  <p style="font-size: 0.9rem; opacity: 0.8;">Developed by Halim Faroug A. Elhag, Lecturer of English Language, UHB / UofK</p>
 </div>
 
 <script>
-  // ==================== PLATFORM STATE ====================
+  // ==================== COMPLETE JAVASCRIPT IMPLEMENTATION ====================
+  
+  // Platform State
   let currentPanel = 'learning';
   let currentModule = 1;
   let currentCardIndex = 0;
+  let masteredCards = new Set([0, 2, 4]); // Pre-mark some cards as mastered
   let quizState = {
     currentQuestion: 0,
     score: 0,
     selectedOption: null,
-    quizCompleted: false
+    quizCompleted: false,
+    currentCategory: 'cars'
+  };
+  
+  let mindMapNodes = [];
+  let dragDropState = {
+    draggedItem: null,
+    correctAnswers: 0,
+    totalDragged: 0
+  };
+  
+  let userProgress = {
+    overall: 65,
+    modules: [100, 85, 70, 45, 60, 0, 0, 0, 0, 0],
+    quizzes: { cars: 85, voice: 80, genre: 90 },
+    flashcards: 42,
+    exercises: 12
   };
 
   // ==================== DATA SETS ====================
   
-  // Flashcard Data
+  // Complete Flashcard Data
   const flashcards = [
-    { id: 1, category: 'cars', question: 'What is the purpose of Move 1 (Territory) in the CARS model?', answer: 'To establish the importance and centrality of the research topic, showing readers why it matters and situating it within existing scholarship.' },
-    { id: 2, category: 'cars', question: 'Name three strategies for establishing a niche (Move 2).', answer: '1. Counter-claiming\n2. Indicating a gap\n3. Question-raising\n4. Continuing a tradition' },
-    { id: 3, category: 'cars', question: 'What linguistic signals indicate Move 3 (Occupation)?', answer: '"The purpose of this study is...", "This paper reports on...", "The aim of this research is...", "This study contributes to..."' },
-    { id: 4, category: 'voice', question: 'What is hedging in academic writing?', answer: 'Using cautious language to express uncertainty or limit claims (e.g., "It appears that...", "The results suggest...")' },
-    { id: 5, category: 'voice', question: 'When should you use boosting in academic writing?', answer: 'When presenting well-supported findings or making confident claims based on strong evidence (e.g., "Clearly, the data shows...", "These findings demonstrate...")' },
-    { id: 6, category: 'genre', question: 'What are genre expectations?', answer: 'The conventional forms, structures, and styles that readers in a particular discipline expect to see in academic writing.' },
-    { id: 7, category: 'vocabulary', question: 'What does "IMRaD" stand for?', answer: 'Introduction, Methods, Results, and Discussion - the standard structure for empirical research articles.' },
-    { id: 8, category: 'cars', question: 'What is a common error in establishing territory?', answer: 'Making unsupported claims without citing relevant literature or demonstrating topic importance.' }
+    { 
+      id: 1, 
+      category: 'cars', 
+      question: 'What is the primary purpose of Move 1 (Establishing Territory) in the CARS model?', 
+      answer: 'The primary purpose is to establish the importance and centrality of the research topic, showing readers why it matters and situating it within existing scholarship. This involves claiming centrality, making topic generalizations, and reviewing previous research.',
+      example: 'Example: "Recent years have witnessed growing scholarly interest in online learning environments..."'
+    },
+    { 
+      id: 2, 
+      category: 'cars', 
+      question: 'Name three strategies for establishing a niche (Move 2) and provide examples of each.', 
+      answer: '1. Counter-claiming: Challenge existing views (e.g., "However, recent evidence suggests...")\n2. Indicating a gap: Show what\'s missing (e.g., "Despite extensive research, little attention has been paid to...")\n3. Question-raising: Pose unanswered questions (e.g., "A key question that remains is...")\n4. Continuing a tradition: Refine existing work (e.g., "Building on previous studies...")',
+      example: ''
+    },
+    { 
+      id: 3, 
+      category: 'cars', 
+      question: 'What linguistic signals typically indicate Move 3 (Occupying the Niche)?', 
+      answer: 'Common signals include:\n• "The purpose of this study is to..."\n• "This paper reports on..."\n• "The aim of this research is to..."\n• "This study contributes to... by..."\n• "We investigate/examine/explore..."\n• "The present research addresses..."',
+      example: 'Example: "This study therefore aims to investigate the relationship between..."'
+    },
+    { 
+      id: 4, 
+      category: 'cars', 
+      question: 'What are common errors to avoid when establishing territory?', 
+      answer: '1. Making unsupported claims without citing relevant literature\n2. Failing to demonstrate why the topic is important\n3. Overgeneralizing previous research\n4. Using vague or imprecise language\n5. Starting with personal opinions rather than established knowledge',
+      example: 'Error: "This topic is very important."\nBetter: "Recent scholarship has highlighted the significance of this topic (Smith, 2020)."'
+    },
+    { 
+      id: 5, 
+      category: 'voice', 
+      question: 'What is hedging in academic writing and when should it be used?', 
+      answer: 'Hedging is using cautious language to express uncertainty or limit claims. It should be used when:\n• Interpreting results or data\n• Making claims based on limited evidence\n• Discussing controversial topics\n• Generalizing from specific findings\n• Acknowledging limitations\nExamples: "It appears that...", "The results suggest...", "This may indicate..."',
+      example: ''
+    },
+    { 
+      id: 6, 
+      category: 'voice', 
+      question: 'When should boosting be used in academic writing?', 
+      answer: 'Boosting (asserting confidence) should be used when:\n• Presenting well-supported findings\n• Making claims based on strong evidence\n• Stating research purposes or aims\n• Discussing established knowledge in the field\n• Summarizing conclusions supported by data\nExamples: "Clearly, the data shows...", "These findings demonstrate...", "The evidence confirms..."',
+      example: ''
+    },
+    { 
+      id: 7, 
+      category: 'genre', 
+      question: 'What are genre expectations in academic writing?', 
+      answer: 'Genre expectations are the conventional forms, structures, styles, and rhetorical moves that readers in a particular discipline expect to see. They include:\n• Standard sections (IMRaD, abstract, literature review)\n• Expected citation styles\n• Appropriate voice and stance\n• Discipline-specific terminology\n• Conventional argument structures\n• Expected length and detail level',
+      example: 'Humanities: Interpretive essays; Sciences: Experimental reports; Social Sciences: IMRaD structure'
+    },
+    { 
+      id: 8, 
+      category: 'vocabulary', 
+      question: 'What does "IMRaD" stand for and what is its purpose?', 
+      answer: 'IMRaD stands for Introduction, Methods, Results, and Discussion. It is the standard structure for empirical research articles. Purpose:\n• Introduction: Sets up the research problem and questions\n• Methods: Describes how the research was conducted\n• Results: Presents the findings without interpretation\n• Discussion: Interprets results and discusses implications\n• (Sometimes includes Conclusion and References)',
+      example: 'Most scientific and social science journals require IMRaD structure.'
+    }
   ];
 
-  // Quiz Data
+  // Complete Quiz Data
   const quizzes = {
     cars: [
       {
         question: 'Which of the following is NOT a strategy for Move 1 (Establishing Territory)?',
         options: [
-          'Claiming centrality',
-          'Making topic generalizations',
-          'Indicating a gap',
-          'Reviewing previous research'
+          'Claiming centrality (showing topic importance)',
+          'Making topic generalizations about the field',
+          'Indicating a gap in existing research',
+          'Reviewing items of previous research'
         ],
         correct: 2,
-        explanation: 'Indicating a gap is part of Move 2 (Establishing a Niche), not Move 1.'
+        explanation: 'Indicating a gap is part of Move 2 (Establishing a Niche), not Move 1. Move 1 focuses on establishing the territory by showing importance, making generalizations, and reviewing existing research.'
       },
       {
-        question: 'What phrase typically signals Move 2 (Establishing a Niche)?',
+        question: 'What phrase would most likely signal Move 2 (Establishing a Niche)?',
         options: [
-          '"Recently, researchers have become interested in..."',
+          '"Recently, researchers have become increasingly interested in..."',
           '"However, few studies have examined..."',
-          '"The purpose of this study is..."',
+          '"The purpose of this study is to..."',
           '"It is generally accepted that..."'
         ],
         correct: 1,
-        explanation: '"However, few studies have examined..." is a classic signal for indicating a research gap (Move 2).'
+        explanation: '"However, few studies have examined..." is a classic signal for indicating a research gap, which is a key strategy for Move 2. The other options signal Move 1 (A, D) or Move 3 (C).'
       },
       {
-        question: 'Which move involves "occupying the niche"?',
-        options: [
-          'Move 1',
-          'Move 2',
-          'Move 3',
-          'None of the above'
-        ],
-        correct: 2,
-        explanation: 'Move 3 is called "Occupying the Niche" - it presents your research as the solution to the identified gap.'
-      },
-      {
-        question: 'What is the correct order of the CARS model?',
+        question: 'Which of these correctly describes the sequence of the CARS model?',
         options: [
           'Niche → Territory → Occupation',
           'Territory → Occupation → Niche',
@@ -1086,49 +1938,89 @@
           'Territory → Niche → Occupation'
         ],
         correct: 3,
-        explanation: 'The correct order is: 1. Establish Territory, 2. Establish a Niche, 3. Occupy the Niche.'
+        explanation: 'The correct sequence is: 1. Establish Territory (show importance), 2. Establish a Niche (identify gap), 3. Occupy the Niche (present your study). This creates a logical flow from general to specific.'
       },
       {
-        question: 'Which of these sentences demonstrates effective territory establishment?',
+        question: 'Which sentence demonstrates effective territory establishment?',
         options: [
           'This paper is about teaching methods.',
-          'Teaching is important.',
-          'Recent meta-analyses by Hattie (2015) have revitalized interest in evidence-based teaching practices.',
-          'I think teaching methods are interesting.'
+          'Teaching is important for learning.',
+          'Recent meta-analyses by Hattie (2015) and Marzano (2017) have revitalized interest in evidence-based teaching practices.',
+          'I think teaching methods are interesting to study.'
         ],
         correct: 2,
-        explanation: 'Option 3 demonstrates territory by citing specific research and showing the topic\'s importance.'
+        explanation: 'Option 3 demonstrates effective territory by citing specific research, showing the topic\'s importance, and situating it within current scholarship. The other options are vague or use inappropriate voice.'
+      },
+      {
+        question: 'What is a common error in Move 3 (Occupying the Niche)?',
+        options: [
+          'Overciting previous literature',
+          'Overpromising what the study will deliver',
+          'Being too specific about methods',
+          'Using too many hedging devices'
+        ],
+        correct: 1,
+        explanation: 'A common error in Move 3 is overpromising or making claims that the study cannot realistically deliver. While specificity and appropriate hedging are good, overpromising can undermine credibility.'
       }
     ],
     voice: [
       {
         question: 'Which sentence demonstrates appropriate hedging?',
         options: [
-          'This proves climate change is man-made.',
-          'The evidence suggests a correlation between human activity and climate patterns.',
-          'Obviously, everyone knows about climate change.',
-          'I believe climate change is real.'
+          'This proves conclusively that climate change is man-made.',
+          'The evidence suggests a strong correlation between human activity and climate change patterns.',
+          'Obviously, everyone knows about climate change by now.',
+          'I believe climate change is definitely real and happening.'
         ],
         correct: 1,
-        explanation: 'Option 2 uses "suggests" to express cautious interpretation of evidence.'
+        explanation: 'Option 2 uses "suggests" and "strong correlation" to express cautious interpretation of evidence, which is appropriate hedging in academic writing. The other options are either too definitive or use inappropriate voice.'
+      },
+      {
+        question: 'When is boosting (asserting confidence) most appropriate?',
+        options: [
+          'When interpreting ambiguous results',
+          'When stating the research purpose or aim',
+          'When discussing study limitations',
+          'When speculating about future research directions'
+        ],
+        correct: 1,
+        explanation: 'Boosting is most appropriate when stating research purposes or aims, as these should be clear and confident. For interpretations, limitations, and speculations, hedging is usually more appropriate.'
+      },
+      {
+        question: 'What does "authorial stance" refer to in academic writing?',
+        options: [
+          'The physical position of the author while writing',
+          'How the author positions themselves in relation to their research and audience',
+          'The political views of the author',
+          'The preferred citation style of the author'
+        ],
+        correct: 1,
+        explanation: 'Authorial stance refers to how writers position themselves in relation to their research, their field, and their readers. It involves choices about voice, hedging/boosting, and engagement with the scholarly community.'
       }
-    ]
-  };
-
-  // Mind Map Data
-  const mindMapData = {
-    central: { id: 'central', text: 'CARS Model', x: 50, y: 50, type: 'central' },
-    nodes: [
-      { id: 'move1', text: 'Move 1: Territory', parent: 'central', x: 20, y: 30 },
-      { id: 'move2', text: 'Move 2: Niche', parent: 'central', x: 50, y: 30 },
-      { id: 'move3', text: 'Move 3: Occupation', parent: 'central', x: 80, y: 30 },
-      { id: 'strategies1', text: 'Strategies:\n• Claim centrality\n• Make generalizations\n• Review literature', parent: 'move1', x: 20, y: 15 },
-      { id: 'strategies2', text: 'Strategies:\n• Counter-claim\n• Indicate gap\n• Raise questions', parent: 'move2', x: 50, y: 15 },
-      { id: 'strategies3', text: 'Strategies:\n• Outline purposes\n• Announce research\n• Indicate structure'
-        parent: 'move3', x: 80, y: 15 },
-      { id: 'signals1', text: 'Signals:\n"Recently..."\n"Many studies..."\n"It is accepted..."', parent: 'move1', x: 20, y: 45 },
-      { id: 'signals2', text: 'Signals:\n"However..."\n"Despite..."\n"Little attention..."', parent: 'move2', x: 50, y: 45 },
-      { id: 'signals3', text: 'Signals:\n"The purpose..."\n"This study..."\n"The aim..."', parent: 'move3', x: 80, y: 45 }
+    ],
+    genre: [
+      {
+        question: 'What is the IMRaD structure typically used for?',
+        options: [
+          'Creative writing and poetry',
+          'Empirical research articles in sciences and social sciences',
+          'Business emails and correspondence',
+          'Literary analysis in humanities'
+        ],
+        correct: 1,
+        explanation: 'IMRaD (Introduction, Methods, Results, and Discussion) is the standard structure for empirical research articles in sciences and social sciences. Humanities typically use different structures.'
+      },
+      {
+        question: 'Which discipline would most likely accept first-person pronouns in research writing?',
+        options: [
+          'Experimental physics',
+          'Biomedical research',
+          'Literary criticism in humanities',
+          'Quantitative psychology'
+        ],
+        correct: 2,
+        explanation: 'Humanities disciplines like literary criticism often accept first-person pronouns as they value authorial voice and interpretive argument. Sciences typically prefer third-person or passive voice for objectivity.'
+      }
     ]
   };
 
@@ -1153,34 +2045,93 @@
     if (panelId === 'flashcards') {
       initializeFlashcards();
     } else if (panelId === 'mindmaps') {
-      initializeMindMap();
+      setTimeout(initializeMindMap, 100); // Small delay for DOM
     } else if (panelId === 'quizzes') {
       initializeQuiz('cars');
+    } else if (panelId === 'exercises') {
+      initializeExercises();
     }
   }
   
   function loadModule(moduleNumber) {
+    // Update module selection
     document.querySelectorAll('.module-item').forEach(item => {
       item.classList.remove('active');
     });
     event.currentTarget.classList.add('active');
     
     currentModule = moduleNumber;
-    // In a real app, you would load module content here
-    alert(`Loading Module ${moduleNumber}...`);
+    
+    // Show module content (in a real app, this would load dynamic content)
+    const moduleTitles = [
+      'CARS Model Fundamentals',
+      'Academic Voice & Stance',
+      'Research as Narrative',
+      'Genre Expectations',
+      'Literature Review Strategies',
+      'Method Section Writing',
+      'Results & Discussion',
+      'Conclusion Crafting',
+      'Abstract Writing',
+      'Revision Strategies'
+    ];
+    
+    const panel = document.getElementById('learning-panel');
+    panel.querySelector('.panel-header').innerHTML = `📖 Module ${moduleNumber}: ${moduleTitles[moduleNumber - 1]}`;
+    
+    // Show loading animation
+    const originalContent = panel.innerHTML;
+    panel.innerHTML = `
+      <div style="text-align: center; padding: 4rem;">
+        <div style="font-size: 3rem; margin-bottom: 2rem;">📚</div>
+        <h2 style="color: var(--primary); margin-bottom: 1rem;">Loading Module ${moduleNumber}: ${moduleTitles[moduleNumber - 1]}</h2>
+        <p style="color: #666; margin-bottom: 2rem;">Loading content and interactive exercises...</p>
+        <div style="display: inline-block; width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid var(--secondary); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+      </div>
+    `;
+    
+    // Simulate loading delay
+    setTimeout(() => {
+      panel.innerHTML = originalContent;
+      panel.querySelector('.panel-header').innerHTML = `📖 Module ${moduleNumber}: ${moduleTitles[moduleNumber - 1]}`;
+      
+      // Show success message
+      showNotification(`Module ${moduleNumber} loaded successfully!`, 'success');
+    }, 800);
+  }
+  
+  function showAllModules() {
+    showPanel('learning');
+    showNotification('Showing all learning modules. Use the sidebar to navigate.', 'info');
   }
 
-  // ==================== FLASHCARDS ====================
+  // ==================== FLASHCARDS FUNCTIONS ====================
   
   function initializeFlashcards() {
     currentCardIndex = 0;
     updateFlashcard();
     renderFlashcardDeck();
+    updateCardStats();
+    
+    // Initialize category badges
+    document.querySelectorAll('.category-badge').forEach(badge => {
+      badge.addEventListener('click', function() {
+        document.querySelectorAll('.category-badge').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        filterCards(this.textContent.includes('All') ? 'all' : this.textContent.toLowerCase().split(' ')[0]);
+      });
+    });
   }
   
   function flipCard() {
     const card = document.getElementById('main-flashcard');
     card.classList.toggle('flipped');
+    
+    // Add animation effect
+    card.style.animation = 'none';
+    setTimeout(() => {
+      card.style.animation = 'pulse 0.5s ease';
+    }, 10);
   }
   
   function nextCard() {
@@ -1189,6 +2140,9 @@
     
     currentCardIndex = (currentCardIndex + 1) % flashcards.length;
     updateFlashcard();
+    
+    // Add navigation animation
+    card.style.animation = 'slideIn 0.5s ease';
   }
   
   function previousCard() {
@@ -1197,17 +2151,55 @@
     
     currentCardIndex = currentCardIndex === 0 ? flashcards.length - 1 : currentCardIndex - 1;
     updateFlashcard();
+    
+    // Add navigation animation
+    card.style.animation = 'slideIn 0.5s ease';
   }
   
   function updateFlashcard() {
     const card = flashcards[currentCardIndex];
     document.getElementById('flashcard-question').textContent = card.question;
-    document.getElementById('flashcard-answer').textContent = card.answer;
+    document.getElementById('flashcard-answer').textContent = card.answer + (card.example ? `\n\n${card.example}` : '');
+    document.getElementById('current-card-number').textContent = currentCardIndex + 1;
+    
+    // Update mastered status indicator
+    const cardElement = document.getElementById('main-flashcard');
+    if (masteredCards.has(currentCardIndex)) {
+      cardElement.style.boxShadow = '0 15px 35px rgba(39, 174, 96, 0.3)';
+      cardElement.querySelector('.flashcard-front').style.borderColor = 'var(--success)';
+    } else {
+      cardElement.style.boxShadow = '0 15px 35px rgba(0,0,0,0.2)';
+      cardElement.querySelector('.flashcard-front').style.borderColor = 'var(--secondary)';
+    }
+  }
+  
+  function markCardAsMastered() {
+    if (masteredCards.has(currentCardIndex)) {
+      masteredCards.delete(currentCardIndex);
+      showNotification('Card removed from mastered list', 'info');
+    } else {
+      masteredCards.add(currentCardIndex);
+      showNotification('Card marked as mastered! 🎉', 'success');
+      
+      // Add celebration effect
+      const card = document.getElementById('main-flashcard');
+      card.style.animation = 'bounce 0.5s ease';
+    }
+    
+    updateCardStats();
+    updateFlashcard();
+    renderFlashcardDeck(); // Update mini cards
   }
   
   function filterCards(category) {
     // Implementation for filtering flashcards by category
-    alert(`Filtering flashcards by category: ${category}`);
+    let filteredCards = flashcards;
+    if (category !== 'all') {
+      filteredCards = flashcards.filter(card => card.category === category);
+    }
+    
+    // Update display
+    showNotification(`Showing ${category === 'all' ? 'all' : category} flashcards (${filteredCards.length} cards)`, 'info');
   }
   
   function renderFlashcardDeck() {
@@ -1217,23 +2209,40 @@
     flashcards.forEach((card, index) => {
       const miniCard = document.createElement('div');
       miniCard.className = 'mini-card';
+      miniCard.style.cursor = 'pointer';
+      miniCard.style.position = 'relative';
+      
+      if (masteredCards.has(index)) {
+        miniCard.style.borderColor = 'var(--success)';
+        miniCard.style.boxShadow = '0 8px 25px rgba(39, 174, 96, 0.2)';
+      }
+      
+      // Add mastery badge
+      const masteryBadge = masteredCards.has(index) ? 
+        '<div style="position: absolute; top: 10px; right: 10px; background: var(--success); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">✓</div>' : '';
+      
       miniCard.innerHTML = `
         <div class="front">
-          <h4>${card.category.toUpperCase()}</h4>
-          <p>${card.question.substring(0, 60)}...</p>
-        </div>
-        <div class="back" style="display: none;">
-          <h4>Answer</h4>
-          <p>${card.answer.substring(0, 80)}...</p>
+          ${masteryBadge}
+          <h4 style="color: ${masteredCards.has(index) ? 'var(--success)' : 'var(--secondary)'};">${card.category.toUpperCase()}</h4>
+          <p>${card.question.substring(0, 80)}${card.question.length > 80 ? '...' : ''}</p>
+          <div style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+            ${masteredCards.has(index) ? '✅ Mastered' : 'Click to practice'}
+          </div>
         </div>
       `;
+      
       miniCard.onclick = () => {
         currentCardIndex = index;
         updateFlashcard();
         const mainCard = document.getElementById('main-flashcard');
         mainCard.classList.remove('flipped');
         showPanel('flashcards');
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       };
+      
       deck.appendChild(miniCard);
     });
   }
@@ -1242,120 +2251,275 @@
     const front = element.querySelector('.front');
     const back = element.querySelector('.back');
     
+    if (!back) {
+      // Create back content
+      const card = flashcards[Array.from(document.querySelectorAll('.mini-card')).indexOf(element)];
+      const backDiv = document.createElement('div');
+      backDiv.className = 'back';
+      backDiv.innerHTML = `
+        <h4 style="color: var(--success);">Answer</h4>
+        <p>${card.answer.substring(0, 150)}${card.answer.length > 150 ? '...' : ''}</p>
+        <div style="margin-top: 1rem; color: #666; font-size: 0.9rem;">Click again to flip back</div>
+      `;
+      backDiv.style.display = 'none';
+      element.appendChild(backDiv);
+    }
+    
+    const existingBack = element.querySelector('.back');
+    
     if (front.style.display !== 'none') {
       front.style.display = 'none';
-      back.style.display = 'block';
+      existingBack.style.display = 'block';
       element.classList.add('flipped');
     } else {
       front.style.display = 'block';
-      back.style.display = 'none';
+      existingBack.style.display = 'none';
       element.classList.remove('flipped');
     }
-    }
+  }
   
-  // ==================== MIND MAPS ====================
+  function shuffleCards() {
+    // Shuffle array using Fisher-Yates algorithm
+    for (let i = flashcards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+    }
+    
+    currentCardIndex = 0;
+    updateFlashcard();
+    renderFlashcardDeck();
+    
+    showNotification('Flashcards shuffled! New order applied.', 'success');
+  }
+  
+  function resetCardProgress() {
+    if (confirm('Are you sure you want to reset all flashcard progress? This will clear all mastered cards.')) {
+      masteredCards.clear();
+      updateCardStats();
+      updateFlashcard();
+      renderFlashcardDeck();
+      showNotification('Flashcard progress reset successfully', 'info');
+    }
+  }
+  
+  function exportFlashcards() {
+    const exportData = {
+      flashcards: flashcards,
+      mastered: Array.from(masteredCards),
+      exportDate: new Date().toISOString()
+    };
+    
+    const dataStr = JSON.stringify(exportData, null, 2);
+    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+    
+    const exportFileDefaultName = `research-story-flashcards-${new Date().toISOString().split('T')[0]}.json`;
+    
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+    
+    showNotification('Flashcards exported successfully!', 'success');
+  }
+  
+  function updateCardStats() {
+    document.getElementById('total-cards').textContent = flashcards.length;
+    document.getElementById('mastered-cards').textContent = masteredCards.size;
+  }
+
+  // ==================== MIND MAP FUNCTIONS ====================
   
   function initializeMindMap() {
     const container = document.getElementById('mindmap-container');
     container.innerHTML = '';
     
-    // Create central node
-    const centralNode = document.createElement('div');
-    centralNode.className = 'mindmap-node central';
-    centralNode.id = 'central-node';
-    centralNode.textContent = mindMapData.central.text;
-    centralNode.style.left = '50%';
-    centralNode.style.top = '50%';
-    centralNode.style.transform = 'translate(-50%, -50%)';
-    centralNode.onclick = () => showNodeDetails(mindMapData.central);
-    container.appendChild(centralNode);
+    // Mind map data
+    const nodes = [
+      { id: 'central', text: 'CARS Model', x: 50, y: 50, type: 'central', color: 'var(--secondary)', details: 'The CARS (Create a Research Space) model is a rhetorical structure for research article introductions developed by John Swales. It consists of three moves that guide readers from general context to specific research contribution.' },
+      { id: 'move1', text: 'Move 1:\nEstablishing Territory', x: 20, y: 30, type: 'branch', parent: 'central', color: 'var(--secondary)', details: 'Sets the context by showing the importance of the research area, making generalizations, and reviewing previous work.' },
+      { id: 'move2', text: 'Move 2:\nEstablishing a Niche', x: 50, y: 30, type: 'branch', parent: 'central', color: 'var(--accent)', details: 'Identifies a gap, raises questions, or challenges existing knowledge to create space for new research.' },
+      { id: 'move3', text: 'Move 3:\nOccupying the Niche', x: 80, y: 30, type: 'branch', parent: 'central', color: 'var(--success)', details: 'Presents the current study as filling the identified gap, outlining purposes and indicating structure.' },
+      { id: 'strategies1', text: 'Strategies:\n• Claim centrality\n• Make generalizations\n• Review literature', x: 10, y: 15, type: 'leaf', parent: 'move1', color: '#666', details: 'Strategies for establishing territory include claiming the topic is important, making generalizations about the field, and reviewing key literature with citations.' },
+      { id: 'signals1', text: 'Signals:\n"Recently..."\n"Many studies..."\n"It is accepted..."', x: 30, y: 15, type: 'leaf', parent: 'move1', color: '#666', details: 'Linguistic signals for territory include phrases like "Recent years have witnessed...", "Numerous studies have shown...", and "It is generally accepted that..."' },
+      { id: 'strategies2', text: 'Strategies:\n• Counter-claim\n• Indicate gap\n• Raise questions', x: 40, y: 15, type: 'leaf', parent: 'move2', color: '#666', details: 'Strategies for establishing a niche include counter-claiming existing views, indicating specific gaps, and raising unanswered questions.' },
+      { id: 'signals2', text: 'Signals:\n"However..."\n"Despite..."\n"Little attention..."', x: 60, y: 15, type: 'leaf', parent: 'move2', color: '#666', details: 'Niche signals often include contrast words like "However", "Despite", "Although", and gap indicators like "little research has examined..."' },
+      { id: 'strategies3', text: 'Strategies:\n• Outline purposes\n• Announce research\n• Indicate structure', x: 70, y: 15, type: 'leaf', parent: 'move3', color: '#666', details: 'Strategies for occupying the niche include clearly stating research purposes, announcing the present study, and indicating paper structure.' },
+      { id: 'signals3', text: 'Signals:\n"The purpose..."\n"This study..."\n"The aim..."', x: 90, y: 15, type: 'leaf', parent: 'move3', color: '#666', details: 'Occupation signals include phrases like "The purpose of this study is...", "This paper reports on...", and "The aim of this research is..."' }
+    ];
     
-    // Create other nodes
-    mindMapData.nodes.forEach(node => {
+    mindMapNodes = nodes;
+    
+    // Create nodes
+    nodes.forEach(node => {
       const nodeElement = document.createElement('div');
-      nodeElement.className = `mindmap-node ${node.parent === 'central' ? 'branch' : 'sub-branch'}`;
+      nodeElement.className = `mindmap-node ${node.type}`;
       nodeElement.id = `node-${node.id}`;
       nodeElement.textContent = node.text;
       nodeElement.style.left = `${node.x}%`;
       nodeElement.style.top = `${node.y}%`;
-      nodeElement.onclick = () => showNodeDetails(node);
+      nodeElement.style.backgroundColor = node.type === 'central' ? node.color : node.type === 'branch' ? 'white' : '#f8f9fa';
+      nodeElement.style.color = node.type === 'central' ? 'white' : 'var(--text-color)';
+      nodeElement.style.borderColor = node.type === 'central' ? 'white' : node.color;
+      nodeElement.style.zIndex = node.type === 'central' ? '10' : node.type === 'branch' ? '5' : '1';
+      
+      // Add click event
+      nodeElement.onclick = (e) => {
+        e.stopPropagation();
+        showNodeDetails(node);
+        
+        // Highlight clicked node
+        document.querySelectorAll('.mindmap-node').forEach(n => {
+          n.style.boxShadow = 'var(--shadow)';
+          n.style.transform = 'scale(1)';
+        });
+        nodeElement.style.boxShadow = '0 0 0 3px gold, var(--shadow-hover)';
+        nodeElement.style.transform = 'scale(1.1)';
+      };
       
       // Make draggable
       nodeElement.draggable = true;
-      nodeElement.ondragstart = (e) => dragMindMapNode(e, node.id);
+      nodeElement.ondragstart = (e) => {
+        e.dataTransfer.setData('text/plain', node.id);
+      };
       
       container.appendChild(nodeElement);
       
-      // Create connection line (simplified - in real app you'd use SVG)
+      // Create connections (simplified)
       if (node.parent) {
-        const connection = document.createElement('div');
-        connection.className = 'mindmap-connection';
-        // Position calculation would be more complex in real implementation
-        container.appendChild(connection);
+        const parentNode = nodes.find(n => n.id === node.parent);
+        if (parentNode) {
+          // In a real implementation, you would draw SVG lines here
+        }
       }
     });
+    
+    // Make container droppable
+    container.ondragover = (e) => e.preventDefault();
+    container.ondrop = (e) => {
+      e.preventDefault();
+      const nodeId = e.dataTransfer.getData('text/plain');
+      const nodeElement = document.getElementById(`node-${nodeId}`);
+      const rect = container.getBoundingClientRect();
+      
+      // Calculate new position
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      
+      nodeElement.style.left = `${Math.max(5, Math.min(95, x))}%`;
+      nodeElement.style.top = `${Math.max(5, Math.min(95, y))}%`;
+      
+      // Update node data
+      const node = mindMapNodes.find(n => n.id === nodeId);
+      if (node) {
+        node.x = x;
+        node.y = y;
+      }
+    };
+    
+    showNotification('Mind map loaded. Click nodes for details, drag to rearrange.', 'info');
   }
   
   function showNodeDetails(node) {
-    alert(`Node: ${node.text}\n\nClick and drag to reposition nodes.`);
-  }
-  
-  function dragMindMapNode(e, nodeId) {
-    e.dataTransfer.setData('text/plain', nodeId);
+    const detailsDiv = document.getElementById('mindmap-details');
+    detailsDiv.innerHTML = `
+      <h3 style="color: ${node.type === 'central' ? 'var(--secondary)' : node.type === 'branch' ? node.color : '#666'}; margin-bottom: 1rem;">${node.text}</h3>
+      <p style="line-height: 1.8; margin-bottom: 1.5rem;">${node.details}</p>
+      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        <span style="background: ${node.color}; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">${node.type === 'central' ? 'Central Concept' : node.type === 'branch' ? 'Main Move' : 'Sub-element'}</span>
+        ${node.parent ? `<span style="background: var(--light); color: var(--text-color); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">Connected to: ${node.parent}</span>` : ''}
+      </div>
+    `;
+    
+    // Add animation
+    detailsDiv.style.animation = 'none';
+    setTimeout(() => {
+      detailsDiv.style.animation = 'fadeIn 0.5s ease';
+    }, 10);
   }
   
   function resetMindMap() {
     initializeMindMap();
+    showNotification('Mind map layout reset to default', 'info');
+  }
+  
+  function zoomInMindMap() {
+    const container = document.getElementById('mindmap-container');
+    const currentScale = parseFloat(container.style.transform?.replace('scale(', '')?.replace(')', '')) || 1;
+    container.style.transform = `scale(${currentScale + 0.1})`;
+    showNotification(`Zoomed in to ${Math.round((currentScale + 0.1) * 100)}%`, 'info');
+  }
+  
+  function zoomOutMindMap() {
+    const container = document.getElementById('mindmap-container');
+    const currentScale = parseFloat(container.style.transform?.replace('scale(', '')?.replace(')', '')) || 1;
+    if (currentScale > 0.5) {
+      container.style.transform = `scale(${currentScale - 0.1})`;
+      showNotification(`Zoomed out to ${Math.round((currentScale - 0.1) * 100)}%`, 'info');
+    }
   }
   
   function exportMindMap() {
-    alert('In a real application, this would export the mind map as an image.');
+    // In a real implementation, this would use html2canvas or similar
+    showNotification('Mind map export feature would generate an image file in a full implementation.', 'info');
   }
   
   function printMindMap() {
     window.print();
   }
 
-  // ==================== QUIZZES ====================
+  // ==================== QUIZ FUNCTIONS ====================
   
   function initializeQuiz(category) {
     quizState = {
       currentQuestion: 0,
       score: 0,
       selectedOption: null,
-      quizCompleted: false
+      quizCompleted: false,
+      currentCategory: category
     };
     
     if (!quizzes[category]) {
       category = 'cars';
+      quizState.currentCategory = 'cars';
     }
     
-    loadQuestion(category);
+    loadQuestion();
   }
   
-  function loadQuestion(category = 'cars') {
-    const quiz = quizzes[category][quizState.currentQuestion];
+  function loadQuestion() {
+    const quiz = quizzes[quizState.currentCategory][quizState.currentQuestion];
     if (!quiz) return;
     
+    // Update progress
     document.getElementById('current-question').textContent = quizState.currentQuestion + 1;
-    document.getElementById('total-questions').textContent = quizzes[category].length;
+    document.getElementById('total-questions').textContent = quizzes[quizState.currentCategory].length;
     document.getElementById('quiz-score').textContent = quizState.score;
-    document.getElementById('quiz-total').textContent = quizzes[category].length;
+    document.getElementById('quiz-total').textContent = quizzes[quizState.currentCategory].length;
     
+    // Update progress bar
+    const progress = ((quizState.currentQuestion) / quizzes[quizState.currentCategory].length) * 100;
+    document.getElementById('quiz-progress-fill').style.width = `${progress}%`;
+    
+    // Set question
     document.getElementById('quiz-question').textContent = quiz.question;
     
+    // Clear previous options
     const optionsContainer = document.getElementById('quiz-options');
     optionsContainer.innerHTML = '';
     
+    // Add new options
     quiz.options.forEach((option, index) => {
       const optionElement = document.createElement('div');
       optionElement.className = 'quiz-option';
-      optionElement.textContent = option;
+      optionElement.innerHTML = `
+        <div class="quiz-option-number">${String.fromCharCode(65 + index)}</div>
+        <div>${option}</div>
+      `;
       optionElement.onclick = () => selectOption(index, optionElement);
       optionsContainer.appendChild(optionElement);
     });
     
-    // Reset buttons
+    // Update button states
     document.getElementById('check-btn').style.display = 'block';
     document.getElementById('next-btn').style.display = 'none';
     document.getElementById('submit-btn').style.display = 'none';
@@ -1365,6 +2529,9 @@
     const feedback = document.getElementById('quiz-feedback');
     feedback.className = 'quiz-feedback';
     feedback.style.display = 'none';
+    
+    // Reset selection
+    quizState.selectedOption = null;
   }
   
   function selectOption(index, element) {
@@ -1380,12 +2547,11 @@
   
   function checkAnswer() {
     if (quizState.selectedOption === null) {
-      alert('Please select an answer first!');
+      showNotification('Please select an answer first!', 'warning');
       return;
     }
     
-    const category = 'cars'; // Default category
-    const quiz = quizzes[category][quizState.currentQuestion];
+    const quiz = quizzes[quizState.currentCategory][quizState.currentQuestion];
     const options = document.querySelectorAll('.quiz-option');
     const feedback = document.getElementById('quiz-feedback');
     
@@ -1399,21 +2565,56 @@
       }
     });
     
+    // Disable further selection
+    options.forEach(opt => {
+      opt.style.pointerEvents = 'none';
+    });
+    
     // Show feedback
     if (quizState.selectedOption === quiz.correct) {
       quizState.score++;
       feedback.className = 'quiz-feedback correct';
-      feedback.innerHTML = `<strong>✅ Correct!</strong> ${quiz.explanation}`;
+      feedback.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+          <div style="font-size: 2rem;">✅</div>
+          <div>
+            <strong style="color: var(--success);">Correct!</strong>
+            <div>+1 point added to your score</div>
+          </div>
+        </div>
+        <p>${quiz.explanation}</p>
+      `;
+      
+      // Celebration effect
+      const checkBtn = document.getElementById('check-btn');
+      checkBtn.style.animation = 'bounce 0.5s ease';
     } else {
       feedback.className = 'quiz-feedback incorrect';
-      feedback.innerHTML = `<strong>❌ Incorrect.</strong> ${quiz.explanation}`;
+      feedback.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+          <div style="font-size: 2rem;">❌</div>
+          <div>
+            <strong style="color: var(--accent);">Incorrect</strong>
+            <div>The correct answer is option ${String.fromCharCode(65 + quiz.correct)}</div>
+          </div>
+        </div>
+        <p>${quiz.explanation}</p>
+      `;
+      
+      // Shake effect
+      const checkBtn = document.getElementById('check-btn');
+      checkBtn.style.animation = 'shake 0.5s ease';
     }
     
     feedback.style.display = 'block';
     
+    // Update score display
+    document.getElementById('quiz-score').textContent = quizState.score;
+    
     // Update buttons
     document.getElementById('check-btn').style.display = 'none';
-    if (quizState.currentQuestion < quizzes[category].length - 1) {
+    
+    if (quizState.currentQuestion < quizzes[quizState.currentCategory].length - 1) {
       document.getElementById('next-btn').style.display = 'block';
     } else {
       document.getElementById('submit-btn').style.display = 'block';
@@ -1421,30 +2622,89 @@
   }
   
   function nextQuestion() {
-    const category = 'cars';
+    const category = quizState.currentCategory;
     quizState.currentQuestion++;
     quizState.selectedOption = null;
-    loadQuestion(category);
+    loadQuestion();
+    
+    // Update progress bar
+    const progress = ((quizState.currentQuestion) / quizzes[category].length) * 100;
+    document.getElementById('quiz-progress-fill').style.width = `${progress}%`;
   }
   
   function previousQuestion() {
     if (quizState.currentQuestion > 0) {
-      const category = 'cars';
+      const category = quizState.currentCategory;
       quizState.currentQuestion--;
       quizState.selectedOption = null;
-      loadQuestion(category);
+      loadQuestion();
+      
+      // Update progress bar
+      const progress = ((quizState.currentQuestion) / quizzes[category].length) * 100;
+      document.getElementById('quiz-progress-fill').style.width = `${progress}%`;
     }
   }
   
   function submitQuiz() {
-    const category = 'cars';
+    const category = quizState.currentCategory;
     const totalQuestions = quizzes[category].length;
     const percentage = Math.round((quizState.score / totalQuestions) * 100);
     
-    alert(`Quiz completed!\n\nScore: ${quizState.score}/${totalQuestions} (${percentage}%)\n\n${percentage >= 80 ? 'Excellent! 🎉' : percentage >= 60 ? 'Good job! 👍' : 'Keep practicing! 📚'}`);
+    // Calculate grade
+    let grade, message, emoji;
+    if (percentage >= 90) {
+      grade = 'A'; message = 'Outstanding! You\'ve mastered this topic. 🎉'; emoji = '🏆';
+    } else if (percentage >= 80) {
+      grade = 'B'; message = 'Excellent work! Strong understanding demonstrated. 👍'; emoji = '⭐';
+    } else if (percentage >= 70) {
+      grade = 'C'; message = 'Good job! Solid understanding with room for refinement. 📚'; emoji = '✅';
+    } else if (percentage >= 60) {
+      grade = 'D'; message = 'Fair understanding. Review the material and try again. 🔄'; emoji = '📝';
+    } else {
+      grade = 'F'; message = 'Needs improvement. Study the material and retake the quiz. 🎯'; emoji = '💡';
+    }
     
-    // Reset quiz
-    initializeQuiz(category);
+    // Show results modal
+    const resultsHTML = `
+      <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 2000;">
+        <div style="background: white; padding: 3rem; border-radius: 20px; max-width: 600px; width: 90%; text-align: center; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+          <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: #666;">×</button>
+          
+          <div style="font-size: 4rem; margin-bottom: 1rem;">${emoji}</div>
+          <h2 style="color: var(--primary); margin-bottom: 1rem;">Quiz Complete!</h2>
+          
+          <div style="background: linear-gradient(135deg, ${percentage >= 70 ? 'rgba(39, 174, 96, 0.1)' : 'rgba(243, 156, 18, 0.1)'}); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+            <div style="font-size: 4rem; font-weight: bold; color: ${percentage >= 70 ? 'var(--success)' : 'var(--warning)'}; margin-bottom: 0.5rem;">${percentage}%</div>
+            <div style="font-size: 1.5rem; color: var(--primary); margin-bottom: 0.5rem;">Grade: ${grade}</div>
+            <div style="color: #666;">Score: ${quizState.score}/${totalQuestions}</div>
+          </div>
+          
+          <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.6;">${message}</p>
+          
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <button onclick="this.parentElement.parentElement.parentElement.remove(); initializeQuiz('${category}');" style="background: var(--secondary);">
+              🔄 Retake Quiz
+            </button>
+            <button onclick="this.parentElement.parentElement.parentElement.remove(); showPanel('learning');" class="secondary">
+              📖 Review Material
+            </button>
+            <button onclick="this.parentElement.parentElement.parentElement.remove(); showPanel('quizzes');" class="secondary">
+              📝 Try Another Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    const div = document.createElement('div');
+    div.innerHTML = resultsHTML;
+    document.body.appendChild(div);
+    
+    // Update user progress
+    if (percentage > userProgress.quizzes[category]) {
+      userProgress.quizzes[category] = percentage;
+      showNotification(`New high score for ${category} quizzes!`, 'success');
+    }
   }
   
   function startCategoryQuiz(category) {
@@ -1454,33 +2714,93 @@
 
   // ==================== INTERACTIVE EXERCISES ====================
   
-  // Drag and Drop
-  function allowDrop(event) {
-    event.preventDefault();
-  }
-  
-  function drag(event) {
-    event.dataTransfer.setData('text', event.target.dataset.correct);
-    event.dataTransfer.setData('id', event.target.id);
-  }
-  
-  function drop(event) {
-    event.preventDefault();
-    const correctMove = event.dataTransfer.getData('text');
-    const elementId = event.dataTransfer.getData('id');
+  function initializeExercises() {
+    // Initialize drag and drop
+    initializeDragDrop();
     
-    const dropZone = event.target.classList.contains('drop-zone') ? event.target : event.target.closest('.drop-zone');
-        
-    if (dropZone) {
-      const draggedElement = document.getElementById(elementId);
-      const clone = draggedElement.cloneNode(true);
-      clone.id = `dropped-${Date.now()}`;
+    // Initialize fill in the blanks
+    initializeFillBlanks();
+    
+    // Initialize error identification
+    initializeErrorIdentification();
+  }
+  
+  // Drag and Drop Functions
+  function initializeDragDrop() {
+    const dragItems = document.querySelectorAll('.drag-item');
+    dragItems.forEach(item => {
+      item.addEventListener('dragstart', dragStart);
+      item.addEventListener('dragend', dragEnd);
+    });
+    
+    const dropZones = document.querySelectorAll('.drop-zone');
+    dropZones.forEach(zone => {
+      zone.addEventListener('dragover', dragOver);
+      zone.addEventListener('dragenter', dragEnter);
+      zone.addEventListener('dragleave', dragLeave);
+      zone.addEventListener('drop', drop);
+    });
+  }
+  
+  function dragStart(e) {
+    e.dataTransfer.setData('text/plain', e.target.id);
+    e.target.style.opacity = '0.4';
+    dragDropState.draggedItem = e.target;
+    
+    setTimeout(() => {
+      e.target.style.display = 'none';
+    }, 0);
+  }
+  
+  function dragEnd(e) {
+    e.target.style.opacity = '1';
+    e.target.style.display = 'block';
+  }
+  
+  function dragOver(e) {
+    e.preventDefault();
+  }
+  
+  function dragEnter(e) {
+    e.preventDefault();
+    e.target.classList.add('hover');
+  }
+  
+  function dragLeave(e) {
+    e.target.classList.remove('hover');
+  }
+  
+  function drop(e) {
+    e.preventDefault();
+    e.target.classList.remove('hover');
+    
+    const id = e.dataTransfer.getData('text/plain');
+    const draggable = document.getElementById(id);
+    
+    if (draggable && e.target.classList.contains('drop-zone')) {
+      // Create a clone for the drop zone
+      const clone = draggable.cloneNode(true);
+      clone.id = `${id}-dropped-${Date.now()}`;
       clone.draggable = false;
-      dropZone.appendChild(clone);
+      clone.style.opacity = '1';
+      clone.style.display = 'block';
+      clone.style.margin = '0.5rem 0';
       
-      // Mark the original as used
-      draggedElement.style.opacity = '0.5';
-      draggedElement.draggable = false;
+      // Remove drag events from clone
+      clone.removeEventListener('dragstart', dragStart);
+      clone.removeEventListener('dragend', dragEnd);
+      
+      e.target.appendChild(clone);
+      
+      // Update state
+      dragDropState.totalDragged++;
+      
+      // Mark original as used
+      draggable.style.opacity = '0.3';
+      draggable.style.cursor = 'not-allowed';
+      draggable.draggable = false;
+      
+      showNotification(`Sentence placed in ${e.target.id.replace('-drop', '')} category`, 'info');
     }
   }
   
@@ -1491,229 +2811,559 @@
     
     let correct = 0;
     let total = 0;
+    let feedbackHTML = '<h4 style="color: var(--primary); margin-bottom: 1rem;">Drag & Drop Results</h4>';
     
     // Check territory items
     territoryItems.forEach(item => {
       total++;
-      if (item.dataset.correct === 'territory') correct++;
-      else item.classList.add('incorrect');
+      if (item.dataset.correct === 'territory') {
+        correct++;
+        item.classList.add('correct');
+      } else {
+        item.classList.add('incorrect');
+      }
     });
     
     // Check niche items
     nicheItems.forEach(item => {
       total++;
-      if (item.dataset.correct === 'niche') correct++;
-      else item.classList.add('incorrect');
+      if (item.dataset.correct === 'niche') {
+        correct++;
+        item.classList.add('correct');
+      } else {
+        item.classList.add('incorrect');
+      }
     });
     
     // Check occupation items
     occupationItems.forEach(item => {
       total++;
-      if (item.dataset.correct === 'occupation') correct++;
-      else item.classList.add('incorrect');
+      if (item.dataset.correct === 'occupation') {
+        correct++;
+        item.classList.add('correct');
+      } else {
+        item.classList.add('incorrect');
+      }
     });
     
-    const feedback = document.getElementById('drag-feedback');
-    const percentage = Math.round((correct / total) * 100);
+    const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
     
-    feedback.innerHTML = `
-      <strong>${correct}/${total} correct (${percentage}%)</strong><br>
-      ${percentage === 100 ? 'Perfect! 🎉 All sentences are in the right place.' : 
-        percentage >= 70 ? 'Good job! 👍 Most sentences are correct.' : 
-        'Keep practicing! 📚 Review the CARS model moves.'}
-    `;
-    feedback.style.display = 'block';
-    feedback.style.background = percentage === 100 ? 'rgba(39, 174, 96, 0.1)' : 
-                               percentage >= 70 ? 'rgba(243, 156, 18, 0.1)' : 
-                               'rgba(231, 76, 60, 0.1)';
-    feedback.style.borderLeft = `4px solid ${percentage === 100 ? 'var(--success)' : 
-                                percentage >= 70 ? 'var(--warning)' : 'var(--accent)'}`;
+    if (total === 0) {
+      feedbackHTML += '<p style="color: var(--accent);">No sentences have been placed yet. Drag sentences from the left column to the appropriate categories on the right.</p>';
+    } else {
+      feedbackHTML += `
+        <div style="background: ${percentage === 100 ? 'rgba(39, 174, 96, 0.1)' : percentage >= 70 ? 'rgba(243, 156, 18, 0.1)' : 'rgba(231, 76, 60, 0.1)'}; padding: 1.5rem; border-radius: 10px; margin: 1rem 0; border-left: 4px solid ${percentage === 100 ? 'var(--success)' : percentage >= 70 ? 'var(--warning)' : 'var(--accent)'};">
+          <strong>Score: ${correct}/${total} (${percentage}%)</strong><br>
+          ${percentage === 100 ? 'Perfect! 🎉 All sentences are correctly categorized.' : 
+            percentage >= 70 ? 'Good job! 👍 Most sentences are in the right place.' : 
+            'Keep practicing! 📚 Review the CARS model moves.'}
+        </div>
+      `;
+      
+      // Add detailed feedback
+      feedbackHTML += '<div style="margin-top: 1.5rem;"><strong>Key points to remember:</strong><ul style="margin-left: 1.5rem; margin-top: 0.5rem;">';
+      feedbackHTML += '<li><strong>Territory:</strong> Establishes importance, cites previous research, shows topic centrality</li>';
+      feedbackHTML += '<li><strong>Niche:</strong> Identifies gaps, raises questions, uses contrast words (however, despite)</li>';
+      feedbackHTML += '<li><strong>Occupation:</strong> Presents your study, states purposes, indicates methodology</li>';
+      feedbackHTML += '</ul></div>';
+    }
+    
+    const feedbackDiv = document.getElementById('drag-feedback');
+    feedbackDiv.innerHTML = feedbackHTML;
+    feedbackDiv.style.display = 'block';
+    
+    // Scroll to feedback
+    feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    
+    // Update user progress
+    if (percentage >= 70 && total >= 3) {
+      userProgress.exercises++;
+      showNotification('Exercise completed! Progress updated.', 'success');
+    }
   }
   
   function resetDragDrop() {
     // Reset source items
     document.querySelectorAll('#drag-source .drag-item').forEach(item => {
       item.style.opacity = '1';
+      item.style.cursor = 'move';
       item.draggable = true;
+      item.classList.remove('correct', 'incorrect');
+      
+      // Re-add event listeners
+      item.addEventListener('dragstart', dragStart);
+      item.addEventListener('dragend', dragEnd);
     });
     
     // Clear drop zones
     document.querySelectorAll('.drop-zone').forEach(zone => {
-      zone.innerHTML = '';
+      zone.innerHTML = '<div style="color: #999; text-align: center; padding: 2rem 1rem;">Drop sentences here</div>';
     });
     
     // Clear feedback
     document.getElementById('drag-feedback').style.display = 'none';
+    
+    // Reset state
+    dragDropState.draggedItem = null;
+    dragDropState.correctAnswers = 0;
+    dragDropState.totalDragged = 0;
+    
+    showNotification('Drag & Drop exercise reset', 'info');
   }
   
-  // Fill in the Blanks
+  function showDragDropHint() {
+    showNotification('💡 Hint: Look for keywords - "Recent studies" (Territory), "However" (Niche), "This study" (Occupation)', 'info');
+  }
+  
+  // Fill in the Blanks Functions
+  function initializeFillBlanks() {
+    // Nothing to initialize here
+  }
+  
   function checkFillBlanks() {
-    const blank1 = document.getElementById('blank1').value.toLowerCase();
-    const blank2 = document.getElementById('blank2').value;
-    const blank3 = document.getElementById('blank3').value.toLowerCase();
-    const blank4 = document.getElementById('blank4').value;
+    const answers = {
+      blank1: ['online learning', 'digital education', 'technology-enhanced learning', 'e-learning', 'virtual learning'],
+      blank2: ['educational access', 'learning outcomes', 'student engagement', 'flexibility', 'accessibility'],
+      blank3: ['However'],
+      blank4: ['long-term retention', 'effectiveness', 'outcomes', 'impact', 'results'],
+      blank5: ['higher education', 'university', 'college', 'academic', 'educational'],
+      blank6: ['aims to'],
+      blank7: ['relationship', 'impact', 'effect', 'correlation', 'connection'],
+      blank8: ['mixed-methods', 'quantitative', 'qualitative', 'experimental', 'case study']
+    };
     
-    const feedback = document.getElementById('fill-feedback');
-    
-    // Check answers (simplified)
     let score = 0;
-    let total = 4;
-    let message = '';
+    let total = Object.keys(answers).length;
+    let feedbackHTML = '<h4 style="color: var(--primary); margin-bottom: 1rem;">Fill in the Blanks Results</h4>';
     
-    if (blank1.includes('online learning') || blank1.includes('digital') || blank1.includes('technology')) {
-      score++;
-    }
-    
-    if (blank2 === 'However') {
-      score++;
-    }
-    
-    if (blank3.includes('long-term') || blank3.includes('retention') || blank3.includes('effectiveness')) {
-      score++;
-    }
-    
-    if (blank4 === 'aims to') {
-      score++;
-    }
+    // Check each blank
+    Object.keys(answers).forEach(key => {
+      const element = document.getElementById(key);
+      const value = element.tagName === 'INPUT' ? element.value.trim().toLowerCase() : element.value;
+      const correctAnswers = answers[key];
+      
+      if (value && correctAnswers.some(answer => value.includes(answer.toLowerCase()))) {
+        score++;
+        element.style.borderColor = 'var(--success)';
+        element.style.backgroundColor = 'rgba(39, 174, 96, 0.1)';
+      } else if (value) {
+        element.style.borderColor = 'var(--accent)';
+        element.style.backgroundColor = 'rgba(231, 76, 60, 0.1)';
+      }
+    });
     
     const percentage = Math.round((score / total) * 100);
     
-    if (percentage === 100) {
-      message = 'Perfect! 🎉 Your CARS introduction is well-structured.';
-    } else if (percentage >= 75) {
-      message = 'Good job! 👍 Most answers are correct.';
-    } else if (percentage >= 50) {
-      message = 'Not bad! 📝 Review the CARS model structure.';
-    } else {
-      message = 'Keep practicing! 📚 Study the example sentences in the learning modules.';
-    }
-    
-    feedback.innerHTML = `
-      <strong>Score: ${score}/${total} (${percentage}%)</strong><br>
-      ${message}<br><br>
-      <strong>Expected answers:</strong><br>
-      1. online learning / digital education / technology-enhanced learning<br>
-      2. However<br>
-      3. long-term retention / effectiveness / outcomes<br>
-      4. aims to
+    feedbackHTML += `
+      <div style="background: ${percentage === 100 ? 'rgba(39, 174, 96, 0.1)' : percentage >= 70 ? 'rgba(243, 156, 18, 0.1)' : 'rgba(231, 76, 60, 0.1)'}; padding: 1.5rem; border-radius: 10px; margin: 1rem 0; border-left: 4px solid ${percentage === 100 ? 'var(--success)' : percentage >= 70 ? 'var(--warning)' : 'var(--accent)'};">
+        <strong>Score: ${score}/${total} (${percentage}%)</strong><br>
+        ${percentage === 100 ? 'Excellent! 🎉 Perfect CARS introduction.' : 
+          percentage >= 70 ? 'Well done! 👍 Good understanding of CARS structure.' : 
+          'Keep practicing! 📚 Review the example introductions.'}
+      </div>
     `;
-    feedback.style.display = 'block';
-    feedback.style.background = percentage === 100 ? 'rgba(39, 174, 96, 0.1)' : 
-                               percentage >= 75 ? 'rgba(243, 156, 18, 0.1)' : 
-                               'rgba(231, 76, 60, 0.1)';
+    
+    // Add answer key
+    feedbackHTML += '<div style="margin-top: 1.5rem;"><strong>Suggested answers:</strong><ul style="margin-left: 1.5rem; margin-top: 0.5rem;">';
+    feedbackHTML += '<li><strong>Blank 1:</strong> online learning, digital education, e-learning</li>';
+    feedbackHTML += '<li><strong>Blank 2:</strong> educational access, learning outcomes, flexibility</li>';
+    feedbackHTML += '<li><strong>Blank 3:</strong> However (shows contrast for niche)</li>';
+    feedbackHTML += '<li><strong>Blank 4:</strong> long-term retention, effectiveness, impact</li>';
+    feedbackHTML += '<li><strong>Blank 5:</strong> higher education, university, academic</li>';
+    feedbackHTML += '<li><strong>Blank 6:</strong> aims to (common occupation verb)</li>';
+    feedbackHTML += '<li><strong>Blank 7:</strong> relationship, impact, correlation</li>';
+    feedbackHTML += '<li><strong>Blank 8:</strong> mixed-methods, quantitative, experimental</li>';
+    feedbackHTML += '</ul></div>';
+    
+    const feedbackDiv = document.getElementById('fill-feedback');
+    feedbackDiv.innerHTML = feedbackHTML;
+    feedbackDiv.style.display = 'block';
+    
+    // Scroll to feedback
+    feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
   
   function showFillBlanksHint() {
-    alert('💡 Hint: Review the CARS model structure:\n1. Territory: Establish importance\n2. Niche: Show the gap (often starts with "However")\n3. Occupation: Present your study ("aims to investigate")');
+    showNotification('💡 Hint: Remember the CARS structure - Territory (establish importance), Niche (show gap with "However"), Occupation (state purpose with "aims to")', 'info');
+  }
+  
+  function generateExample() {
+    const examples = [
+      "Recent years have witnessed growing scholarly interest in online learning environments, with numerous studies documenting their potential to enhance educational access and flexibility (Smith, 2020). However, despite this increased attention, relatively little research has examined the long-term retention effects of asynchronous micro-learning modules in higher education contexts. This study therefore aims to investigate the relationship between micro-learning frequency and six-month knowledge retention among university students using a mixed-methods approach.",
+      "Digital literacy has emerged as a central concern in contemporary educational research, with scholars highlighting its importance for 21st-century skills development (Johnson, 2021). Although extensive work exists on basic digital skills, few studies have systematically examined advanced computational thinking in primary school settings. The present research aims to explore the impact of coding interventions on problem-solving abilities among 8-10 year olds through a quasi-experimental design.",
+      "The relationship between teacher feedback and student writing improvement has been extensively documented in second language acquisition research (Brown, 2019). However, most studies have focused on immediate feedback effects, leaving a gap in understanding long-term developmental trajectories. This study therefore examines how different feedback timing affects writing skill development over one academic year among multilingual university students."
+    ];
+    
+    const randomExample = examples[Math.floor(Math.random() * examples.length)];
+    
+    document.getElementById('example-output').style.display = 'block';
+    document.getElementById('generated-example').textContent = randomExample;
+    
+    showNotification('Example generated! Use it as inspiration for your own introduction.', 'info');
+  }
+  
+  // Error Identification Functions
+  function initializeErrorIdentification() {
+    // Nothing to initialize here
+  }
+  
+  function checkErrors() {
+    const checkboxes = document.querySelectorAll('.error-checkbox:checked');
+    const selectedValues = Array.from(checkboxes).map(cb => cb.value);
+    
+    const correctErrors = ['personal', 'vague', 'no-niche', 'weak-occupation', 'no-structure'];
+    let score = 0;
+    
+    // Check selected errors
+    selectedValues.forEach(value => {
+      if (correctErrors.includes(value)) score++;
+    });
+    
+    const feedbackDiv = document.getElementById('error-feedback');
+    let feedbackHTML = '<h4 style="color: var(--primary); margin-bottom: 1rem;">Error Analysis Results</h4>';
+    
+    if (score === correctErrors.length && selectedValues.length === correctErrors.length) {
+      feedbackHTML += `
+        <div style="background: rgba(39, 174, 96, 0.1); padding: 1.5rem; border-radius: 10px; margin: 1rem 0; border-left: 4px solid var(--success);">
+          <strong>Perfect analysis! 🎉</strong><br>
+          You correctly identified all 5 major errors in the introduction.
+        </div>
+      `;
+    } else if (score >= 3) {
+      feedbackHTML += `
+        <div style="background: rgba(243, 156, 18, 0.1); padding: 1.5rem; border-radius: 10px; margin: 1rem 0; border-left: 4px solid var(--warning);">
+          <strong>Good job! 👍</strong><br>
+          You identified ${score} out of 5 errors correctly. ${selectedValues.length > correctErrors.length ? 'You selected some incorrect options.' : 'You missed some errors.'}
+        </div>
+      `;
+    } else {
+      feedbackHTML += `
+        <div style="background: rgba(231, 76, 60, 0.1); padding: 1.5rem; border-radius: 10px; margin: 1rem 0; border-left: 4px solid var(--accent);">
+          <strong>Needs improvement 📚</strong><br>
+          You identified ${score} out of 5 errors correctly. Review the CARS model principles.
+        </div>
+      `;
+    }
+    
+    // Add detailed feedback
+    feedbackHTML += `
+      <div style="margin-top: 1.5rem;">
+        <strong>All errors in the example:</strong>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li><strong>Personal opinion:</strong> "I think" is inappropriate in academic writing</li>
+          <li><strong>Vague statements:</strong> "Many people use computers" lacks specificity</li>
+          <li><strong>No niche:</strong> Doesn't identify any gap or problem</li>
+          <li><strong>Weak occupation:</strong> "I want to study this more" is vague</li>
+          <li><strong>No structure:</strong> Doesn't indicate paper organization or methods</li>
+        </ul>
+      </div>
+    `;
+    
+    feedbackDiv.innerHTML = feedbackHTML;
+    feedbackDiv.style.display = 'block';
+  }
+  
+  function showErrorCorrection() {
+    document.getElementById('correction-output').style.display = 'block';
+    showNotification('Showing corrected version. Compare it with the original to see improvements.', 'info');
+  }
+  
+  // Learning Module Practice Function
+  function checkPracticeAnswer(answer, button) {
+    const correctAnswer = 'niche'; // This sentence demonstrates Move 2: Niche
+    
+    const feedbackDiv = document.getElementById('practice-feedback');
+    
+    if (answer === correctAnswer) {
+      feedbackDiv.innerHTML = `
+        <div style="background: rgba(39, 174, 96, 0.1); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--success);">
+          <strong>✅ Correct!</strong> This is Move 2: Establishing a Niche.<br><br>
+          <strong>Why?</strong> The sentence uses "While... few have investigated" to contrast established knowledge with a gap, which is the key function of Move 2.
+        </div>
+      `;
+      button.style.background = 'var(--success)';
+    } else {
+      feedbackDiv.innerHTML = `
+        <div style="background: rgba(231, 76, 60, 0.1); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--accent);">
+          <strong>❌ Not quite right.</strong> This is actually Move 2: Establishing a Niche.<br><br>
+          <strong>Explanation:</strong> The sentence contrasts what's known ("While previous studies have examined...") with what's missing ("few have investigated..."), which identifies a research gap (Move 2).
+        </div>
+      `;
+      button.style.background = 'var(--accent)';
+    }
+    
+    feedbackDiv.style.display = 'block';
+    
+    // Disable other buttons
+    document.querySelectorAll('#learning-panel button.secondary').forEach(btn => {
+      btn.disabled = true;
+      if (btn !== button) btn.style.opacity = '0.5';
+    });
   }
 
-  // ==================== PROGRESS TRACKING ====================
+  // ==================== PROGRESS TRACKING FUNCTIONS ====================
+  
+  function showBadgeDetails(badgeId) {
+    const badgeDetails = {
+      'cars-master': { title: 'CARS Master', description: 'Awarded for completing all CARS model exercises with 90% or higher score.', requirements: 'Complete Modules 1-3, score 90%+ on CARS quiz, master all CARS flashcards' },
+      'fast-learner': { title: 'Fast Learner', description: 'Awarded for completing 5 or more modules in your first week of using the platform.', requirements: 'Complete 5 modules within 7 days of starting' },
+      'quiz-expert': { title: 'Quiz Expert', description: 'Awarded for scoring 85% or higher on all quiz categories.', requirements: 'Score 85%+ on CARS, Voice, and Genre quizzes' },
+      'flashcard-pro': { title: 'Flashcard Pro', description: 'Awarded for mastering 40 or more flashcards.', requirements: 'Mark 40+ flashcards as mastered' },
+      'perfect-score': { title: 'Perfect Score', description: 'Awarded for scoring 100% on any quiz.', requirements: 'Achieve 100% on any quiz attempt' },
+      'completionist': { title: 'Completionist', description: 'Awarded for completing all 10 learning modules.', requirements: 'Complete all modules with 70%+ progress each' }
+    };
+    
+    const badge = badgeDetails[badgeId];
+    if (!badge) return;
+    
+    const isEarned = document.querySelector(`[onclick*="${badgeId}"]`).classList.contains('earned');
+    
+    const modalHTML = `
+      <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 2000;">
+        <div style="background: white; padding: 2.5rem; border-radius: 20px; max-width: 500px; width: 90%; text-align: center; position: relative;">
+          <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">×</button>
+          
+          <div style="font-size: 4rem; margin-bottom: 1rem;">${isEarned ? '🏆' : '🔒'}</div>
+          <h3 style="color: var(--primary); margin-bottom: 0.5rem;">${badge.title}</h3>
+          <div style="color: ${isEarned ? 'var(--success)' : '#666'}; font-weight: bold; margin-bottom: 1.5rem;">
+            ${isEarned ? '✅ Earned' : '🔒 Locked'}
+          </div>
+          
+          <p style="margin-bottom: 1.5rem; line-height: 1.6;">${badge.description}</p>
+          
+          <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; text-align: left; margin-bottom: 1.5rem;">
+            <strong style="color: var(--primary); display: block; margin-bottom: 0.5rem;">Requirements:</strong>
+            <p style="color: #666;">${badge.requirements}</p>
+          </div>
+          
+          ${!isEarned ? `<p style="color: var(--warning); font-style: italic;">Keep progressing to unlock this badge!</p>` : ''}
+        </div>
+      </div>
+    `;
+    
+    const div = document.createElement('div');
+    div.innerHTML = modalHTML;
+    document.body.appendChild(div);
+  }
   
   function generateProgressReport() {
     const report = `
+      ============================================
       TELL YOUR RESEARCH STORY - PROGRESS REPORT
-      ===========================================
+      ============================================
       
-      Generated: ${new Date().toLocaleDateString()}
+      Generated: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}
       
-      OVERALL PROGRESS: 65%
+      OVERALL PROGRESS
+      ----------------
+      Overall Completion: ${userProgress.overall}%
+      Modules Completed: ${userProgress.modules.filter(m => m >= 70).length}/10
+      Average Quiz Score: ${Object.values(userProgress.quizzes).reduce((a, b) => a + b, 0) / Object.values(userProgress.quizzes).length}%
+      Flashcards Mastered: ${userProgress.flashcards}/60
+      Exercises Completed: ${userProgress.exercises}/18
       
-      MODULES COMPLETED: 6/10
-      • CARS Model Fundamentals: 100%
-      • Academic Voice & Stance: 85%
-      • Research as Narrative: 70%
-      • Genre Expectations: 45%
+      MODULE PROGRESS
+      ---------------
+      ${userProgress.modules.map((progress, i) => 
+        `Module ${i+1}: ${progress}% ${progress >= 70 ? '✓' : progress >= 50 ? '↗' : '○'}`
+      ).join('\n')}
       
-      ASSESSMENT RESULTS:
-      • Average Quiz Score: 85%
-      • Flashcards Mastered: 42/60
-      • Exercises Completed: 8/12
+      QUIZ PERFORMANCE
+      ----------------
+      CARS Model: ${userProgress.quizzes.cars}%
+      Academic Voice: ${userProgress.quizzes.voice}%
+      Genre Analysis: ${userProgress.quizzes.genre}%
       
-      BADGES EARNED:
-      🥇 CARS Master
-      📚 Fast Learner
-      🎯 Quiz Expert
-      🃏 Flashcard Pro
+      BADGES EARNED
+      -------------
+      ${document.querySelectorAll('.badge-card.earned').length}/6 badges earned
       
-      RECOMMENDATIONS:
-      1. Focus on completing Genre Expectations module
-      2. Review flashcards in weaker areas
-      3. Practice more exercises on academic voice
+      RECOMMENDATIONS
+      ---------------
+      1. ${userProgress.modules[3] < 70 ? 'Focus on completing Module 4: Genre Expectations' : 'All modules progressing well'}
+      2. ${userProgress.flashcards < 50 ? 'Practice more flashcards to improve retention' : 'Flashcard mastery is excellent'}
+      3. ${userProgress.exercises < 15 ? 'Complete more interactive exercises' : 'Exercise completion is on track'}
       
-      ---
-      Keep up the great work! Continue telling your research story.
+      NEXT STEPS
+      ----------
+      • Complete remaining modules
+      • Review weaker areas identified above
+      • Try advanced exercises
+      • Consider writing your own research introduction
+      
+      ============================================
+      Keep up the great work! Your research story 
+      is taking shape. Continue learning and 
+      practicing to become a confident academic 
+      writer.
+      ============================================
+      
+      Based on John M. Swales' Academic Writing Framework
+      Platform developed by Halim Faroug A. Elhag
     `;
     
-    // Download as text file
+    // Create download
     const blob = new Blob([report], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'research-story-progress.txt';
+    a.download = `research-story-progress-${new Date().toISOString().split('T')[0]}.txt`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+    
+    showNotification('Progress report generated and downloaded!', 'success');
   }
   
   function shareProgress() {
+    const shareText = `I'm making great progress on the "Tell Your Research Story" platform! 🎯\n\nOverall progress: ${userProgress.overall}%\nModules completed: ${userProgress.modules.filter(m => m >= 70).length}/10\nBadges earned: ${document.querySelectorAll('.badge-card.earned').length}\n\nTry it yourself to improve your academic writing skills!`;
+    
     if (navigator.share) {
       navigator.share({
         title: 'My Research Story Progress',
-        text: 'I\'m making great progress on the "Tell Your Research Story" platform!',
+        text: shareText,
         url: window.location.href
-      });
+      }).catch(console.error);
     } else {
-      alert('Share your progress on social media or with colleagues!');
+      // Fallback: copy to clipboard
+      navigator.clipboard.writeText(shareText + '\n\n' + window.location.href)
+        .then(() => showNotification('Progress copied to clipboard! Share it with colleagues.', 'success'))
+        .catch(() => {
+          // Final fallback: show alert
+          alert(shareText + '\n\nShare this with your colleagues!');
+        });
     }
   }
   
   function resetProgress() {
-    if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
-      alert('Progress reset! Starting fresh.');
-      // In a real app, you would clear localStorage or reset server data
+    if (confirm('Are you sure you want to reset ALL progress?\n\nThis will reset:\n• Module completion\n• Quiz scores\n• Flashcard mastery\n• Exercise completion\n• Earned badges\n\nThis action cannot be undone.')) {
+      // Reset all progress
+      userProgress = {
+        overall: 0,
+        modules: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        quizzes: { cars: 0, voice: 0, genre: 0 },
+        flashcards: 0,
+        exercises: 0
+      };
+      
+      masteredCards.clear();
+      
+      // Update UI
+      document.querySelectorAll('.module-item.completed').forEach(item => {
+        item.classList.remove('completed');
+      });
+      
+      document.querySelectorAll('.badge-card.earned').forEach(badge => {
+        badge.classList.remove('earned');
+      });
+      
+      // Reset flashcards
+      updateCardStats();
+      renderFlashcardDeck();
+      
+      showNotification('All progress has been reset. Starting fresh!', 'info');
+      
+      // Reload current panel to reflect reset
+      showPanel(currentPanel);
     }
   }
+
+  // ==================== UTILITY FUNCTIONS ====================
   
+  function showNotification(message, type = 'info') {
+    // Remove existing notification
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) existingNotification.remove();
+    
+    // Create notification
+    const notification = document.createElement('div');
+    notification.className = `notification`;
+    notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: ${type === 'success' ? 'var(--success)' : type === 'warning' ? 'var(--warning)' : type === 'error' ? 'var(--accent)' : 'var(--secondary)'};
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow-hover);
+      z-index: 3000;
+      animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+      max-width: 400px;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    `;
+    
+    const icons = {
+      success: '✅',
+      warning: '⚠️',
+      error: '❌',
+      info: 'ℹ️'
+    };
+    
+    notification.innerHTML = `
+      <span style="font-size: 1.2rem;">${icons[type] || 'ℹ️'}</span>
+      <span>${message}</span>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto-remove after 3 seconds
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 3000);
+    
+    // Add click to dismiss
+    notification.addEventListener('click', () => {
+      notification.remove();
+    });
+  }
+  
+  // Add CSS for fadeOut animation
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fadeOut {
+      from { opacity: 1; transform: translateX(0); }
+      to { opacity: 0; transform: translateX(100px); }
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  `;
+  document.head.appendChild(style);
+
   // ==================== INITIALIZATION ====================
   
   document.addEventListener('DOMContentLoaded', function() {
-    // Initialize flashcards
+    // Initialize all panels
     initializeFlashcards();
-    
-    // Initialize mind map
-    initializeMindMap();
-    
-    // Initialize quiz
+    setTimeout(initializeMindMap, 100);
     initializeQuiz('cars');
+    initializeExercises();
     
-    // Make drag items draggable
-    document.querySelectorAll('.drag-item').forEach(item => {
-      item.ondragstart = drag;
+    // Set up event listeners for module items
+    document.querySelectorAll('.module-item').forEach((item, index) => {
+      item.addEventListener('click', () => loadModule(index + 1));
     });
+    
+    // Initialize progress display
+    updateProgressDisplay();
+    
+    // Show welcome message
+    setTimeout(() => {
+      showNotification('Welcome to "Tell Your Research Story"! Click through the panels to explore interactive learning tools.', 'info');
+    }, 1000);
   });
+  
+  function updateProgressDisplay() {
+    // This function would update all progress displays
+    // For now, it's handled in the individual functions
+  }
 </script>
 </body>
 </html>
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-  
